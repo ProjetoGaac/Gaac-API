@@ -19,12 +19,14 @@ public class Subject {
 	
 	private List<Subject> dependencies = new ArrayList<>();
 	
-	/*Falta
-	 * files
-	 * teachers
-	 * studentPeriod
-	 * periods
-	 * */
+	private List<Period> periods = new ArrayList<>();
+	
+	private List<StudentPeriod> studentPeriods = new ArrayList<>();
+	
+	private List<Teacher> teachers = new ArrayList<>();
+	
+	private List<File> files  = new ArrayList<>();
+	
 	
 	/** Default Constructor */
 	public Subject() {
