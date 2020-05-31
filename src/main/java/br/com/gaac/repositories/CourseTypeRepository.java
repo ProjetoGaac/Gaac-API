@@ -8,9 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CourseTypeRepository extends JpaRepository<CourseType,Long>{
 	
-	/** Method to return courseType from name 
-	 * @param String - name
-	 * @return CourseType */
 	public CourseType findByName(String name);
 	
 }
