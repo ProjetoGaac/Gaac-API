@@ -6,28 +6,36 @@ package br.com.gaac.domain;
 
 public class CourseType{
 
-    private String nome;
-    private String descricacao;
+    private String name;
+    private String description;
 
-    public CourseType(String nome, String descricacao){
-        this.nome = nome;
-        this.descricacao = descricacao;
-    }
-
-	public String getNome() {
-		return this.nome;
+	/** Default Constructor */
+    public CourseType(String name, String description){
+        this.name = name;
+        this.description = description;
+	}
+	
+	/** Method to return the name
+	 * @return String - name */
+	public String getName() {
+		return this.name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	/** Method to set the name
+	 * @param String - name */
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getDescricacao() {
-		return this.descricacao;
+	/** Method to get the description
+	 * @return8 String - description */
+	public String getDescription() {
+		return this.description;
 	}
-
-	public void setDescricacao(String descricacao) {
-		this.descricacao = descricacao;
+	/** Method to set the description
+	 * @param String - description */
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 
