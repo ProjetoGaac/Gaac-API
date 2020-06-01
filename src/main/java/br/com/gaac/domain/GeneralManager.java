@@ -6,7 +6,6 @@ package br.com.gaac.domain;
 
 public class GeneralManager extends Employee{
 	
-	/** Default Constructor*/
 	public GeneralManager() {
 		
 	}
