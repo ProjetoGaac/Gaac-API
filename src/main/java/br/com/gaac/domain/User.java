@@ -12,7 +12,6 @@ public class User{
     private String password;
     private boolean especialPermission;
 
-
     public User(){}    
 
 	public Long getId() {

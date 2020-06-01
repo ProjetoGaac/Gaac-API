@@ -8,18 +8,15 @@ public class CourseType{
 
     private String name;
     private String description;
-
 	
     public CourseType(String name, String description){
         this.name = name;
         this.description = description;
 	}
 	
-
 	public String getName() {
 		return this.name;
 	}
-
 
 	public void setName(String name) {
 		this.name = name;
