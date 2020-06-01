@@ -4,9 +4,9 @@
 
 package br.com.gaac.domain;
 
-public class teacher extends Employee{
+public class Teacher extends Employee{
 	
-	public teacher() {
+	public Teacher() {
 		
 	}
 	
