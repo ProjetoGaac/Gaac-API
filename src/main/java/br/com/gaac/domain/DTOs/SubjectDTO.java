@@ -4,11 +4,20 @@ package br.com.gaac.domain.DTOs;
  
 public class SubjectDTO {
 	
+	private Long id;
 	private String code;
 	private String name;
-    private Float totalWorkload;
-    private float courseMenu;
-    private int timeAmount;
+    private Float workload;
+    private float menu;
+    private int amountTime;
+
+	public Long getId() {
+		return this.id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public SubjectDTO() {
 		
@@ -30,28 +39,28 @@ public class SubjectDTO {
 		this.name = name;
 	}
 
-	public Float getTotalWorkload() {
-		return this.totalWorkload;
+	public Float getWorkload() {
+		return this.workload;
 	}
 
-	public void setTotalWorkload(Float totalWorkload) {
-		this.totalWorkload = totalWorkload;
+	public void setWorkload(Float workload) {
+		this.workload = workload;
 	}
 
-    public float getCourseMenu() {
-		return this.courseMenu;
+    public float getmenu() {
+		return this.menu;
 	}
 
-	public void setCourseMenu(float courseMenu) {
-		this.courseMenu = courseMenu;
+	public void setmenu(float menu) {
+		this.menu = menu;
     }
     
-    public int getTimeAmount() {
-		return this.timeAmount;
+    public int getAmountTime() {
+		return this.amountTime;
 	}
 
-	public void setTimeAmount(int timeAmount) {
-		this.timeAmount = timeAmount;
+	public void setAmountTime(int amountTime) {
+		this.amountTime = amountTime;
 	}
 
     

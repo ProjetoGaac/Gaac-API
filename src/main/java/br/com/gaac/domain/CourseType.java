@@ -6,8 +6,17 @@ package br.com.gaac.domain;
 
 public class CourseType{
 
+	private Long id;
     private String name;
     private String description;
+
+	public Long getId() {
+		return this.id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
     public CourseType(String name, String description){
         this.name = name;

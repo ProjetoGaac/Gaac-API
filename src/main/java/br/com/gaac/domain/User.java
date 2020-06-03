@@ -10,7 +10,7 @@ public class User{
     private String name;
     private String email;
     private String password;
-    private boolean especialPermission;
+    private HashSet<integer> userCategory = new  HashSet<integer> ;
 
     public User(){}    
 
@@ -46,12 +46,16 @@ public class User{
 		this.password = password;
 	}
 
-	public boolean isEspecialPermission() {
-		return this.especialPermission;
+	public HashSet<integer> getUserCategory() {
+		return this.userCategory;
 	}
-     
-	public void setEspecialPermission(boolean especialPermission) {
-		this.especialPermission = especialPermission;
+
+	public void addUserCategory(Integer category) {
+		this.userCategory.add(category);
+	}
+
+	public void rmvUserCategory(Integer category) {
+		this.userCategory.remove(category);
 	}
 
   
