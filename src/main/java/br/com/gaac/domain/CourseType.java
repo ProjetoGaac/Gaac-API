@@ -1,4 +1,4 @@
-/** Class that represents Subject
+/** Class that represents CourseType
  * @author Gabriel Batista
  * @version 1.0.0 */
 
@@ -8,7 +8,20 @@ public class CourseType{
 
 	private Long id;
     private String name;
-    private String description;
+	private String description;
+
+	public CourseType(){
+
+	}
+
+	public CourseType(String name){
+        this.name = name;
+	}
+	
+	public CourseType(String name, String description){
+        this.name = name;
+        this.description = description;
+	}
 
 	public Long getId() {
 		return this.id;
@@ -16,11 +29,6 @@ public class CourseType{
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-	
-    public CourseType(String name, String description){
-        this.name = name;
-        this.description = description;
 	}
 	
 	public String getName() {

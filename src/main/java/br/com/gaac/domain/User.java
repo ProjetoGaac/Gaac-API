@@ -1,4 +1,4 @@
-/** Class that represents Subject
+/** Class that represents User
  * @author Gabriel Batista
  * @version 1.0.0 */
 
@@ -10,7 +10,7 @@ public class User{
     private String name;
     private String email;
     private String password;
-    private HashSet<integer> userCategory = new  HashSet<integer> ;
+    private HashSet<Integer> userCategory = new  HashSet<Integer> ;
 
     public User(){}    
 
@@ -46,7 +46,7 @@ public class User{
 		this.password = password;
 	}
 
-	public HashSet<integer> getUserCategory() {
+	public HashSet<Integer> getUserCategory() {
 		return this.userCategory;
 	}
 

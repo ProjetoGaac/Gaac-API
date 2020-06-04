@@ -1,4 +1,4 @@
-/** Class that represents Subject
+/** Class that represents PeriodDTO
  * @author Gabriel Batista
  * @version 1.0.0 */
 
@@ -6,15 +6,15 @@ package br.com.gaac.domain.DTOs;
  
 public class PeriodDTO {
 	
-    private int ordinal;
+    private Integer ordinal;
 
     public PeriodDTO();
 
-	public int getOrdinal() {
+	public Integer getOrdinal() {
 		return this.ordinal;
 	}
 
-	public void setOrdinal(int ordinal) {
+	public void setOrdinal(Integer ordinal) {
 		this.ordinal = ordinal;
 	}
 
