@@ -1,4 +1,6 @@
-
+/** Class that represents SubjectDTO
+ * @author Gabriel Batista
+ * @version 1.0.0 */
 
 package br.com.gaac.domain.DTOs;
  
@@ -9,7 +11,7 @@ public class SubjectDTO {
 	private String name;
     private Float workload;
     private float menu;
-    private int amountTime;
+    private Integer amountTime;
 
 	public Long getId() {
 		return this.id;
@@ -47,19 +49,19 @@ public class SubjectDTO {
 		this.workload = workload;
 	}
 
-    public float getmenu() {
+    public float getMenu() {
 		return this.menu;
 	}
 
-	public void setmenu(float menu) {
+	public void setMenu(float menu) {
 		this.menu = menu;
     }
     
-    public int getAmountTime() {
+    public Integer getAmountTime() {
 		return this.amountTime;
 	}
 
-	public void setAmountTime(int amountTime) {
+	public void setAmountTime(Integer amountTime) {
 		this.amountTime = amountTime;
 	}
 
