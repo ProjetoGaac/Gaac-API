@@ -4,13 +4,16 @@
 
 package br.com.gaac.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class User{
   
     private Long id;
     private String name;
     private String email;
     private String password;
-    private HashSet<Integer> userCategory = new  HashSet<Integer> ;
+    private Set<Integer> userCategory = new HashSet<>();
 
     public User(){}    
 
@@ -46,7 +49,7 @@ public class User{
 		this.password = password;
 	}
 
-	public HashSet<Integer> getUserCategory() {
+	public Set<Integer> getUserCategory() {
 		return this.userCategory;
 	}
 
