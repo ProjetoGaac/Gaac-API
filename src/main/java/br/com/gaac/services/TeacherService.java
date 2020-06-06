@@ -3,13 +3,15 @@
  * @author Felipe Duarte
  * @version 1.0.0 */
 
-package br.com.gaac.service;
+package br.com.gaac.services;
 
 import java.util.List;
 
 import org.springframework.data.domain.Page;
 
+import br.com.gaac.domain.Course;
 import br.com.gaac.domain.Subject;
+import br.com.gaac.domain.Teacher;
 
 public class TeacherService {
 	

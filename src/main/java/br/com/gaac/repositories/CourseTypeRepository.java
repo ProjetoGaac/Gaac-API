@@ -6,6 +6,8 @@ package br.com.gaac.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import br.com.gaac.domain.CourseType;
+
 public interface CourseTypeRepository extends JpaRepository<CourseType,Long>{
 	
 	public CourseType findByName(String name);

@@ -1,11 +1,11 @@
 /** Class that represents the services of the Course Administrator Class
  * @author Gabriel Batista
  * @version 1.0.0 */
-package br.com.gaac.repositories;
+package br.com.gaac.services;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
+
+import br.com.gaac.domain.CourseAdministrator;
 
 public class CourseAdministratorService {
 	

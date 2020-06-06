@@ -3,11 +3,15 @@
  * @author Felipe Duarte
  * @version 1.0.0 */
 
-package br.com.gaac.service;
+package br.com.gaac.services;
 
+import org.springframework.data.domain.Page;
 import org.springframework.web.multipart.MultipartFile;
 
+import br.com.gaac.domain.File;
+import br.com.gaac.domain.Student;
 import br.com.gaac.domain.Subject;
+import br.com.gaac.domain.Teacher;
 
 public class FileService {
 	

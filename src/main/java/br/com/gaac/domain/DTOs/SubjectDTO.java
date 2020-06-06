@@ -10,8 +10,10 @@ public class SubjectDTO {
 	private String code;
 	private String name;
     private Float workload;
-    private float menu;
+    private float menu; // Trocar para Float
     private Integer amountTime;
+    
+    //Criar uma lista de dependencie
 
 	public Long getId() {
 		return this.id;
