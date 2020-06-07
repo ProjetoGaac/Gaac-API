@@ -1,4 +1,4 @@
-/** Class that represents Course
+/** Class that represents Employee
  * @author Jorge Gabriel
  * @version 1.0.0 */
 
