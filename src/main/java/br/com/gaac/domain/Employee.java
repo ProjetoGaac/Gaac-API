@@ -1,4 +1,7 @@
-//falta os comentarios aqui olha as outras classes;
+/** Class that represents Course
+ * @author Jorge Gabriel
+ * @version 1.0.0 */
+
 package br.com.gaac.domain;
 
 public class Employee extends User 
