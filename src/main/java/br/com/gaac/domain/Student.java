@@ -1,14 +1,19 @@
-//Falta os comentário aqui
+
+
+/** Class that represents Course
+ * @author Jorge Gabriel
+ * @version 1.0.0 */
+
 package br.com.gaac.domain;
 
 public class Student extends User
 {
     private String matriculation;
     private Boolean authorized;
+    private List <StudentPeriod> studentPeriod = new ArrayList<>();
+    private Course course;
     
-    
-    //Criar lista de studentPeriod olha o diagrama da domain
-    //Falta criar um atributo do tipo Course
+ 
 
     public Student()
     {
