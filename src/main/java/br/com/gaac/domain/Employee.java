@@ -4,18 +4,14 @@
 
 package br.com.gaac.domain;
 
-public class Employee extends User 
-{
+public class Employee extends User {
+	
 	private String office;
 	private String user;
     
-    
-    
-    public Employee()
-    {
+    public Employee(){
 
     }
-
 	
     public String getOffice() {
         return office;

@@ -1,22 +1,22 @@
-
-
 /** Class that represents Student
  * @author Jorge Gabriel
  * @version 1.0.0 */
 
 package br.com.gaac.domain;
 
-public class Student extends User
-{
+import java.util.ArrayList;
+import java.util.List;
+
+public class Student extends User{
+	
     private String matriculation;
     private Boolean authorized;
-    private List <StudentPeriod> studentPeriod = new ArrayList<>();
+   
     private Course course;
     
- 
-
-    public Student()
-    {
+    private List<StudentPeriod> studentPeriod = new ArrayList<>();
+    
+    public Student(){
 
     }
 

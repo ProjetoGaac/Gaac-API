@@ -4,18 +4,11 @@
 
  package br.com.gaac.domain.DTOs;
 
-
 public class Dependencie {
 
     private Long id;
-    private SubjectDTO subjectDTO;
-    private PeriodDTO periodDTO;
-    private StudentPeriodDTO studentPeriodDTO;
 
-    
-
-    public getDependencie()
-    {
+    public Dependencie(){
 
     }
     

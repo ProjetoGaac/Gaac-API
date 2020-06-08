@@ -1,123 +1,103 @@
-
 /** Class that represents Course
  * @author Jorge Gabriel
  * @version 1.0.0 */
 
 package br.com.gaac.domain;
 
-import Domain.CourseType.java;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class Course {
 
-  private Long id;
-  private String code;
-  private String name;
-  private Float totalWorkload; 
-  
-  private CourseType courseType;
-  
-  private List <Period> periods = new ArrayList<>(); 
-  private List <Teacher> teachers = new ArrayList<>(); 
-  private List <CourseAdministrator> courseAdministrators = new ArrayList<>();  
-  public Course()
-    {
+	private Long id;
+	private String code;
+	private String name;
+	private Float totalWorkload; 
 
-    }
+	private CourseType courseType;
 
-    // getters e setters
+	private List<Period> periods = new ArrayList<>(); 
+	private List<Teacher> teachers = new ArrayList<>(); 
+	private List<CourseAdministrator> courseAdministrators = new ArrayList<>(); 
 
-  public Long getId() {
-        return id;
-    }
+	public Course(){
 
-  public void setId(Long id) {
-        this.id = id;
-    }
+	}
 
-  public String getCode() {
-        return code;
-    }
+	// getters e setters
 
-  public void setCode(String code) {
-        this.code = code;
-    }
+	public Long getId() {
+		return id;
+	}
 
-  public String getName() {
-        return name;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  public void setName(String name) {
-        this.name = name;
-    }
+	public String getCode() {
+		return code;
+	}
 
-  public Float getTotalWorkload() {
-        return totalWorkload;
-    }
+	public void setCode(String code) {
+		this.code = code;
+	}
 
-  public void setTotalWorkload(Float totalWorkload) {
-        this.totalWorkload = totalWorkload;
-    }
+	public String getName() {
+		return name;
+	}
 
-    //demais métodos
-    
-    
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public void setCourseType(CourseType courseType)
-    {
-        this.courseType = courseType;
+	public Float getTotalWorkload() {
+		return totalWorkload;
+	}
 
-    }
+	public void setTotalWorkload(Float totalWorkload) {
+		this.totalWorkload = totalWorkload;
+	}
 
-  public void setPeriod(ArrayList<Period>periods)
-    {
-        this.periods = periods;
+	//demais métodos
 
-    }
-    
+	public void setCourseType(CourseType courseType){
+		this.courseType = courseType;
+	}
 
-  public void setTeachers(ArrayList<Teacher> teachers)
-    {
-        this.teachers = teachers;
-    }
-
-  public void setCourseAdministrator(ArrayList<CourseAdministrator> courseAdministrators)
-    {
-        this.courseAdministrators = courseAdministrators;
-    }
+	public void setPeriod(ArrayList<Period>periods){
+		this.periods = periods;
+	}
 
 
-    // add and remove 
+	public void setTeachers(ArrayList<Teacher> teachers){
+		this.teachers = teachers;
+	}
+
+	public void setCourseAdministrator(ArrayList<CourseAdministrator> courseAdministrators){
+		this.courseAdministrators = courseAdministrators;
+	}
 
 
-  public void addPeriod(Period period)
-    {
-        this.periods.add(period);
-    }
+	// add and remove 
 
-  public void addTeacher(Teacher teacher)
-    {
-        this.teachers.add(teacher);
-    }
+	public void addPeriod(Period period){
+		this.periods.add(period);
+	}
 
-  public void addCourseAdministrator(CourseAdministrator courseAdministrator)
-    {
-        this.courseAdministrators.add(courseAdministrator);
+	public void addTeacher(Teacher teacher){
+		this.teachers.add(teacher);
+	}
 
-    }
+	public void addCourseAdministrator(CourseAdministrator courseAdministrator){
+		this.courseAdministrators.add(courseAdministrator);
+	}
 
+	public void rmvTeacher(Teacher teacher){
+		this.teachers.remove(teacher);
+	}
 
-    
-
-    public void rmvTeacher(Teacher teacher)
-    {
-        this.teachers.remove(teacher);
-
-    }
-
-    public void rmvCourseAdministrator(CourseAdministrator courseAdministrator)
-    {
-        this.courseAdministrators.remove(courseAdministrator);
-    }
+	public void rmvCourseAdministrator(CourseAdministrator courseAdministrator){
+		this.courseAdministrators.remove(courseAdministrator);
+	}
 
 }

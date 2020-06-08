@@ -4,19 +4,13 @@
 
 package br.com.gaac.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.List;
-
 import org.springframework.data.domain.Page;
-
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.gaac.domain.Teacher;
 
-public class TeacherRepository extends JpaRepository<Teacher,Long> {
-
-    public Teacher findById(Long id);
+public interface TeacherRepository extends JpaRepository<Teacher,Long> {
 
     public Page<Teacher> findByCourse(Long idCourse, Pageable page);
 
