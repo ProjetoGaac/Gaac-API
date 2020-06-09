@@ -62,4 +62,15 @@ public class StudentPeriodDTO {
         this.endDate = endDate;
     }
 
+    //getters e setters acrescentados
+    
+    public List<Dependencie> getDependencie() {
+        return dependencie;
+    }
+
+  
+    public void setDependencie(List<Dependencie> dependencie) {
+        this.dependencie = dependencie;
+    }
+
 }

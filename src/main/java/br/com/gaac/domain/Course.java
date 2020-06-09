@@ -58,6 +58,37 @@ public class Course {
 		this.totalWorkload = totalWorkload;
 	}
 
+	// getters e setters acrescentados
+	
+	public CourseType getCourseType() {
+        return courseType;
+    }
+
+ 
+    public List<Period> getPeriods() {
+        return periods;
+    }
+
+  
+    public void setPeriods(List<Period> periods) {
+        this.periods = periods;
+    }
+
+  
+    public List<Teacher> getTeachers() {
+        return teachers;
+    }
+
+
+    public List<CourseAdministrator> getCourseAdministrators() {
+        return courseAdministrators;
+    }
+
+   
+    public void setCourseAdministrators(List<CourseAdministrator> courseAdministrators) {
+        this.courseAdministrators = courseAdministrators;
+    }
+
 	//demais métodos
 
 	public void setCourseType(CourseType courseType){
@@ -99,5 +130,9 @@ public class Course {
 	public void rmvCourseAdministrator(CourseAdministrator courseAdministrator){
 		this.courseAdministrators.remove(courseAdministrator);
 	}
+
+
+  
+  
 
 }

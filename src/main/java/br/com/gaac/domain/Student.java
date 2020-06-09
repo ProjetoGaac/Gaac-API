@@ -37,4 +37,25 @@ public class Student extends User{
         this.authorized = authorized;
     }
 
+
+   //getters e setters acrescentados
+   
+    public Course getCourse() {
+        return course;
+    }
+
+   
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+  
+    public List<StudentPeriod> getStudentPeriod() {
+        return studentPeriod;
+    }
+
+    public void setStudentPeriod(List<StudentPeriod> studentPeriod) {
+        this.studentPeriod = studentPeriod;
+    }
+
 }
