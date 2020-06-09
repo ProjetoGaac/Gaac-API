@@ -1,3 +1,4 @@
+//Falta comentários aqui
 package br.com.gaac.domain;
 
 import java.util.Date;
@@ -7,16 +8,18 @@ import java.util.List;
 public class StudentPeriod {
     //atribbutes about this class
     private Long id;
-    private int number;
+    private int number; // é Integer e não int
     private String semesterYear;
     private Date startDate;
     private Date endDate;
 
     private List<Subject> subjects = new ArrayList<>();
+    
+    //Criar o atributo do tipo Student, olha o relacionamento no diagrama da domain
 
     //methods of this class
 
-    StudentPeriod(){
+    StudentPeriod(){ //Tá errado
 
     }
 

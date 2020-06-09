@@ -6,9 +6,13 @@ package br.com.gaac.domain.DTOs;
  
 public class PeriodDTO {
 	
-    private Integer ordinal;
+    private Integer ordinal; //o nome é number
+    
+    //criar lista de dependencie
+    
+    //criar o atributo do tipo CourseDTO 
 
-    public PeriodDTO();
+    public PeriodDTO(); //falta as chaves
 
 	public Integer getOrdinal() {
 		return this.ordinal;

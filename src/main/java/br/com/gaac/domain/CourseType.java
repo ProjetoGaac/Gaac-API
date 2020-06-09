@@ -9,6 +9,8 @@ public class CourseType{
 	private Long id;
     private String name;
 	private String description;
+	
+	//Adicionar uma lista de courses, olha o diagrama de classe do domain.
 
 	public CourseType(){
 

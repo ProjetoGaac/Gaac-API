@@ -1,3 +1,4 @@
+//Falta os comentarios aqui
 package br.com.gaac.domain;
 
 import java.util.Date;
@@ -7,10 +8,14 @@ public class File {
     private Long id;
     private String name;
     private Date date;
+    //falta o atributo student do tipo boolean
+    
+    //Criar o atributo do tipo Subject
+    //Criar o atributo do tipo Teacher
 
     //methods of the Class File
 
-    File(){
+    File(){ //public File()
 
     };
 
@@ -55,14 +60,13 @@ public class File {
     public void setStudent(Boolean student){
         this.student = student;
     }
-
-    public void setStudent(Teacher teacher){
+    
+    public void setTeacher(Teacher teacher){
         this.teacher = teacher;
     }
 
-    public void setStudent(Subject subject){
+    public void setSuject(Subject subject){
         this.subject = subject;
     }
-
 
 }
