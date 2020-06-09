@@ -7,13 +7,9 @@ package br.com.gaac.resources;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import java.util.List;
-import java.util.ArrayList;
 
 import br.com.gaac.domain.Subject;
 import br.com.gaac.domain.DTOs.SubjectDTO;
-import br.com.gaac.domain.Period;
-import br.com.gaac.domain.Teacher;
-import br.com.gaac.domain.StudentPeriod;
 
 public class SubjectResource {
 
@@ -25,7 +21,7 @@ public class SubjectResource {
         return null; //implementar
     }
 
-    public ResponseEntity delete(Subject subject){
+    public ResponseEntity<?> delete(Subject subject){
         return null; //implementar
     }
 
@@ -33,7 +29,7 @@ public class SubjectResource {
         return null; //implementar
     }
 
-    public ArrayList<Subject> findSubjectsByPeriod(Long idPeriod){
+    public List<Subject> findSubjectsByPeriod(Long idPeriod){
         return null; //implementar
     }
 
@@ -41,7 +37,7 @@ public class SubjectResource {
         return null; //implementar
     }
 
-    public ArrayList<Subject> findSubjectsByStudentPeriod(Long idStudentPeriod){
+    public List<Subject> findSubjectsByStudentPeriod(Long idStudentPeriod){
         return null; //implementar
     }
 

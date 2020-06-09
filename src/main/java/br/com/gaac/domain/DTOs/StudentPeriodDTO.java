@@ -16,7 +16,7 @@ public class StudentPeriodDTO {
     private Date startDate;
     private Date endDate;
 
-    private List<Dependencie> dependencie = new ArrayList<>();
+    private List<Dependencie> subjects = new ArrayList<>();
 
     public StudentPeriodDTO(){
 
@@ -65,12 +65,12 @@ public class StudentPeriodDTO {
     //getters e setters acrescentados
     
     public List<Dependencie> getDependencie() {
-        return dependencie;
+        return subjects;
     }
 
   
-    public void setDependencie(List<Dependencie> dependencie) {
-        this.dependencie = dependencie;
+    public void setDependencie(List<Dependencie> subjects) {
+        this.subjects = subjects;
     }
 
 }

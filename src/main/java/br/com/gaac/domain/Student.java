@@ -14,7 +14,7 @@ public class Student extends User{
    
     private Course course;
     
-    private List<StudentPeriod> studentPeriod = new ArrayList<>();
+    private List<StudentPeriod> studentPeriods = new ArrayList<>();
     
     public Student(){
 
@@ -51,11 +51,11 @@ public class Student extends User{
 
   
     public List<StudentPeriod> getStudentPeriod() {
-        return studentPeriod;
+        return studentPeriods;
     }
 
-    public void setStudentPeriod(List<StudentPeriod> studentPeriod) {
-        this.studentPeriod = studentPeriod;
+    public void setStudentPeriod(List<StudentPeriod> studentPeriods) {
+        this.studentPeriods = studentPeriods;
     }
 
 }

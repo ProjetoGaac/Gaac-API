@@ -20,7 +20,7 @@ public class CourseTypeResource {
         return null; //implementar
     }
 
-    public ResponseEntity delete(CourseType courseType){
+    public ResponseEntity<?> delete(CourseType courseType){
         return null; //implementar
     }
 

@@ -7,7 +7,9 @@ package br.com.gaac.resources.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException{
 
-    public ObjectNotFoundException(String message){
+	private static final long serialVersionUID = 1L;
+
+	public ObjectNotFoundException(String message){
           //implementar
     }
     

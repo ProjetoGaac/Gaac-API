@@ -10,9 +10,6 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 import br.com.gaac.domain.Subject;
-import br.com.gaac.domain.Period;
-import br.com.gaac.domain.Teacher;
-import br.com.gaac.domain.StudentPeriod; 
 
 public class SubjectService {
 
@@ -32,7 +29,7 @@ public class SubjectService {
         return null; //implementar
     }
 
-    public ArrayList<Subject> findSubjectsByPeriod(Long idPeriod){
+    public List<Subject> findSubjectsByPeriod(Long idPeriod){
         return null; //implementar
     }
 
@@ -40,7 +37,7 @@ public class SubjectService {
         return null; //implementar
     }
 
-    public ArrayList<Subject> findSubjectsByStudentPeriod(Long idStudentPeriod){
+    public List<Subject> findSubjectsByStudentPeriod(Long idStudentPeriod){
         return null; //implementar
     }
 
