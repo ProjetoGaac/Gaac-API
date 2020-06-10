@@ -20,7 +20,7 @@ public class StudentPeriod {
 
     //methods of this class
 
-    StudentPeriod(){ //Tá errado
+    public StudentPeriod(){ //Tá errado
 
     }
 
@@ -34,7 +34,7 @@ public class StudentPeriod {
     }
     //gett and sett of the Number
 
-    public int getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
