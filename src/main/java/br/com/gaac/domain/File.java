@@ -1,6 +1,8 @@
 //Falta os comentarios aqui
 package br.com.gaac.domain;
 
+import jdk.internal.loader.AbstractClassLoaderValue;
+
 import java.util.Date;
 
 public class File {
@@ -8,6 +10,9 @@ public class File {
     private Long id;
     private String name;
     private Date date;
+    private Boolean student;
+    private Subject subject;
+    private Teacher teacher;
     //falta o atributo student do tipo boolean
     
     //Criar o atributo do tipo Subject
@@ -52,7 +57,7 @@ public class File {
     //method verifying if is the Student
 
     public Boolean isStudent(){
-        return Student;
+        return student;
     }
 
     //Sett Student Teacher and Subject
