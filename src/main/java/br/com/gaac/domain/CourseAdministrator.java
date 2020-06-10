@@ -1,12 +1,27 @@
 //Falta comentários aqui
 package br.com.gaac.domain;
 
-public class CourseAdministrator { //Extends de Employee
+import com.sun.tools.javac.util.List;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+public class CourseAdministrator extends Employee { //Extends de Employee
     
 	//criar lista de Course, olha o diagrama da domain
-	
-	//only one method this class has, I don't know the mean of this method that's why is empty
-    public CourseAdministrator(){
+	private List<Course> courses = new ArrayList<>();
 
+	public CourseAdministrator() {
+
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
     }
 }
