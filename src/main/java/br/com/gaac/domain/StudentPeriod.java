@@ -8,10 +8,11 @@ import java.util.List;
 public class StudentPeriod {
     //atribbutes about this class
     private Long id;
-    private int number; // é Integer e não int
+    private Integer number; // é Integer e não int
     private String semesterYear;
     private Date startDate;
     private Date endDate;
+    private Student student;
 
     private List<Subject> subjects = new ArrayList<>();
     
