@@ -8,19 +8,16 @@ import java.util.List;
 public class StudentPeriod {
     //atribbutes about this class
     private Long id;
-    private Integer number; // é Integer e não int
+    private Integer number;
     private String semesterYear;
     private Date startDate;
     private Date endDate;
+    
     private Student student;
 
     private List<Subject> subjects = new ArrayList<>();
-    
-    //Criar o atributo do tipo Student, olha o relacionamento no diagrama da domain
 
-    //methods of this class
-
-    public StudentPeriod(){ //Tá errado
+    public StudentPeriod(){
 
     }
 
@@ -71,6 +68,16 @@ public class StudentPeriod {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+    
+    //get and set of Student
+    
+    public Student getStudent() {
+    	return this.student;
+    }
+    
+    public void setStudent(Student student) {
+    	this.student = student;
     }
 
     public void addSubject(Subject subject){
