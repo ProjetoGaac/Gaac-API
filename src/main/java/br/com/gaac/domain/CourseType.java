@@ -10,7 +10,7 @@ public class CourseType{
     private String name;
 	private String description;
 	
-	//Adicionar uma lista de courses, olha o diagrama de classe do domain.
+	private List<Course> courses = new ArrayList<>();
 
 	public CourseType(){
 

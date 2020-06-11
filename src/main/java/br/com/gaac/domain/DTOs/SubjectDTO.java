@@ -13,7 +13,7 @@ public class SubjectDTO {
     private float menu; // Trocar para Float
     private Integer amountTime;
     
-    //Criar uma lista de dependencie
+    private List<Dependecie> dependecies = new ArrayList<>();
 
 	public Long getId() {
 		return this.id;

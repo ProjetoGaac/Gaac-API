@@ -12,20 +12,25 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import br.com.gaac.domain.File;
 
 public interface FileRepository extends JpaRepository<File,Long>{
-	
-	//Revisar os nomes dos metodos e os tipos dos parametros
-	
-    public File findByName(String name);
 
-    public Page<File> findBySubject(String subject, Pageable page);
 
-    public List<File> findByTeacher(String teacher);
-	
-    public File findByNameAndSubject(String teacher, String subject);
-
-    public Page<File> findBySubjectAndName(String subject, String name, Pageable page);
+    public  File save( File file );
     
-    public File findByTeacherAndSubjectAndName(String teacher, String subject, String name);
+    public  File update( File file );
+    
+    public  void delete( File file );
+    
+    public  File findByName( String name );
+    
+    public  Page<File> findBySubject( Pageable  page , Subject subject );
+    
+    public  ArrayList<File> findByTeacher( Teacher teacher );
+    
+    public  File findBySubjectAndName( String  name , Subject subject );
+    
+    public  Page<File> findByTeacherAndSubject( Pageable  page , Subject  subject , Teacher teacher );
+    
+    public  File findByTeacherAndSubjectAndName( String  name , Subject  subject , Teacher teacher );
 
     
 	

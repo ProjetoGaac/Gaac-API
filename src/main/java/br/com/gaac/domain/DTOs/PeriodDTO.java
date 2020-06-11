@@ -8,9 +8,9 @@ public class PeriodDTO {
 	
     private Integer ordinal; //o nome é number
     
-    //criar lista de dependencie
+    private List<Dependecie> dependecies = new ArrayList<>();
     
-    //criar o atributo do tipo CourseDTO 
+    private List<CourseDTO> courseDTOs = new ArrayList<>(); 
 
     public PeriodDTO(); //falta as chaves
 

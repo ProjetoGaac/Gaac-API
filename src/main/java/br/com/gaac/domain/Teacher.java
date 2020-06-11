@@ -10,10 +10,12 @@ import java.util.List;
 public class Teacher extends Employee{
 
 	private List<Subject> subjects = new ArrayList<>();
+
+	private List<File> files = new ArrayList<>();
+
+	private List<Course> courses = new ArrayList<>();
 	
-	//Criar lista de files.
-	
-	//Criar lista de courses
+
 	
 	public Teacher() {
 		
