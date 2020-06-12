@@ -70,5 +70,12 @@ public class SubjectDTO {
 		this.amountTime = amountTime;
 	}
 
-    
+	public List<Dependencie> getDependencies() {
+		return dependencies;
+	}
+
+	public void setDependencies(List<Dependencie> dependencies) {
+		this.dependencies = dependencies;
+	}
+
 }

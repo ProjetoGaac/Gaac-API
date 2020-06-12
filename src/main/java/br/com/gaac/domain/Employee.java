@@ -4,7 +4,7 @@
 
 package br.com.gaac.domain;
 
-public class Employee extends User {
+public abstract class Employee extends User {
 	
 	private String office;
 	private String user;

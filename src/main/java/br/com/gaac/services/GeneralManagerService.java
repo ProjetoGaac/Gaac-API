@@ -8,23 +8,17 @@ import org.springframework.data.domain.Page;
 
 import br.com.gaac.domain.GeneralManager; 
 
-
-
 public class GeneralManagerService {
 
     public GeneralManager save(GeneralManager generalManager){
-
         return null;  //implementar
-
     }
 
     public GeneralManager update(GeneralManager generalManager){
-
         return null; //implementar
     }
 
     public void delete(GeneralManager generalManager){
-
         //implementar
     }
 
@@ -39,4 +33,5 @@ public class GeneralManagerService {
     public Page<GeneralManager> findAll(Integer page, Integer quantityPerPage){
         return null; //implementar
     }
+    
 }

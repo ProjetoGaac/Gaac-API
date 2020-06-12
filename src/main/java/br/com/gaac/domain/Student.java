@@ -20,7 +20,6 @@ public class Student extends User{
 
     }
 
-
     public String getMatriculation() {
         return matriculation;
     }
@@ -36,20 +35,15 @@ public class Student extends User{
     public void setAuthorized(Boolean authorized) {
         this.authorized = authorized;
     }
-
-
-   //getters e setters acrescentados
    
     public Course getCourse() {
         return course;
     }
 
-   
     public void setCourse(Course course) {
         this.course = course;
     }
 
-  
     public List<StudentPeriod> getStudentPeriod() {
         return studentPeriods;
     }

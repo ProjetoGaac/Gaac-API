@@ -80,6 +80,46 @@ public class Subject {
 		this.amountTime = amountTime;
 	}
 	
+	public List<Subject> getDependencies() {
+		return dependencies;
+	}
+
+	public void setDependencies(List<Subject> dependencies) {
+		this.dependencies = dependencies;
+	}
+
+	public List<Period> getPeriods() {
+		return periods;
+	}
+
+	public void setPeriods(List<Period> periods) {
+		this.periods = periods;
+	}
+
+	public List<StudentPeriod> getStudentPeriods() {
+		return studentPeriods;
+	}
+
+	public void setStudentPeriods(List<StudentPeriod> studentPeriods) {
+		this.studentPeriods = studentPeriods;
+	}
+
+	public List<Teacher> getTeachers() {
+		return teachers;
+	}
+
+	public void setTeachers(List<Teacher> teachers) {
+		this.teachers = teachers;
+	}
+
+	public List<File> getFiles() {
+		return files;
+	}
+
+	public void setFiles(List<File> files) {
+		this.files = files;
+	}
+
 	public void addDependencie(Subject subject) {
 		this.dependencies.add(subject);
 	}

@@ -14,8 +14,11 @@ import br.com.gaac.domain.Subject;
 public interface SubjectRepository extends JpaRepository<Subject,Long> {
     
     public Subject findByCode(String code);
+    
     public List<Subject> findByPeriod(Long idPeriod);
+    
     public List<Subject> findByStudentPeriod(Long idStudentPeriod);
+    
     public Page<Subject> findByTeacher(Long idTeacher, Pageable page);
 
 }

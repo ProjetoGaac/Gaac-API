@@ -7,7 +7,7 @@ package br.com.gaac.domain;
 import java.util.HashSet;
 import java.util.Set;
 
-public class User{
+public abstract class User{
   
     private Long id;
     private String name;
@@ -15,7 +15,9 @@ public class User{
     private String password;
     private Set<Integer> userCategory = new HashSet<>();
 
-    public User(){}    
+    public User(){
+    	
+    }    
 
 	public Long getId() {
 		return this.id;
@@ -52,6 +54,10 @@ public class User{
 	public Set<Integer> getUserCategory() {
 		return this.userCategory;
 	}
+	
+	public void setUserCategory(Set<Integer> userCategory) {
+		this.userCategory = userCategory;
+	}
 
 	public void addUserCategory(Integer category) {
 		this.userCategory.add(category);
@@ -61,5 +67,4 @@ public class User{
 		this.userCategory.remove(category);
 	}
 
-  
 }

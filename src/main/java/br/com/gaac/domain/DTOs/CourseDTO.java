@@ -4,11 +4,16 @@
 
 package br.com.gaac.domain.DTOs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CourseDTO {
 	
 	private String code;
 	private String name;
 	private Float totalWorkload;
+	
+	private List<PeriodDTO> periods = new ArrayList<>();
 	
 	public CourseDTO() {
 		
@@ -36,6 +41,14 @@ public class CourseDTO {
 
 	public void setTotalWorkload(Float totalWorkload) {
 		this.totalWorkload = totalWorkload;
+	}
+
+	public List<PeriodDTO> getPeriods() {
+		return periods;
+	}
+
+	public void setPeriods(List<PeriodDTO> periods) {
+		this.periods = periods;
 	}
 
 }

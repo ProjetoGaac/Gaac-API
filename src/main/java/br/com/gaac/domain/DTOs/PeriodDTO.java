@@ -17,7 +17,7 @@ public class PeriodDTO {
 
     public PeriodDTO() {
     	
-    };
+    }
 
 	public Integer getNumber() {
 		return this.number;
@@ -27,5 +27,20 @@ public class PeriodDTO {
 		this.number = number;
 	}
 
-    
+	public CourseDTO getCourse() {
+		return course;
+	}
+
+	public void setCourse(CourseDTO course) {
+		this.course = course;
+	}
+
+	public List<Dependencie> getSubjects() {
+		return subjects;
+	}
+
+	public void setSubjects(List<Dependencie> subjects) {
+		this.subjects = subjects;
+	}
+
 }

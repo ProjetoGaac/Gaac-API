@@ -36,6 +36,18 @@ public class Period {
 		this.number = number;
 	}
 	
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+	public List<Subject> getSubjects(){
+		return subjects;
+	}
+	
 	public void setSubjects(List<Subject> subjects) {
 		this.subjects = subjects;
 	}

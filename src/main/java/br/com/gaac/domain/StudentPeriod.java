@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentPeriod {
-    //atribbutes about this class
+    
     private Long id;
     private Integer number;
     private String semesterYear;
@@ -23,7 +23,6 @@ public class StudentPeriod {
 
     }
 
-    //gett and sett of the Id
     public Long getId() {
         return id;
     }
@@ -31,18 +30,14 @@ public class StudentPeriod {
     public void setId(Long id) {
         this.id = id;
     }
-    //gett and sett of the Number
 
     public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
-
-    //get and set of Semester
-
 
     public String getSemesterYear() {
         return semesterYear;
@@ -52,8 +47,6 @@ public class StudentPeriod {
         this.semesterYear = semesterYear;
     }
 
-    //get and set of StartDate
-
     public Date getStartDate() {
         return startDate;
     }
@@ -61,8 +54,6 @@ public class StudentPeriod {
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
-
-    //get and set of EndDate
 
     public Date getEndDate() {
         return endDate;
@@ -72,8 +63,6 @@ public class StudentPeriod {
         this.endDate = endDate;
     }
     
-    //get and set of Student
-    
     public Student getStudent() {
     	return this.student;
     }
@@ -81,15 +70,21 @@ public class StudentPeriod {
     public void setStudent(Student student) {
     	this.student = student;
     }
+    
+    public List<Subject> getSubjects(){
+    	return subjects;
+    }
+    
+    public void setSubjects(List<Subject> subjects){
+        this.subjects = subjects;
+    }
 
     public void addSubject(Subject subject){
         this.subjects.add(subject);
     }
+    
     public void rmvSubject(Subject subject){
         this.subjects.remove(subject);
     }
 
-    public void setSubjects(ArrayList<Subject> subject){
-        this.subjects = subject;
-    }
 }

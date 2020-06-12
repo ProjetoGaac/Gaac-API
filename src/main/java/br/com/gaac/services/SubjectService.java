@@ -43,6 +43,5 @@ public class SubjectService {
     public Page<Subject> findAll(Integer page, Integer quantityPerPage){
         return null; //implementar
     }
-
     
 }

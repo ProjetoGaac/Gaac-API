@@ -4,7 +4,7 @@
 package br.com.gaac.resources.exceptions;
 
 public class ErrorModel {
-    //Atributos
+    
     private Integer code;
     private String status;
     private String message;
@@ -38,4 +38,5 @@ public class ErrorModel {
     public void setMessage(String message) {
         this.message = message;
     }
+    
 }

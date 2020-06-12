@@ -18,13 +18,12 @@ public class Course {
 
 	private List<Period> periods = new ArrayList<>(); 
 	private List<Teacher> teachers = new ArrayList<>(); 
-	private List<CourseAdministrator> courseAdministrators = new ArrayList<>(); 
+	private List<CourseAdministrator> courseAdministrators = new ArrayList<>();
+	private List<Student> students = new ArrayList<>();
 
 	public Course(){
 
 	}
-
-	// getters e setters
 
 	public Long getId() {
 		return id;
@@ -57,59 +56,46 @@ public class Course {
 	public void setTotalWorkload(Float totalWorkload) {
 		this.totalWorkload = totalWorkload;
 	}
-
-	// getters e setters acrescentados
 	
 	public CourseType getCourseType() {
         return courseType;
     }
-
- 
-    public List<Period> getPeriods() {
-        return periods;
-    }
-
-  
-    public void setPeriods(List<Period> periods) {
-        this.periods = periods;
-    }
-
-  
-    public List<Teacher> getTeachers() {
-        return teachers;
-    }
-
-
-    public List<CourseAdministrator> getCourseAdministrators() {
-        return courseAdministrators;
-    }
-
-   
-    public void setCourseAdministrators(List<CourseAdministrator> courseAdministrators) {
-        this.courseAdministrators = courseAdministrators;
-    }
-
-	//demais métodos
-
+	
 	public void setCourseType(CourseType courseType){
 		this.courseType = courseType;
 	}
 
-	public void setPeriod(ArrayList<Period>periods){
-		this.periods = periods;
-	}
+    public List<Period> getPeriods() {
+        return periods;
+    }
 
+    public void setPeriods(List<Period> periods) {
+        this.periods = periods;
+    }
 
-	public void setTeachers(ArrayList<Teacher> teachers){
+    public List<Teacher> getTeachers() {
+        return teachers;
+    }
+    
+    public void setTeachers(List<Teacher> teachers){
 		this.teachers = teachers;
 	}
+    
+    public List<CourseAdministrator> getCourseAdministrators() {
+        return courseAdministrators;
+    }
 
-	public void setCourseAdministrator(ArrayList<CourseAdministrator> courseAdministrators){
-		this.courseAdministrators = courseAdministrators;
+    public void setCourseAdministrators(List<CourseAdministrator> courseAdministrators) {
+        this.courseAdministrators = courseAdministrators;
+    }
+    
+    public List<Student> getStudents() {
+		return students;
 	}
 
-
-	// add and remove 
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
 
 	public void addPeriod(Period period){
 		this.periods.add(period);
@@ -130,9 +116,5 @@ public class Course {
 	public void rmvCourseAdministrator(CourseAdministrator courseAdministrator){
 		this.courseAdministrators.remove(courseAdministrator);
 	}
-
-
-  
-  
 
 }

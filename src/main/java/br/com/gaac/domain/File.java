@@ -6,7 +6,7 @@ package br.com.gaac.domain;
 import java.util.Date;
 
 public class File {
-    //atribbutes of file
+    
     private Long id;
     private String name;
     private Date date;
@@ -15,13 +15,9 @@ public class File {
     private Subject subject;
     private Teacher teacher;
 
-    //methods of the Class File
-
     public File(){
 
     }
-
-    //gett and sett Id
 
     public Long getId() {
         return id;
@@ -31,8 +27,6 @@ public class File {
         this.id = id;
     }
 
-    //gett and sett Name
-
     public String getName() {
         return name;
     }
@@ -41,8 +35,6 @@ public class File {
         this.name = name;
     }
 
-    //gett and sett date
-
     public Date getDate() {
         return date;
     }
@@ -50,8 +42,6 @@ public class File {
     public void setDate(Date date) {
         this.date = date;
     }
-
-    //method verifying if is the Student
     
     public Boolean isStudent(){
         return student;

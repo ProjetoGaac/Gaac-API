@@ -42,17 +42,14 @@ public class TeacherService {
 	public Teacher rmvSubject(Teacher teacher, Subject subject) {
 		return null; //implementar
 	}
-	
 
 	public Teacher findById(Long id) {
 		return null; //implementar
 	}
-	
 
 	public Page<Teacher> findTeacherByCourse(Long idCourse, Integer page, Integer quantityPerPage){
 		return null; //implementar
 	}
-	
 
 	public Page<Teacher> findAll(Integer page, Integer quantityPerPage){
 		return null; //implementar

@@ -21,9 +21,9 @@ public interface FileRepository extends JpaRepository<File,Long>{
     
     public  List<File> findByTeacher(Teacher teacher);
     
-    public  File findBySubjectAndName(Subject subject, String  name);
+    public  File findBySubjectAndName(Subject subject, String name);
     
-    public  Page<File> findByTeacherAndSubject(Subject  subject, Teacher teacher, Pageable  page);
+    public  Page<File> findByTeacherAndSubject(Subject subject, Teacher teacher, Pageable page);
     
     public  File findByTeacherAndSubjectAndName(Teacher teacher, Subject subject, String name);
 

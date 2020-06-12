@@ -15,10 +15,8 @@ import br.com.gaac.domain.Teacher;
 
 public class FileService {
 	
-	private static final String DIRECTORY_ROOT = ""; //Definir caminho
-	
-	//Definir nome da pasta onde vai ficar os arquivos no servidor
-	private static final String DIRECTORY = ""; 
+	private static final String DIRECTORY_ROOT = "C:/";
+	private static final String DIRECTORY = "Arquivo Gaac"; 
 	
 
 	public File upload(Teacher teacher, Subject subject, MultipartFile file) {
@@ -54,7 +52,7 @@ public class FileService {
 		return null; //implementar
 	}
 
-	public Page<File> findFilesTeacher(Teacher teacher,Subject subject, Integer page, Integer quantityPerPage){
+	public Page<File> findFilesTeacher(Teacher teacher, Subject subject, Integer page, Integer quantityPerPage){
 		return null; //implementar
 	}
 	 

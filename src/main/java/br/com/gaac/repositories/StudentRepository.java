@@ -12,7 +12,6 @@ import br.com.gaac.domain.Course;
 import br.com.gaac.domain.Student;
 
 public interface StudentRepository extends JpaRepository<Student,Long>{
-	
 
 	public Page<Student> findByAuthorized(Course course, Boolean authorized, Pageable page);
 	

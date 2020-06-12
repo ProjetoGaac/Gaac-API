@@ -33,12 +33,10 @@ public class CourseAdministratorService {
 		return null; //implementar
 	}
 	
-
 	public Page<CourseAdministrator> findCourseAdministratorByCourse(Long idCourse, Integer page, Integer quantityPerPage){
 		return null; //implementar
 	}
 	
-
 	public Page<CourseAdministrator> findAll(Integer page, Integer quantityPerPage){
 		return null; //implementar
 	}

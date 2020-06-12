@@ -6,7 +6,6 @@ package br.com.gaac.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class CourseAdministrator extends Employee {
     
 	private List<Course> courses = new ArrayList<>();
@@ -22,4 +21,5 @@ public class CourseAdministrator extends Employee {
     public List<Course> getCourses() {
         return courses;
     }
+    
 }

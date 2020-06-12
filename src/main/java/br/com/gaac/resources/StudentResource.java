@@ -74,4 +74,5 @@ public class StudentResource{
     public ResponseEntity<Page<Student>> findAllStudents(Integer page, Integer quantityPerPage){
         return null; //Implementar
     }
+    
 }
