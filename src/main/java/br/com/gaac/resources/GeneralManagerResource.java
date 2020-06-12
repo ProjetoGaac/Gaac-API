@@ -6,22 +6,22 @@ import org.springframework.http.ResponseEntity;
 
 public class GeneralManagerResource {
     public ResponseEntity<GeneralManager> save(GeneralManager generalManager){
-
+        return null;
     }
     public ResponseEntity<GeneralManager> update(GeneralManager generalManager){
-
+        return null;
     }
     public ResponseEntity delete(GeneralManager generalManager){
-
+        return null;
     }
     public ResponseEntity<GeneralManager> enable(GeneralManager generalManager){
-
+        return null;
     }
     public ResponseEntity<GeneralManager> disable(GeneralManager generalManager){
-
+        return null;
     }
     public ResponseEntity<Page<GeneralManager>> findAll(Integer page, Integer quantityPerPage){
-
+        return null;
     }
 
 
