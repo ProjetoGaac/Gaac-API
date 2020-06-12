@@ -4,7 +4,11 @@
 
 package br.com.gaac.domain;
 
-public abstract class Employee extends User {
+import java.io.Serializable;
+
+public abstract class Employee extends User implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	
 	private String office;
 	private String user;

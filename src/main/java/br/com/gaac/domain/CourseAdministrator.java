@@ -3,11 +3,14 @@
  * @version 1.0.0 */
 package br.com.gaac.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseAdministrator extends Employee {
+public class CourseAdministrator extends Employee implements Serializable{
     
+	private static final long serialVersionUID = 1L;
+	
 	private List<Course> courses = new ArrayList<>();
 
 	public CourseAdministrator() {

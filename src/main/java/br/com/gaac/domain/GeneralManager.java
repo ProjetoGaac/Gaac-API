@@ -4,8 +4,12 @@
 
 package br.com.gaac.domain;
 
-public class GeneralManager extends Employee{
+import java.io.Serializable;
+
+public class GeneralManager extends Employee implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	public GeneralManager() {
 		
 	}
