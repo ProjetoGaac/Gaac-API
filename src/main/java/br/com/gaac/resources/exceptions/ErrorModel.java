@@ -9,7 +9,7 @@ public class ErrorModel {
     private String status;
     private String message;
 
-    public void ErrorModel(Integer code, String status,String message){
+    public ErrorModel(Integer code, String status,String message){
         this.code = code;
         this.status = status;
         this.message = message;
