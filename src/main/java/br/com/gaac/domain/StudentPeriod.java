@@ -1,4 +1,6 @@
-//Falta comentários aqui
+/** Class that represents StudentPeriod
+ * @author Gabriel Oliveira o terror delas
+ * @version 1.0.0 */
 package br.com.gaac.domain;
 
 import java.util.Date;

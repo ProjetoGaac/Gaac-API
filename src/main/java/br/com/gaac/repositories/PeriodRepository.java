@@ -1,5 +1,5 @@
 package br.com.gaac.repositories;
-/** Class that represents Subject
+/** Class that represents PeriodRepository
  * @author Gabriel Oliveira o terror delas
  * @version 1.0.0 */
 import java.util.List;

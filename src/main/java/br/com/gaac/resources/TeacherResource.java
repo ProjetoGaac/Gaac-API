@@ -1,3 +1,7 @@
+/** Class that represents the resource the TeacherResource
+ * Author of the Struct
+ * @author Gabriel Oliveira o terror delas
+ * @version 1.0.0 */
 package br.com.gaac.resources;
 
 import br.com.gaac.domain.Subject;

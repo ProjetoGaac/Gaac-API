@@ -1,4 +1,4 @@
-/** Class that represents Subject
+/** Class that represents ErrorModel Exception
  * @author Gabriel Oliveira o terror delas
  * @version 1.0.0 */
 package br.com.gaac.resources.exceptions;
