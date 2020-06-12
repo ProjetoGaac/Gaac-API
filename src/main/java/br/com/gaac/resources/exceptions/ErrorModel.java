@@ -5,9 +5,9 @@ package br.com.gaac.resources.exceptions;
 
 public class ErrorModel {
     //Atributos
-    Integer code;
-    String status;
-    String message;
+    private Integer code;
+    private String status;
+    private String message;
 
     public void ErrorModel(Integer code, String status,String message){
         this.code = code;
