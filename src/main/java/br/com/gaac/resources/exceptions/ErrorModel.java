@@ -7,7 +7,9 @@ public class ErrorModel {
     String message;
 
     public void ErrorModel(Integer code, String status,String message){
-
+        this.code = code;
+        this.status = status;
+        this.message = message;
     }
 
     public Integer getCode() {
