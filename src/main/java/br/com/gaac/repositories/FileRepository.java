@@ -8,11 +8,13 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import br.com.gaac.domain.File;
 import br.com.gaac.domain.Subject;
 import br.com.gaac.domain.Teacher;
 
+@Repository
 public interface FileRepository extends JpaRepository<File,Long>{
     
     public  File findByName(String name);

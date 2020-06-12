@@ -4,12 +4,14 @@
 
 package br.com.gaac.services;
 
-import org.springframework.data.domain.Page;
-
 import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
 
 import br.com.gaac.domain.Subject;
 
+@Service
 public class SubjectService {
 
     public Subject save(Subject subject){

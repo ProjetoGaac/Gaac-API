@@ -5,9 +5,11 @@
 package br.com.gaac.services;
 
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
 
 import br.com.gaac.domain.GeneralManager; 
 
+@Service
 public class GeneralManagerService {
 
     public GeneralManager save(GeneralManager generalManager){

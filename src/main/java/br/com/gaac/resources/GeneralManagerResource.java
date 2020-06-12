@@ -5,10 +5,13 @@
 
 package br.com.gaac.resources;
 
-import br.com.gaac.domain.GeneralManager;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
 
+import br.com.gaac.domain.GeneralManager;
+
+@RestController
 public class GeneralManagerResource {
 	
     public ResponseEntity<GeneralManager> save(GeneralManager generalManager){

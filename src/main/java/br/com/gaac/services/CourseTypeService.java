@@ -3,10 +3,13 @@
  * @version 1.0.0 */
 package br.com.gaac.services;
 
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+
 import br.com.gaac.domain.Course;
 import br.com.gaac.domain.CourseType;
-import org.springframework.data.domain.Page;
 
+@Service
 public class CourseTypeService {
 
     public CourseType save(CourseType courseType){

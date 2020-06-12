@@ -4,9 +4,11 @@
 package br.com.gaac.services;
 
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
 
 import br.com.gaac.domain.CourseAdministrator;
 
+@Service
 public class CourseAdministratorService {
 	
 	public CourseAdministrator save(CourseAdministrator CourseAdministrator) {

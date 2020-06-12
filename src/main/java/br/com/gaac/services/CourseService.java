@@ -6,6 +6,7 @@ package br.com.gaac.services;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
 
 import br.com.gaac.domain.Course;
 import br.com.gaac.domain.CourseAdministrator;
@@ -13,6 +14,7 @@ import br.com.gaac.domain.Period;
 import br.com.gaac.domain.Subject;
 import br.com.gaac.domain.Teacher;
 
+@Service
 public class CourseService {
 
     public Course save(Course course){

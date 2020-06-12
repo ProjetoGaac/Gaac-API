@@ -4,13 +4,16 @@
 
 package br.com.gaac.resources;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import java.util.List;
+import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gaac.domain.Subject;
 import br.com.gaac.domain.DTOs.SubjectDTO;
 
+@RestController
 public class SubjectResource {
 
     public ResponseEntity<Subject> save(SubjectDTO subject){

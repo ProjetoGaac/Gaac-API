@@ -8,11 +8,13 @@ package br.com.gaac.services;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
 
 import br.com.gaac.domain.Course;
 import br.com.gaac.domain.Subject;
 import br.com.gaac.domain.Teacher;
 
+@Service
 public class TeacherService {
 	
 	public Teacher save(Teacher teacher) {

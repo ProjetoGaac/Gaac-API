@@ -4,11 +4,13 @@
 package br.com.gaac.services;
 
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
 
 import br.com.gaac.domain.Course;
 import br.com.gaac.domain.Student;
 import br.com.gaac.domain.StudentPeriod;
 
+@Service
 public class StudentService {
 		
 	public Student save(Student student){

@@ -7,9 +7,11 @@ import java.awt.print.Pageable;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import br.com.gaac.domain.Course;
 
+@Repository
 public interface CourseRepository  extends JpaRepository<Course,Long> {
 	
     public Course findByCode(String code);

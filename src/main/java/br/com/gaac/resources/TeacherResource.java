@@ -4,11 +4,14 @@
  * @version 1.0.0 */
 package br.com.gaac.resources;
 
-import br.com.gaac.domain.Subject;
-import br.com.gaac.domain.Teacher;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
 
+import br.com.gaac.domain.Subject;
+import br.com.gaac.domain.Teacher;
+
+@RestController
 public class TeacherResource {
    
     public ResponseEntity<Teacher> save(Teacher teacher){

@@ -10,11 +10,13 @@ import java.io.File;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.gaac.domain.Subject;
 import br.com.gaac.domain.Teacher;
 
+@RestController
 public class FileResource {
 	
 	public ResponseEntity<File> upload(Long idTeacher, Long idSubject, MultipartFile file){

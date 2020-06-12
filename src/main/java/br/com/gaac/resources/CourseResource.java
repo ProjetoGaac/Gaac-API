@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gaac.domain.Course;
 import br.com.gaac.domain.CourseAdministrator;
@@ -16,6 +17,7 @@ import br.com.gaac.domain.Period;
 import br.com.gaac.domain.Teacher;
 import br.com.gaac.domain.DTOs.CourseDTO;
 
+@RestController
 public class CourseResource {
 	
     public ResponseEntity<Course> save(CourseDTO course){

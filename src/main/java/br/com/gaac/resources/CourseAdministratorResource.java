@@ -7,9 +7,11 @@ package br.com.gaac.resources;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gaac.domain.CourseAdministrator;
 
+@RestController
 public class CourseAdministratorResource {
 	
 	public ResponseEntity<CourseAdministrator> save(CourseAdministrator courseAdministrator){
