@@ -9,6 +9,6 @@ import br.com.gaac.domain.GeneralManager;
 
 public interface GeneralManagerRepository extends JpaRepository<GeneralManager,Long>{
 	
-	public GeneralManager findByNameAndEmail(String name, String Email);
+	public GeneralManager findByNameAndEmail(String name, String email);
 	
 }

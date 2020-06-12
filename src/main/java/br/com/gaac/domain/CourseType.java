@@ -4,6 +4,9 @@
 
 package br.com.gaac.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CourseType{
 
 	private Long id;

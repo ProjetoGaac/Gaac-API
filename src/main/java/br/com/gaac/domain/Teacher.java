@@ -14,9 +14,7 @@ public class Teacher extends Employee{
 	private List<File> files = new ArrayList<>();
 
 	private List<Course> courses = new ArrayList<>();
-	
 
-	
 	public Teacher() {
 		
 	}

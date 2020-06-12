@@ -3,17 +3,24 @@
  * @version 1.0.0 */
 
 package br.com.gaac.domain.DTOs;
- 
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class SubjectDTO {
 	
 	private Long id;
 	private String code;
 	private String name;
     private Float workload;
-    private float menu; // Trocar para Float
+    private Float menu;
     private Integer amountTime;
     
-    private List<Dependecie> dependecies = new ArrayList<>();
+    private List<Dependencie> dependencies = new ArrayList<>();
+    
+    public SubjectDTO() {
+    	
+    }
 
 	public Long getId() {
 		return this.id;
@@ -21,10 +28,6 @@ public class SubjectDTO {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public SubjectDTO() {
-		
 	}
 
 	public String getCode() {
@@ -51,11 +54,11 @@ public class SubjectDTO {
 		this.workload = workload;
 	}
 
-    public float getMenu() {
+    public Float getMenu() {
 		return this.menu;
 	}
 
-	public void setMenu(float menu) {
+	public void setMenu(Float menu) {
 		this.menu = menu;
     }
     

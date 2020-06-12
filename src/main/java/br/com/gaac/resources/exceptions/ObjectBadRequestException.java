@@ -5,11 +5,12 @@
 package br.com.gaac.resources.exceptions;
 
 
-public class ObjectBadRequestException{
+public class ObjectBadRequestException extends RuntimeException{
 
+	private static final long serialVersionUID = 1L;
 
 	public ObjectBadRequestException(String message){
-          //implementar
+		super(message);
     }
     
 }

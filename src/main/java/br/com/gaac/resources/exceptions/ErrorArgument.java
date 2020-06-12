@@ -5,11 +5,11 @@
 package br.com.gaac.resources.exceptions;
 
 
-public class ErrorArgumentException{
+public class ErrorArgument extends ErrorModel{
 
 
-    public  void ErrorArgument( String  message , String  status , Integer code ){
-        //implementar
+    public  void ErrorArgument(Integer code, String status, String message){
+        super(message,status,code);
     }
 
 }

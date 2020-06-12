@@ -3,23 +3,28 @@
  * @version 1.0.0 */
 
 package br.com.gaac.domain.DTOs;
- 
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class PeriodDTO {
 	
-    private Integer ordinal; //o nome é number
+    private Integer number;
     
-    private List<Dependecie> dependecies = new ArrayList<>();
+    private CourseDTO course;
     
-    private List<CourseDTO> courseDTOs = new ArrayList<>(); 
+    private List<Dependencie> subjects = new ArrayList<>();
 
-    public PeriodDTO(); //falta as chaves
+    public PeriodDTO() {
+    	
+    };
 
-	public Integer getOrdinal() {
-		return this.ordinal;
+	public Integer getNumber() {
+		return this.number;
 	}
 
-	public void setOrdinal(Integer ordinal) {
-		this.ordinal = ordinal;
+	public void setNumber(Integer number) {
+		this.number = number;
 	}
 
     

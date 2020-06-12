@@ -1,79 +1,81 @@
 /** Class that represents the services of the Student Class
  * @author Gabriel Batista
  * @version 1.0.0 */
-package br.com.gaac.repositories;
+package br.com.gaac.services;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
+
+import br.com.gaac.domain.Course;
+import br.com.gaac.domain.Student;
+import br.com.gaac.domain.StudentPeriod;
 
 public class StudentService {
 		
-	public  Student save( Student student ){
+	public Student save(Student student){
 		return null; //implementar
 	}
 	
-	public  StudentPeriod savePeriod( StudentPeriod studentPeriod ){
+	public StudentPeriod savePeriod(StudentPeriod studentPeriod ){
 		return null; //implementar	
 	}
 	
-	public  Student update( Student student ){
+	public Student update(Student student ){
 		return null; //implementar	
 	}
 	
-	public  StudentPeriod updatePeriod( StudentPeriod  osp , StudentPeriod usp ){
+	public StudentPeriod updatePeriod(StudentPeriod  usp, StudentPeriod osp){
 		return null; //implementar	
 	}
 	
-	public  void delete( StudentResource student ){
+	public void delete(Student student){
+		//implementar	
+	}
+	
+	public void deletePeriod(StudentPeriod studentPeriod){
+		//implementar	
+	}
+	
+	public Student enable(Student student){
 		return null; //implementar	
 	}
 	
-	public  void deletePeriod( StudentPeriod studentPeriod ){
+	public Student disable(Student student){
 		return null; //implementar	
 	}
 	
-	public  Student enable( Student student ){
+	public void authorizedStudent(Student student){
+		//implementar	
+	}
+	
+	private void sendEmail(Student student){
+		//implementar	
+	}
+	
+	public Student findById(Long idStudent){
 		return null; //implementar	
 	}
 	
-	public  Student disable( Student student ){
+	public StudentPeriod findStudentPeriodById(Long id){
 		return null; //implementar	
 	}
 	
-	public  void authorizedStudent( Student student ){
+	public Student findCourseByStudent(Long idStudent){
 		return null; //implementar	
 	}
 	
-	public  void sendEmail( Student student ){
+	public Page<Student> findAllAuthorized(Course course, Integer page, Integer quantityPerPage){
 		return null; //implementar	
 	}
 	
-	public  Student findById( Long idStudent ){
+	public Page<Student> findAllStudentByCourse(Course course, Integer page, Integer quantityPerPage){
 		return null; //implementar	
 	}
 	
-	public  StudentPeriod findStudentPeriodById( Long id ){
+	public Page<StudentPeriod> findAllStudentPeriod(Student student, Integer page, Integer quantityPerPage){
 		return null; //implementar	
 	}
 	
-	public  Student findCourseByStudent( Long idStudent ){
-		return null; //implementar	
-	}
-	
-	public  Page<Student> findAllAuthorized( Integer  quantityPerPage , Integer  page , Course course ){
-		return null; //implementar	
-	}
-	
-	public  Page<Student> findAliStudentByCourse( Integer  quantityPerPage , Integer  page , Course course ){
-		return null; //implementar	
-	}
-	
-	public  Page<StudentPeriod> findAlIiStudentPeriod( Integer  quantityPerPage , Integer  page , Student student ){
-		return null; //implementar	
-	}
-	
-	public  Page<Student> findAliStudents( Integer  quantityPerPage , Integer page ){
+	public Page<Student> findAllStudents(Integer page, Integer quantityPerPage){
 		return null; //implementar	
 	}
 	

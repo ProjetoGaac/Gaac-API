@@ -5,77 +5,84 @@
 
 package br.com.gaac.resources;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 
 import br.com.gaac.domain.Course;
+import br.com.gaac.domain.CourseAdministrator;
+import br.com.gaac.domain.Period;
+import br.com.gaac.domain.Teacher;
+import br.com.gaac.domain.DTOs.CourseDTO;
 
-public class CourseAdministratorResource {
-    public  ResponseEntity<Course> save( CourseDTO course ){
+public class CourseResource {
+	
+    public ResponseEntity<Course> save(CourseDTO course){
         return null; //Implementar
     }
     
-    public  ResponseEntity<Course> update( Course course ){
+    public ResponseEntity<Course> update(Course course){
         return null; //Implementar
     }
     
-    public  ResponseEntity delete( Course course ){
+    public ResponseEntity<?> delete(Course course){
         return null; //Implementar
     }
     
-    public  ResponseEntity<Period> addSubject( Integer  idSubject , Long idPeriod ){
+    public ResponseEntity<Period> addSubject(Long idPeriod, Long idSubject){
         return null; //Implementar
     }
     
-    public  ResponseEntity rmvSubject( Long  idSubject , Long idPeriod ){
+    public ResponseEntity<?> rmvSubject(Long idPeriod, Long idSubject){
         return null; //Implementar
     }
     
-    public  ResponseEntity addTeacher( Integer  idTeacher , Long idCourse ){
+    public ResponseEntity<?> addTeacher(Long idCourse, Long idTeacher){
         return null; //Implementar
     }
     
-    public  ResponseEntity rmvTeacher( Long  idTeacher , Long idCourse ){
+    public ResponseEntity<?> rmvTeacher(Long idCourse, Long idTeacher){
         return null; //Implementar
     }
     
-    public  ResponseEntity addCourseAdministrator( Long  idCourseAdm , Long idCourse ){
+    public ResponseEntity<?> addCourseAdministrator(Long idCourse, Long idCourseAdm){
         return null; //Implementar
     }
     
-    public  ResponseEntity rmvCourseAdministrator( Long  idCourseAdm , Long idCourse ){
+    public ResponseEntity<?> rmvCourseAdministrator(Long idCourse, Long idCourseAdm){
         return null; //Implementar
     }
     
-    public  Course findCourseById( Long id ){
+    public Course findCourseById(Long id){
         return null; //Implementar
     }
     
-    public  ResponseEntity<Page<Course>> findCoursesByCourseAdm( Integer  quantityPerPage , Integer  page , Long idCourseAdm ){
+    public ResponseEntity<Page<Course>> findCoursesByCourseAdm(Long idCourseAdm, Integer  page, Integer quantityPerPage){
         return null; //Implementar
     }
     
-    public  ResponseEntity<Page<Course>> findCoursesByCourseType( Integer  quantityPerPage , Integer  page , Long idCourseType ){
+    public ResponseEntity<Page<Course>> findCoursesByCourseType(Long idCourseType, Integer  page, Integer quantityPerPage){
         return null; //Implementar
     }
     
-    public  Page<Course> findCoursesByTeacher( Integer  quantityPerPage , Integer  page , Long idTeacher ){
+    public Page<Course> findCoursesByTeacher(Long idTeacher, Integer page, Integer quantityPerPage){
         return null; //Implementar
     }
     
-    public  ResponseEntity<Page<Teacher>> findAllTeacher( Integer  quantityPerPage , Integer  page , Long idCourse ){
+    public ResponseEntity<Page<Teacher>> findAllTeacher(Long idCourse, Integer page, Integer quantityPerPage){
         return null; //Implementar
     }
     
-    public  ResponseEntity<Page<CourseAdministrator>> findAllCourseAdministrator( Integer  quantityPerPage , Integer  page , Long idCourse ){
+    public ResponseEntity<Page<CourseAdministrator>> findAllCourseAdministrator(Long idCourse, Integer page, Integer quantityPerPage){
         return null; //Implementar
     }
     
-    public  ResponseEntity<ArrayList<Period>> findAllPeriod( Long idCourse ){
+    public ResponseEntity<List<Period>> findAllPeriod(Long idCourse){
         return null; //Implementar
     }
     
-    public  ResponseEntity<Page<Course>> findAllCourse( Integer  quantityPerPage , Integer page ){
+    public ResponseEntity<Page<Course>> findAllCourse(Integer page, Integer quantityPerPage){
         return null; //Implementar
     }
 

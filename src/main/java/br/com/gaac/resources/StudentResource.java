@@ -8,66 +8,70 @@ package br.com.gaac.resources;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 
+import br.com.gaac.domain.Course;
 import br.com.gaac.domain.Student;
+import br.com.gaac.domain.StudentPeriod;
+import br.com.gaac.domain.DTOs.StudentPeriodDTO;
 
-public class CourseAdministratorResource{
-    public  ResponseEntity<Student> save( Student student ){
+public class StudentResource{
+	
+    public ResponseEntity<Student> save(Student student){
         return null; //Implementar
     }
     
-    public  ResponseEntity<StudentPeriod> savePeriod( StudentPeriodDTO  studentPeriod , Long idStudent ){
+    public ResponseEntity<StudentPeriod> savePeriod(Long idStudent, StudentPeriodDTO studentPeriod){
         return null; //Implementar
     }
     
-    public  ResponseEntity<Student> update( Student student ){
+    public ResponseEntity<Student> update(Student student){
         return null; //Implementar
     }
     
-    public  ResponseEntity<StudentPeriod> updatePeriod( StudentPeriodDTO studentPeriod ){
+    public ResponseEntity<StudentPeriod> updatePeriod(StudentPeriodDTO studentPeriod){
         return null; //Implementar
     }
     
-    public  ResponseEntity delete( Student student ){
+    public ResponseEntity<?> delete(Student student){
         return null; //Implementar
     }
     
-    public  ResponseEntity deletePeriod( StudentPeriod studentPeriod ){
+    public ResponseEntity<?> deletePeriod(StudentPeriod studentPeriod){
         return null; //Implementar
     }
     
-    public  ResponseEntity<Student> enable( Student student ){
+    public ResponseEntity<Student> enable(Student student){
         return null; //Implementar
     }
     
-    public  ResponseEntity<Student> disable( Student student ){
+    public ResponseEntity<Student> disable(Student student){
         return null; //Implementar
     }
     
-    public  ResponseEntity<Student> authorizedStudent( Student student ){
+    public ResponseEntity<Student> authorizedStudent(Student student){
         return null; //Implementar
     }
     
-    public  Student findById( Long id ){
+    public Student findById(Long id){
         return null; //Implementar
     }
     
-    public  ResponseEntity<Course> findCourseByStudent( Long idStudent ){
+    public ResponseEntity<Course> findCourseByStudent(Long idStudent){
         return null; //Implementar
     }
     
-    public  ResponseEntity<Page<Student>> findAllAuthorized( Integer  quantityPerPage , Integer  page , Long idCurso ){
+    public ResponseEntity<Page<Student>> findAllAuthorized(Long idCurso, Integer page, Integer quantityPerPage){
         return null; //Implementar
     }
     
-    public  ResponseEntity<Page<Student>> findAllStudentByCourse( Integer  quantityPerPage , Integer  page , Long idCourse ){
+    public ResponseEntity<Page<Student>> findAllStudentByCourse(Long idCourse, Integer page, Integer quantityPerPage){
         return null; //Implementar
     }
     
-    public  ResponseEntity<Page<StudentPeriod>> findAllStudentPeriod( Integer  quantityPerPage , Integer  page , Long idStudent ){
+    public ResponseEntity<Page<StudentPeriod>> findAllStudentPeriod(Long idStudent, Integer page, Integer quantityPerPage){
         return null; //Implementar
     }
     
-    public  ResponseEntity<Page<Student>> findAllStudents( Integer  quantityPerPage , Integer page ){
+    public ResponseEntity<Page<Student>> findAllStudents(Integer page, Integer quantityPerPage){
         return null; //Implementar
     }
 }

@@ -10,28 +10,21 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.gaac.domain.File;
+import br.com.gaac.domain.Subject;
+import br.com.gaac.domain.Teacher;
 
 public interface FileRepository extends JpaRepository<File,Long>{
+    
+    public  File findByName(String name);
+    
+    public  Page<File> findBySubject(Subject subject, Pageable page);
+    
+    public  List<File> findByTeacher(Teacher teacher);
+    
+    public  File findBySubjectAndName(Subject subject, String  name);
+    
+    public  Page<File> findByTeacherAndSubject(Subject  subject, Teacher teacher, Pageable  page);
+    
+    public  File findByTeacherAndSubjectAndName(Teacher teacher, Subject subject, String name);
 
-
-    public  File save( File file );
-    
-    public  File update( File file );
-    
-    public  void delete( File file );
-    
-    public  File findByName( String name );
-    
-    public  Page<File> findBySubject( Pageable  page , Subject subject );
-    
-    public  ArrayList<File> findByTeacher( Teacher teacher );
-    
-    public  File findBySubjectAndName( String  name , Subject subject );
-    
-    public  Page<File> findByTeacherAndSubject( Pageable  page , Subject  subject , Teacher teacher );
-    
-    public  File findByTeacherAndSubjectAndName( String  name , Subject  subject , Teacher teacher );
-
-    
-	
 }
