@@ -1,4 +1,6 @@
-//Falta comentarios
+/** Class that represents Subject
+ * @author Gabriel Oliveira o terror delas
+ * @version 1.0.0 */
 package br.com.gaac.services;
 
 import java.util.List;

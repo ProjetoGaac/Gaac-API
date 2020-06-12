@@ -1,4 +1,6 @@
-//Falta os comentarios aqui
+/** Class that represents Subject
+ * @author Gabriel Oliveira
+ * @version 1.0.0 */
 package br.com.gaac.domain;
 
 import java.util.Date;

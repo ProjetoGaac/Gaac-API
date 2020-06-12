@@ -1,5 +1,7 @@
 package br.com.gaac.repositories;
-
+/** Class that represents Subject
+ * @author Gabriel Oliveira o terror delas
+ * @version 1.0.0 */
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
