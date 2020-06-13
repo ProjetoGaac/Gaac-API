@@ -45,7 +45,7 @@ public class Course implements Serializable{
 	private String name;
 	
 	@NotNull(message = "${msg.null}")
-	@Column(columnDefinition = "unsigned")
+	@Column(columnDefinition = "float unsigned")
 	private Float totalWorkload; 
 
 	@ManyToOne(fetch = FetchType.LAZY)

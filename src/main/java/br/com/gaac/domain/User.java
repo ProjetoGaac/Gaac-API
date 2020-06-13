@@ -44,7 +44,7 @@ public abstract class User implements Serializable{
 	
 	@NotNull(message = "${msg.null}")
 	@Length(max=7, message="O campo deve ter no máximo {max} caracteres")
-	@Column(columnDefinition = "unique")
+	@Column(columnDefinition = "varchar(255) unique")
 	//falta validar senha
     private String password;
     

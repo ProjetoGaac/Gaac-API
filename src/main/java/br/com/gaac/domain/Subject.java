@@ -48,7 +48,7 @@ public class Subject implements Serializable{
 	private String menu;
 	
 	@NotNull(message = "${msg.null}")
-	@Column(columnDefinition = "unsigned")
+	@Column(columnDefinition = "float unsigned")
 	private Float workload;
 	
 	@NotNull(message = "${msg.null}")
