@@ -7,15 +7,32 @@ package br.com.gaac.domain.DTOs;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 public class SubjectDTO {
 	
 	private Long id;
+	
+	@NotNull(message = "${msg.null}")
+	@Length(min=7, max=7, message = "O campo deve ter {max} caracteres")
 	private String code;
+	
+	@NotNull(message = "${msg.null}")
+	@Length(min=3, message = "O campo deve ter no mínimo {min} caracteres")
 	private String name;
+	
+	@NotNull(message = "${msg.null}")
     private Float workload;
+	
+	@NotNull(message = "${msg.null}")
     private Float menu;
+	
+	@NotNull(message = "${msg.null}")
     private Integer amountTime;
     
+	@NotNull(message = "${msg.null}")
     private List<Dependencie> dependencies = new ArrayList<>();
     
     public SubjectDTO() {

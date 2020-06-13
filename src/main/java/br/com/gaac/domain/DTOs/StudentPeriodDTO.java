@@ -8,14 +8,29 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class StudentPeriodDTO {
     
     private Long id;
+    
+    @NotNull(message = "${msg.null}")
     private Integer number;
+    
+    @NotNull(message = "${msg.null}")
     private String semesterYear;
+    
+    @NotNull(message = "${msg.null}")
+	@JsonFormat(pattern = "dd/MM/YYYY")
     private Date startDate;
+    
+    @NotNull(message = "${msg.null}")
+	@JsonFormat(pattern = "dd/MM/YYYY")
     private Date endDate;
 
+    @NotNull(message = "${msg.null}")
     private List<Dependencie> subjects = new ArrayList<>();
 
     public StudentPeriodDTO(){

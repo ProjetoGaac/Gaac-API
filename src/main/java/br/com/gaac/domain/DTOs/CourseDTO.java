@@ -7,12 +7,24 @@ package br.com.gaac.domain.DTOs;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 public class CourseDTO {
 	
+	@NotNull(message = "${msg.null}")
+	@Length(min=3,max=3, message = "O campo deve ter {max} caracteres")
 	private String code;
+	
+	@NotNull(message = "${msg.null}")
+	@Length(min=3, max=40, message = "O campo deve possuir no min {min} caracteres e no máximo {max} caracteres")
 	private String name;
+	
+	@NotNull(message = "${msg.null}")
 	private Float totalWorkload;
 	
+	@NotNull(message = "${msg.null}")
 	private List<PeriodDTO> periods = new ArrayList<>();
 	
 	public CourseDTO() {
