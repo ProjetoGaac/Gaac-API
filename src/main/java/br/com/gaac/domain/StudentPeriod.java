@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +19,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "student_period")
@@ -28,16 +35,30 @@ public class StudentPeriod implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull(message = "${msg.null}")
+	@Column(columnDefinition = "tinyint unsigned")
     private Integer number;
-    private String semesterYear;
-    private Date startDate;
-    private Date endDate;
+	
+	@NotNull(message = "${msg.null}")
+	@Column(columnDefinition = "char(7)")
+	//definir formato
+	private String semesterYear;
+	
+	@NotNull(message = "${msg.null}")
+	@JsonFormat(pattern = "dd/MM/YYYY")
+	@Temporal(TemporalType.DATE)
+	private Date startDate;
+	
+	@NotNull(message = "${msg.null}")
+	@JsonFormat(pattern = "dd/MM/YYYY")
+	@Temporal(TemporalType.DATE)
+	private Date endDate;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
     private Student student;
     
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "student_period_subject", 
     	joinColumns = @JoinColumn(name = "student_period_id"),
     	inverseJoinColumns = @JoinColumn(name = "subject_id"))

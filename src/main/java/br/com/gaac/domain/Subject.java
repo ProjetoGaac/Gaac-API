@@ -8,7 +8,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +19,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "subject")
@@ -28,30 +33,45 @@ public class Subject implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull(message = "${msg.null}")
+	@Length(min=7, max=7, message = "O campo deve ter {max} caracteres")
+	@Column(columnDefinition = "char(7)")
 	private String code;
+	
+	@NotNull(message = "${msg.null}")
+	@Length(min=3, message = "O campo deve ter no mínimo {min} caracteres")
+	@Column(columnDefinition = "varchar(50)")
 	private String name;
+	
+	@NotNull(message = "${msg.null}")
+	@Column(columnDefinition = "text")
 	private String menu;
+	
+	@NotNull(message = "${msg.null}")
+	@Column(columnDefinition = "unsigned")
 	private Float workload;
+	
+	@NotNull(message = "${msg.null}")
+	@Column(columnDefinition = "tinyint unsigned")
 	private Integer amountTime;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "subject_dependencie", 
 		joinColumns = @JoinColumn(name = "subject_id"),
 		inverseJoinColumns = @JoinColumn(name = "dependencie"))
 	private List<Subject> dependencies = new ArrayList<>();
 	
-	@ManyToMany(mappedBy = "subjects")
+	@ManyToMany(mappedBy = "subjects", fetch = FetchType.LAZY)
 	private List<Period> periods = new ArrayList<>();
 	
-	@ManyToMany(mappedBy = "subjects")
+	@ManyToMany(mappedBy = "subjects", fetch = FetchType.LAZY)
 	private List<StudentPeriod> studentPeriods = new ArrayList<>();
 	
-	@ManyToMany(mappedBy = "subjects")
+	@ManyToMany(mappedBy = "subjects", fetch = FetchType.LAZY)
 	private List<Teacher> teachers = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "subject")
+	@OneToMany(mappedBy = "subject", fetch = FetchType.LAZY)
 	private List<File> files  = new ArrayList<>();
-	
 	
 	public Subject() {
 		

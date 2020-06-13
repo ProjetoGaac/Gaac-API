@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
@@ -20,7 +21,7 @@ public class CourseAdministrator extends Employee implements Serializable{
     
 	private static final long serialVersionUID = 1L;
 	
-	@ManyToMany(mappedBy = "courseAdministrators")
+	@ManyToMany(mappedBy = "courseAdministrators", fetch = FetchType.LAZY)
 	private List<Course> courses = new ArrayList<>();
 
 	public CourseAdministrator() {

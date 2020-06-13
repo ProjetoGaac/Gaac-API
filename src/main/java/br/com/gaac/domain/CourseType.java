@@ -8,12 +8,17 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "course_type")
@@ -25,10 +30,17 @@ public class CourseType implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-    private String name;
+	@NotNull(message = "${msg.null}")
+	@Length(min=3,max=40, message="O Campo deve ter no mínimo {min} caracteres e no máximo {max} caracteres")
+    @Column(columnDefinition = "varchar(40) unique")
+	private String name;
+	
+	@NotNull(message = "${msg.null}")
+	@Length(min=15, max=100, message="O campo deve ter no mínimo {min} caracteres e no máximo {max} caracteres")
+	@Column(columnDefinition = "varchar(100)")
 	private String description;
 	
-	@OneToMany(mappedBy = "courseType")
+	@OneToMany(mappedBy = "courseType", fetch = FetchType.LAZY)
 	private List<Course> courses = new ArrayList<>();
 
 	public CourseType(){

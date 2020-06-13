@@ -9,11 +9,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 
 @MappedSuperclass
 public abstract class User implements Serializable{
@@ -24,8 +30,22 @@ public abstract class User implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull(message = "${msg.null}")
+	@Length(min=3,max=40,message="O campo deve ter {min} caracteres e no máximo {max} caracteres")
+	@Column(columnDefinition = "varchar(40)")
+	//falta validar o nome
     private String name;
+	
+	@NotNull(message = "${msg.null}")
+	@Length(max=50, message="O campo deve ter no máximo {max} caracteres")
+	@Column(columnDefinition = "varchar(50) unique")
+	//falta validar email
     private String email;
+	
+	@NotNull(message = "${msg.null}")
+	@Length(max=7, message="O campo deve ter no máximo {max} caracteres")
+	@Column(columnDefinition = "unique")
+	//falta validar senha
     private String password;
     
     @ElementCollection
