@@ -6,6 +6,9 @@ package br.com.gaac.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public abstract class Employee extends User implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

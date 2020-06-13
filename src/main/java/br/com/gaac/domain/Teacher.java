@@ -9,16 +9,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "teacher")
 public class Teacher extends Employee implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
+	@ManyToMany
+	@JoinTable(name = "teacher_subject", 
+		joinColumns = @JoinColumn(name = "teacher_id"),
+		inverseJoinColumns = @JoinColumn(name = "subject_id"))
 	private List<Subject> subjects = new ArrayList<>();
-
+	
+	@OneToMany(mappedBy = "teacher")
 	private List<File> files = new ArrayList<>();
 
+	@ManyToMany(mappedBy = "teachers")
 	private List<Course> courses = new ArrayList<>();
 
 	public Teacher() {

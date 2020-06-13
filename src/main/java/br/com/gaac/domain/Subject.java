@@ -9,27 +9,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "subject")
 public class Subject implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String code;
 	private String name;
 	private String menu;
 	private Float workload;
 	private Integer amountTime;
 	
+	@ManyToMany
+	@JoinTable(name = "subject_dependencie", 
+		joinColumns = @JoinColumn(name = "subject_id"),
+		inverseJoinColumns = @JoinColumn(name = "dependencie"))
 	private List<Subject> dependencies = new ArrayList<>();
 	
+	@ManyToMany(mappedBy = "subjects")
 	private List<Period> periods = new ArrayList<>();
 	
+	@ManyToMany(mappedBy = "subjects")
 	private List<StudentPeriod> studentPeriods = new ArrayList<>();
 	
+	@ManyToMany(mappedBy = "subjects")
 	private List<Teacher> teachers = new ArrayList<>();
 	
+	@OneToMany(mappedBy = "subject")
 	private List<File> files  = new ArrayList<>();
 	
 	

@@ -17,10 +17,10 @@ public interface SubjectRepository extends JpaRepository<Subject,Long> {
     
     public Subject findByCode(String code);
     
-    public List<Subject> findByPeriod(Long idPeriod);
+    public List<Subject> findByPeriods(Long idPeriod);
     
-    public List<Subject> findByStudentPeriod(Long idStudentPeriod);
+    public List<Subject> findByStudentPeriods(Long idStudentPeriod);
     
-    public Page<Subject> findByTeacher(Long idTeacher, Pageable page);
+    public Page<Subject> findByTeachers(Long idTeacher, Pageable page);
 
 }

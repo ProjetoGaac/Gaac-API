@@ -7,6 +7,7 @@ package br.com.gaac.repositories;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.gaac.domain.Course;
@@ -21,6 +22,8 @@ public interface StudentRepository extends JpaRepository<Student,Long>{
 	
 	public Page<Student> findByCourse(Course course, Pageable page);
 	
-	public Long findCourseByStudent(Long idStudent); //Vai precisar escrever o comando SQL
+	/* Problemas
+	@Query(value = "SELECT s.course FROM student s WHERE s.id = 1")
+	public Course findByCourse(Long idStudent);*/
 	
 }

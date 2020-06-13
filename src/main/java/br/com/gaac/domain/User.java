@@ -8,14 +8,28 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public abstract class User implements Serializable{
   
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
     private String name;
     private String email;
     private String password;
+    
+    @ElementCollection
+    @CollectionTable(name = "user_category")
     private Set<Integer> userCategory = new HashSet<>();
 
     public User(){

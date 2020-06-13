@@ -9,8 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "student")
 public class Student extends User implements Serializable{
 	
     private static final long serialVersionUID = 1L;
@@ -18,8 +26,11 @@ public class Student extends User implements Serializable{
 	private String matriculation;
     private Boolean authorized;
    
+    @ManyToOne
+    @JoinColumn(name = "course_id")
     private Course course;
     
+    @OneToMany(mappedBy = "student")
     private List<StudentPeriod> studentPeriods = new ArrayList<>();
     
     public Student(){

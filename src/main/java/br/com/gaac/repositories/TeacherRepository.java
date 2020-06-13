@@ -14,7 +14,7 @@ import br.com.gaac.domain.Teacher;
 @Repository
 public interface TeacherRepository extends JpaRepository<Teacher,Long> {
 
-    public Page<Teacher> findByCourse(Long idCourse, Pageable page);
+    public Page<Teacher> findByCourses(Long idCourse, Pageable page);
 
     public Teacher findByNameAndEmail(String name, String email);
 

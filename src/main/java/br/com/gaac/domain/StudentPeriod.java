@@ -9,20 +9,38 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "student_period")
 public class StudentPeriod implements Serializable{
     
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
     private Integer number;
     private String semesterYear;
     private Date startDate;
     private Date endDate;
     
+    @ManyToOne
+    @JoinColumn(name = "student_id")
     private Student student;
-
+    
+    @ManyToMany
+    @JoinTable(name = "student_period_subject", 
+    	joinColumns = @JoinColumn(name = "student_period_id"),
+    	inverseJoinColumns = @JoinColumn(name = "subject_id"))
     private List<Subject> subjects = new ArrayList<>();
 
     public StudentPeriod(){

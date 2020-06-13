@@ -9,22 +9,50 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "course")
 public class Course implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String code;
 	private String name;
 	private Float totalWorkload; 
 
+	@ManyToOne
+	@JoinColumn(name = "course_type_id")
 	private CourseType courseType;
 
+	@OneToMany(mappedBy = "course")
 	private List<Period> periods = new ArrayList<>(); 
-	private List<Teacher> teachers = new ArrayList<>(); 
+	
+	@ManyToMany
+	@JoinTable(name = "course_teacher", 
+			joinColumns = @JoinColumn(name = "course_id"),
+			inverseJoinColumns = @JoinColumn(name = "teacher_id"))
+	private List<Teacher> teachers = new ArrayList<>();
+	
+	@ManyToMany
+	@JoinTable(name = "course_course_administrador", 
+			joinColumns = @JoinColumn(name = "course_id"),
+			inverseJoinColumns = @JoinColumn(name = "course_administrator_id"))
 	private List<CourseAdministrator> courseAdministrators = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "course")
 	private List<Student> students = new ArrayList<>();
 
 	public Course(){

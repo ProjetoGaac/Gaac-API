@@ -8,12 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "course_administrator")
 public class CourseAdministrator extends Employee implements Serializable{
     
 	private static final long serialVersionUID = 1L;
 	
+	@ManyToMany(mappedBy = "courseAdministrators")
 	private List<Course> courses = new ArrayList<>();
 
 	public CourseAdministrator() {
