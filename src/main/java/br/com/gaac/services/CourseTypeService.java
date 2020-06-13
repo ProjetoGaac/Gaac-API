@@ -3,14 +3,19 @@
  * @version 1.0.0 */
 package br.com.gaac.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import br.com.gaac.domain.Course;
 import br.com.gaac.domain.CourseType;
+import br.com.gaac.repositories.CourseTypeRepository;
 
 @Service
 public class CourseTypeService {
+	
+	@Autowired
+	private CourseTypeRepository courseTypeRepository;
 
     public CourseType save(CourseType courseType){
     	return null; //implementar

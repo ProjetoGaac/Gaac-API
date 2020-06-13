@@ -5,14 +5,19 @@
 
 package br.com.gaac.resources;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gaac.domain.CourseAdministrator;
+import br.com.gaac.services.CourseAdministratorService;
 
 @RestController
 public class CourseAdministratorResource {
+	
+	@Autowired
+	private CourseAdministratorService courseAdministratorService;
 	
 	public ResponseEntity<CourseAdministrator> save(CourseAdministrator courseAdministrator){
 		return null; //Implementar

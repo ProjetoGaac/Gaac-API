@@ -3,13 +3,18 @@
  * @version 1.0.0 */
 package br.com.gaac.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import br.com.gaac.domain.CourseAdministrator;
+import br.com.gaac.repositories.CourseAdministratorRepository;
 
 @Service
 public class CourseAdministratorService {
+	
+	@Autowired
+	private CourseAdministratorRepository courseAdministratorRepository;
 	
 	public CourseAdministrator save(CourseAdministrator CourseAdministrator) {
 		return null; //implementar

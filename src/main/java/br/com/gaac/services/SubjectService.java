@@ -6,13 +6,18 @@ package br.com.gaac.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import br.com.gaac.domain.Subject;
+import br.com.gaac.repositories.SubjectRepository;
 
 @Service
 public class SubjectService {
+	
+	@Autowired
+	private SubjectRepository subjectRepository;
 
     public Subject save(Subject subject){
         return null; //implementar

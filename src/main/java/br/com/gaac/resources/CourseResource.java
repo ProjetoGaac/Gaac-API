@@ -7,6 +7,7 @@ package br.com.gaac.resources;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,9 +17,25 @@ import br.com.gaac.domain.CourseAdministrator;
 import br.com.gaac.domain.Period;
 import br.com.gaac.domain.Teacher;
 import br.com.gaac.domain.DTOs.CourseDTO;
+import br.com.gaac.services.CourseService;
 
 @RestController
 public class CourseResource {
+	
+	@Autowired
+	private CourseTypeResource courseTypeResource;
+	
+	@Autowired
+	private CourseAdministratorResource courseAdministratorResource;
+	
+	@Autowired
+	private SubjectResource subjecResource;
+	
+	@Autowired
+	private TeacherResource teacherResource;
+	
+	@Autowired
+	private CourseService courseService;
 	
     public ResponseEntity<Course> save(CourseDTO course){
         return null; //Implementar

@@ -5,6 +5,7 @@
 
 package br.com.gaac.resources;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,9 +14,19 @@ import br.com.gaac.domain.Course;
 import br.com.gaac.domain.Student;
 import br.com.gaac.domain.StudentPeriod;
 import br.com.gaac.domain.DTOs.StudentPeriodDTO;
+import br.com.gaac.services.StudentService;
 
 @RestController
 public class StudentResource{
+	
+	@Autowired
+	private SubjectResource subjectResource;
+	
+	@Autowired
+	private CourseResource courseResource;
+	
+	@Autowired
+	private StudentService studentService;
 	
     public ResponseEntity<Student> save(Student student){
         return null; //Implementar

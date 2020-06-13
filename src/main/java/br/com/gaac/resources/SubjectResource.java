@@ -6,16 +6,21 @@ package br.com.gaac.resources;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gaac.domain.Subject;
 import br.com.gaac.domain.DTOs.SubjectDTO;
+import br.com.gaac.services.SubjectService;
 
 @RestController
 public class SubjectResource {
-
+	
+	@Autowired
+	private SubjectService subjectService;
+	
     public ResponseEntity<Subject> save(SubjectDTO subject){
         return null; //implementar
     }

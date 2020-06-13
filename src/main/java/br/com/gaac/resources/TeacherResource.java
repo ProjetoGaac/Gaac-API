@@ -4,15 +4,29 @@
  * @version 1.0.0 */
 package br.com.gaac.resources;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gaac.domain.Subject;
 import br.com.gaac.domain.Teacher;
+import br.com.gaac.services.TeacherService;
 
 @RestController
 public class TeacherResource {
+	
+	@Autowired
+	private CourseResource courseResource;
+	
+	@Autowired
+	private FileResource fileResource;
+	
+	@Autowired
+	private SubjectResource subjectResource;
+	
+	@Autowired
+	private TeacherService teacherService;
    
     public ResponseEntity<Teacher> save(Teacher teacher){
         return null;

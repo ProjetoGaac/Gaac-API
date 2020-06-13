@@ -7,6 +7,7 @@ package br.com.gaac.resources;
 
 import java.io.File;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +16,19 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.com.gaac.domain.Subject;
 import br.com.gaac.domain.Teacher;
+import br.com.gaac.services.FileService;
 
 @RestController
 public class FileResource {
+	
+	@Autowired
+	private SubjectResource subjectResource;
+	
+	@Autowired
+	private TeacherResource teacherResource;
+	
+	@Autowired
+	private FileService fileService;
 	
 	public ResponseEntity<File> upload(Long idTeacher, Long idSubject, MultipartFile file){
 		return null; //implementar

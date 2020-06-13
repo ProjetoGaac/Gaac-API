@@ -5,6 +5,7 @@ package br.com.gaac.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +14,17 @@ import br.com.gaac.domain.CourseAdministrator;
 import br.com.gaac.domain.Period;
 import br.com.gaac.domain.Subject;
 import br.com.gaac.domain.Teacher;
+import br.com.gaac.repositories.CourseRepository;
+import br.com.gaac.repositories.PeriodRepository;
 
 @Service
 public class CourseService {
+	
+	@Autowired
+	private CourseRepository courseRepository;
+	
+	@Autowired
+	private PeriodRepository periodRepository;
 
     public Course save(Course course){
     	return null; //implementar
