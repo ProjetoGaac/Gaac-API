@@ -25,8 +25,11 @@ public class GeneralManagerService {
         return null; //implementar
     }
 
+    /**@author Felipe Duarte*/
     public void delete(GeneralManager generalManager){
-        //implementar
+    	
+        this.generalManagerRepository.delete(generalManager);
+        
     }
 
     public GeneralManager enable(GeneralManager generalManager){

@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,9 +40,14 @@ public class GeneralManagerResource {
         return null;
     }
     
+	/**@author Felipe Duarte*/
 	@DeleteMapping
     public ResponseEntity<?> delete(@RequestBody GeneralManager generalManager){
-        return null;
+        
+		this.generalManagerService.delete(generalManager);
+		
+		return ResponseEntity.status(HttpStatus.OK).build();
+		
     }
     
 	@PutMapping("/enable")

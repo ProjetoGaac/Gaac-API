@@ -34,6 +34,7 @@ public class CourseTypeService {
     	return null; //implementar
     }
     
+    /**@author Felipe Duarte*/
     public Page<CourseType> findAll(Integer page, Integer quantityPerPage){
     	
     	PageRequest pageRequest = PageRequest.of(page, quantityPerPage);
