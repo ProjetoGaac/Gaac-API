@@ -55,6 +55,7 @@ public class GeneralManagerResource {
         return null;
     }
     
+	/**@author Felipe Duarte*/
 	@PutMapping("/disable")
     public ResponseEntity<GeneralManager> disable(@RequestBody @Valid GeneralManager generalManager){
         return null;

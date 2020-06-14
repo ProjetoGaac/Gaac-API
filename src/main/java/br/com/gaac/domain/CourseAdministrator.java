@@ -5,8 +5,12 @@ package br.com.gaac.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
@@ -26,6 +30,10 @@ public class CourseAdministrator extends Employee implements Serializable{
 	@JsonIgnore
 	@ManyToMany(mappedBy = "courseAdministrators", fetch = FetchType.LAZY)
 	private List<Course> courses = new ArrayList<>();
+	
+	@ElementCollection
+	@CollectionTable(name = "course_administrator_category")
+    private Set<Integer> courseAdministratorCategory = new HashSet<>();
 
 	public CourseAdministrator() {
 
@@ -37,6 +45,22 @@ public class CourseAdministrator extends Employee implements Serializable{
 
     public List<Course> getCourses() {
         return courses;
+    }
+
+	public Set<Integer> getCourseAdministratorCategory() {
+		return courseAdministratorCategory;
+	}
+
+	public void setCourseAdministratorCategory(Set<Integer> courseAdministratorCategory) {
+		this.courseAdministratorCategory = courseAdministratorCategory;
+	}
+    
+    public void addCourseAdministratorCategory(Integer category) {
+    	this.courseAdministratorCategory.add(category);
+    }
+    
+    public void rmvCourseAdministratorCategory(Integer category) {
+    	this.courseAdministratorCategory.remove(category);
     }
     
 }

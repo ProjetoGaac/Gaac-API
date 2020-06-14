@@ -6,9 +6,13 @@ package br.com.gaac.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
@@ -44,6 +48,10 @@ public class Student extends User implements Serializable{
     @JsonIgnore
     @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
     private List<StudentPeriod> studentPeriods = new ArrayList<>();
+    
+    @ElementCollection
+	@CollectionTable(name = "student_category")
+    private Set<Integer> studentCategory = new HashSet<>();
     
     public Student(){
 
@@ -81,4 +89,20 @@ public class Student extends User implements Serializable{
         this.studentPeriods = studentPeriods;
     }
 
+	public Set<Integer> getStudentCategory() {
+		return studentCategory;
+	}
+
+	public void setStudentCategory(Set<Integer> studentCategory) {
+		this.studentCategory = studentCategory;
+	}
+	
+	public void addStudentCategory(Integer category) {
+		this.studentCategory.add(category);	
+	}
+	
+	public void removeStudentCategory(Integer category) {
+		this.studentCategory.remove(category);
+	}
+	
 }

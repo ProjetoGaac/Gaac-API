@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import br.com.gaac.domain.GeneralManager;
+import br.com.gaac.domain.Enums.UserCategory;
 import br.com.gaac.repositories.GeneralManagerRepository; 
 
 @Service
@@ -36,8 +37,9 @@ public class GeneralManagerService {
         return null; //implementar
     }
 
+    /**@author Felipe Duarte*/
     public GeneralManager disable(GeneralManager generalManager){
-        return null;  //implementar
+    	return null;
     }
     
     public Page<GeneralManager> findAll(Integer page, Integer quantityPerPage){

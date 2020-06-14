@@ -6,8 +6,12 @@ package br.com.gaac.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
@@ -41,6 +45,10 @@ public class Teacher extends Employee implements Serializable{
 	@JsonIgnore
 	@ManyToMany(mappedBy = "teachers", fetch = FetchType.LAZY)
 	private List<Course> courses = new ArrayList<>();
+	
+	@ElementCollection
+	@CollectionTable(name = "teacher_category")
+    private Set<Integer> teacherCategory = new HashSet<>();
 
 	public Teacher() {
 		
@@ -76,6 +84,22 @@ public class Teacher extends Employee implements Serializable{
 	
 	public void rmvSubject(Subject subject) {
 		this.subjects.remove(subject);
-	}	
+	}
+
+	public Set<Integer> getTeacherCategory() {
+		return teacherCategory;
+	}
+
+	public void setTeacherCategory(Set<Integer> teacherCategory) {
+		this.teacherCategory = teacherCategory;
+	}
+	
+	public void addTeacherCategory(Integer category) {
+		this.teacherCategory.add(category);
+	}
+	
+	public void rmvTeacherCategory(Integer category) {
+		this.teacherCategory.remove(category);
+	}
 	
 }
