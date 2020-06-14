@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import br.com.gaac.domain.CourseAdministrator;
+import br.com.gaac.domain.Enums.UserCategory;
 import br.com.gaac.repositories.CourseAdministratorRepository;
 
 @Service
@@ -16,23 +17,29 @@ public class CourseAdministratorService {
 	@Autowired
 	private CourseAdministratorRepository courseAdministratorRepository;
 	
-	public CourseAdministrator save(CourseAdministrator CourseAdministrator) {
+	public CourseAdministrator save(CourseAdministrator courseAdministrator) {
 		return null; //implementar
 	}
 	
-	public CourseAdministrator update(CourseAdministrator CourseAdministrator) {
+	public CourseAdministrator update(CourseAdministrator courseAdministrator) {
 		return null; //implementar
 	}
 	
-	public void delete(CourseAdministrator CourseAdministrator) {
+	public void delete(CourseAdministrator courseAdministrator) {
 		//implementar
 	}
 	
-	public CourseAdministrator enable(CourseAdministrator CourseAdministrator) {
-		return null; //implementar
+	/**@author Felipe Duarte*/
+	public CourseAdministrator enable(CourseAdministrator courseAdministrator) {
+		
+		courseAdministrator.addCourseAdministratorCategory(UserCategory.COURSE_ADMINISTRATOR_GENERAL.getCode());
+		
+		courseAdministrator = this.courseAdministratorRepository.save(courseAdministrator);
+		
+		return courseAdministrator;
 	}
 	
-	public CourseAdministrator disable(CourseAdministrator CourseAdministrator) {
+	public CourseAdministrator disable(CourseAdministrator courseAdministrator) {
 		return null; //implementar
 	}
 
