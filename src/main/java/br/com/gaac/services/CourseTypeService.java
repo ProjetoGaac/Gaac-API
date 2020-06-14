@@ -5,6 +5,7 @@ package br.com.gaac.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.gaac.domain.Course;
@@ -34,7 +35,16 @@ public class CourseTypeService {
     }
     
     public Page<CourseType> findAll(Integer page, Integer quantityPerPage){
-    	return null; //implementar
+    	
+    	PageRequest pageRequest = PageRequest.of(page, quantityPerPage);
+    	
+    	Page<CourseType> courseTypes = this.courseTypeRepository.findAll(pageRequest);
+    	
+    	if(!courseTypes.getContent().isEmpty()) {
+    		return courseTypes;
+    	}
+    	
+    	return null;
     }
 
 }
