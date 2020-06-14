@@ -20,6 +20,8 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "student")
@@ -34,10 +36,12 @@ public class Student extends User implements Serializable{
     
     private Boolean authorized;
    
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
     private Course course;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
     private List<StudentPeriod> studentPeriods = new ArrayList<>();
     

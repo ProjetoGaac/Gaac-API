@@ -20,6 +20,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "course_type")
 public class CourseType implements Serializable{
@@ -40,6 +42,7 @@ public class CourseType implements Serializable{
 	@Column(columnDefinition = "varchar(100)")
 	private String description;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "courseType", fetch = FetchType.LAZY)
 	private List<Course> courses = new ArrayList<>();
 

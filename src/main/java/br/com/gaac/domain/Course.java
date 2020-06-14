@@ -24,6 +24,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "course")
 public class Course implements Serializable{
@@ -52,21 +54,25 @@ public class Course implements Serializable{
 	@JoinColumn(name = "course_type_id")
 	private CourseType courseType;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "course",fetch = FetchType.LAZY)
 	private List<Period> periods = new ArrayList<>(); 
 	
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "course_teacher", 
 			joinColumns = @JoinColumn(name = "course_id"),
 			inverseJoinColumns = @JoinColumn(name = "teacher_id"))
 	private List<Teacher> teachers = new ArrayList<>();
 	
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "course_course_administrador", 
 			joinColumns = @JoinColumn(name = "course_id"),
 			inverseJoinColumns = @JoinColumn(name = "course_administrator_id"))
 	private List<CourseAdministrator> courseAdministrators = new ArrayList<>();
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "course",fetch = FetchType.LAZY)
 	private List<Student> students = new ArrayList<>();
 

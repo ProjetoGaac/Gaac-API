@@ -18,6 +18,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "teacher")
@@ -25,15 +27,18 @@ public class Teacher extends Employee implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "teacher_subject", 
 		joinColumns = @JoinColumn(name = "teacher_id"),
 		inverseJoinColumns = @JoinColumn(name = "subject_id"))
 	private List<Subject> subjects = new ArrayList<>();
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
 	private List<File> files = new ArrayList<>();
 
+	@JsonIgnore
 	@ManyToMany(mappedBy = "teachers", fetch = FetchType.LAZY)
 	private List<Course> courses = new ArrayList<>();
 

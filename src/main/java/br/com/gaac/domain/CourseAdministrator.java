@@ -14,6 +14,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "course_administrator")
@@ -21,6 +23,7 @@ public class CourseAdministrator extends Employee implements Serializable{
     
 	private static final long serialVersionUID = 1L;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "courseAdministrators", fetch = FetchType.LAZY)
 	private List<Course> courses = new ArrayList<>();
 

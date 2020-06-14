@@ -23,6 +23,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "subject")
 public class Subject implements Serializable{
@@ -61,15 +63,19 @@ public class Subject implements Serializable{
 		inverseJoinColumns = @JoinColumn(name = "dependencie"))
 	private List<Subject> dependencies = new ArrayList<>();
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "subjects", fetch = FetchType.LAZY)
 	private List<Period> periods = new ArrayList<>();
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "subjects", fetch = FetchType.LAZY)
 	private List<StudentPeriod> studentPeriods = new ArrayList<>();
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "subjects", fetch = FetchType.LAZY)
 	private List<Teacher> teachers = new ArrayList<>();
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "subject", fetch = FetchType.LAZY)
 	private List<File> files  = new ArrayList<>();
 	

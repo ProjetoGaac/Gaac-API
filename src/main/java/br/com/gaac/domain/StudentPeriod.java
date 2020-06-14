@@ -24,6 +24,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "student_period")
@@ -54,6 +55,7 @@ public class StudentPeriod implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
     
+	@JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
     private Student student;
