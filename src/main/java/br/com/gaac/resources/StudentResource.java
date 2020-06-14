@@ -5,9 +5,19 @@
 
 package br.com.gaac.resources;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gaac.domain.Course;
@@ -17,6 +27,7 @@ import br.com.gaac.domain.DTOs.StudentPeriodDTO;
 import br.com.gaac.services.StudentService;
 
 @RestController
+@RequestMapping("/student")
 public class StudentResource{
 	
 	@Autowired
@@ -28,39 +39,49 @@ public class StudentResource{
 	@Autowired
 	private StudentService studentService;
 	
-    public ResponseEntity<Student> save(Student student){
+	@PostMapping
+    public ResponseEntity<Student> save(@RequestBody @Valid Student student){
         return null; //Implementar
     }
     
-    public ResponseEntity<StudentPeriod> savePeriod(Long idStudent, StudentPeriodDTO studentPeriod){
+	@PostMapping("/studentPeriod")
+    public ResponseEntity<StudentPeriod> savePeriod(@RequestParam Long idStudent, 
+    		@RequestBody @Valid StudentPeriodDTO studentPeriod){
         return null; //Implementar
     }
     
-    public ResponseEntity<Student> update(Student student){
+	@PutMapping
+    public ResponseEntity<Student> update(@RequestBody @Valid Student student){
         return null; //Implementar
     }
     
-    public ResponseEntity<StudentPeriod> updatePeriod(StudentPeriodDTO studentPeriod){
+	@PutMapping("/studentPeriod")
+    public ResponseEntity<StudentPeriod> updatePeriod(@RequestBody @Valid StudentPeriodDTO studentPeriod){
         return null; //Implementar
     }
     
-    public ResponseEntity<?> delete(Student student){
+	@DeleteMapping
+    public ResponseEntity<?> delete(@RequestBody Student student){
         return null; //Implementar
     }
     
-    public ResponseEntity<?> deletePeriod(StudentPeriod studentPeriod){
+	@DeleteMapping("/studentPeriod")
+    public ResponseEntity<?> deletePeriod(@RequestBody StudentPeriod studentPeriod){
         return null; //Implementar
     }
     
-    public ResponseEntity<Student> enable(Student student){
+	@PutMapping("/enable")
+    public ResponseEntity<Student> enable(@RequestBody @Valid Student student){
         return null; //Implementar
     }
     
-    public ResponseEntity<Student> disable(Student student){
+	@PutMapping("/disable")
+    public ResponseEntity<Student> disable(@RequestBody @Valid Student student){
         return null; //Implementar
     }
     
-    public ResponseEntity<Student> authorizedStudent(Student student){
+	@PutMapping("/authorized")
+    public ResponseEntity<Student> authorizedStudent(@RequestBody @Valid Student student){
         return null; //Implementar
     }
     
@@ -68,23 +89,36 @@ public class StudentResource{
         return null; //Implementar
     }
     
-    public ResponseEntity<Course> findCourseByStudent(Long idStudent){
+    @GetMapping("{idStudent}/course")
+    public ResponseEntity<Course> findCourseByStudent(@PathVariable Long idStudent){
         return null; //Implementar
     }
     
-    public ResponseEntity<Page<Student>> findAllAuthorized(Long idCurso, Integer page, Integer quantityPerPage){
+    @GetMapping("/authorized")
+    public ResponseEntity<Page<Student>> findAllAuthorized(@RequestParam Long idCurso, 
+    		@RequestParam(defaultValue = "0") Integer page, 
+    		@RequestParam(defaultValue = "3") Integer quantityPerPage){
         return null; //Implementar
     }
     
-    public ResponseEntity<Page<Student>> findAllStudentByCourse(Long idCourse, Integer page, Integer quantityPerPage){
+    @GetMapping("/course")
+    public ResponseEntity<Page<Student>> findAllStudentByCourse(@RequestParam Long idCourse, 
+    		@RequestParam(defaultValue = "0") Integer page, 
+    		@RequestParam(defaultValue = "3") Integer quantityPerPage){
         return null; //Implementar
     }
     
-    public ResponseEntity<Page<StudentPeriod>> findAllStudentPeriod(Long idStudent, Integer page, Integer quantityPerPage){
+    @GetMapping("/studentPeriod")
+    public ResponseEntity<Page<StudentPeriod>> findAllStudentPeriod(@RequestParam Long idStudent,
+    		@RequestParam(defaultValue = "0") Integer page, 
+    		@RequestParam(defaultValue = "3") Integer quantityPerPage){
         return null; //Implementar
     }
     
-    public ResponseEntity<Page<Student>> findAllStudents(Integer page, Integer quantityPerPage){
+    @GetMapping
+    public ResponseEntity<Page<Student>> findAllStudents(
+    		@RequestParam(defaultValue = "0") Integer page,
+    		@RequestParam(defaultValue = "3") Integer quantityPerPage){
         return null; //Implementar
     }
     

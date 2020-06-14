@@ -4,9 +4,18 @@
  * @version 1.0.0 */
 package br.com.gaac.resources;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gaac.domain.Subject;
@@ -14,6 +23,7 @@ import br.com.gaac.domain.Teacher;
 import br.com.gaac.services.TeacherService;
 
 @RestController
+@RequestMapping("/teacher")
 public class TeacherResource {
 	
 	@Autowired
@@ -28,31 +38,38 @@ public class TeacherResource {
 	@Autowired
 	private TeacherService teacherService;
    
-    public ResponseEntity<Teacher> save(Teacher teacher){
+	@PostMapping
+    public ResponseEntity<Teacher> save(@RequestBody @Valid Teacher teacher){
         return null;
     }
     
-    public ResponseEntity<Teacher> update(Teacher teacher){
+	@PutMapping
+    public ResponseEntity<Teacher> update(@RequestBody @Valid Teacher teacher){
         return null;
     }
     
-    public ResponseEntity<Teacher> delete(Teacher teacher){
+	@DeleteMapping
+    public ResponseEntity<Teacher> delete(@RequestBody Teacher teacher){
         return null;
     }
     
-    public ResponseEntity<Teacher> addSubject(Long idTeacher, Long idSubject){
+	@PostMapping("/subject")
+    public ResponseEntity<Teacher> addSubject(@RequestParam Long idTeacher, @RequestParam Long idSubject){
         return null;
     }
     
-    public ResponseEntity<Teacher> rmvSubject(Long idTeacher, Long idSubject){
+	@DeleteMapping("/subject")
+    public ResponseEntity<Teacher> rmvSubject(@RequestParam Long idTeacher, @RequestParam Long idSubject){
         return null;
     }
     
-    public ResponseEntity<Teacher> enable(Teacher teacher){
+    @PutMapping("/enable")
+    public ResponseEntity<Teacher> enable(@RequestBody @Valid Teacher teacher){
         return null;
     }
     
-    public ResponseEntity<Teacher> disable(Teacher teacher){
+    @PutMapping("/disable")
+    public ResponseEntity<Teacher> disable(@RequestBody @Valid Teacher teacher){
         return null;
     }
     
@@ -60,7 +77,10 @@ public class TeacherResource {
         return null;
     }
     
-    public ResponseEntity<Page<Subject>> findEnrolledSubjects(Long idTeacher, Integer page,Integer quantityPerPage){
+    @GetMapping("subject")
+    public ResponseEntity<Page<Subject>> findEnrolledSubjects(@RequestParam Long idTeacher, 
+    		@RequestParam(defaultValue = "0") Integer page,
+    		@RequestParam(defaultValue = "3") Integer quantityPerPage){
         return null;
     }
     
@@ -68,11 +88,17 @@ public class TeacherResource {
         return null;
     }
     
-    public Page<Teacher> findSubjectsOfCoursesByTeacher(Long idTeacher,Integer page,Integer quantityPerPage){
+    @GetMapping("/course")
+    public Page<Teacher> findSubjectsOfCoursesByTeacher(@RequestParam Long idTeacher,
+    		@RequestParam(defaultValue = "0") Integer page,
+    		@RequestParam(defaultValue = "3") Integer quantityPerPage){
         return null;
     }
     
-    public ResponseEntity<Page<Teacher>> findAll(Integer page, Integer quantityPerPage){
+    @GetMapping
+    public ResponseEntity<Page<Teacher>> findAll(
+    		@RequestParam(defaultValue = "0") Integer page,
+    		@RequestParam(defaultValue = "3") Integer quantityPerPage){
         return null;
     }
     

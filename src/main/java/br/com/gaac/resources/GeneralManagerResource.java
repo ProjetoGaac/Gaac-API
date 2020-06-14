@@ -5,41 +5,59 @@
 
 package br.com.gaac.resources;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gaac.domain.GeneralManager;
 import br.com.gaac.services.GeneralManagerService;
 
 @RestController
+@RequestMapping("/generalManager")
 public class GeneralManagerResource {
 	
 	@Autowired
 	private GeneralManagerService generalManagerService;
 	
-    public ResponseEntity<GeneralManager> save(GeneralManager generalManager){
+	@PostMapping
+    public ResponseEntity<GeneralManager> save(@RequestBody @Valid GeneralManager generalManager){
         return null;
     }
     
-    public ResponseEntity<GeneralManager> update(GeneralManager generalManager){
+	@PutMapping
+    public ResponseEntity<GeneralManager> update(@RequestBody @Valid GeneralManager generalManager){
         return null;
     }
     
-    public ResponseEntity<?> delete(GeneralManager generalManager){
+	@DeleteMapping
+    public ResponseEntity<?> delete(@RequestBody GeneralManager generalManager){
         return null;
     }
     
-    public ResponseEntity<GeneralManager> enable(GeneralManager generalManager){
+	@PutMapping("/enable")
+    public ResponseEntity<GeneralManager> enable(@RequestBody @Valid GeneralManager generalManager){
         return null;
     }
     
-    public ResponseEntity<GeneralManager> disable(GeneralManager generalManager){
+	@PutMapping("/disable")
+    public ResponseEntity<GeneralManager> disable(@RequestBody @Valid GeneralManager generalManager){
         return null;
     }
     
-    public ResponseEntity<Page<GeneralManager>> findAll(Integer page, Integer quantityPerPage){
+	@GetMapping
+    public ResponseEntity<Page<GeneralManager>> findAll(
+    		@RequestParam(defaultValue = "0") Integer page, 
+    		@RequestParam(defaultValue = "3") Integer quantityPerPage){
         return null;
     }
 

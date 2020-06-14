@@ -4,29 +4,42 @@
 
 package br.com.gaac.resources;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gaac.domain.CourseType;
 import br.com.gaac.services.CourseTypeService;
 
 @RestController
+@RequestMapping("/courseType")
 public class CourseTypeResource {
 	
 	@Autowired
 	private CourseTypeService courseTypeService;
 
-    public ResponseEntity<CourseType> save(CourseType courseType){
+	@PostMapping
+    public ResponseEntity<CourseType> save(@RequestBody @Valid CourseType courseType){
         return null; //implementar
     }
 
-    public ResponseEntity<CourseType> update(CourseType courseType){
+	@PutMapping
+    public ResponseEntity<CourseType> update(@RequestBody @Valid CourseType courseType){
         return null; //implementar
     }
 
-    public ResponseEntity<?> delete(CourseType courseType){
+	@DeleteMapping
+    public ResponseEntity<?> delete(@RequestBody CourseType courseType){
         return null; //implementar
     }
 
@@ -34,7 +47,10 @@ public class CourseTypeResource {
         return null; //implementar
     }
 
-    public ResponseEntity<Page<CourseType>> findAll(Integer page, Integer quantityPerPage){
+    @GetMapping
+    public ResponseEntity<Page<CourseType>> findAll(
+    		@RequestParam(defaultValue = "0") Integer page,
+    		@RequestParam(defaultValue = "3") Integer quantityPerPage){
         return null; //implementar
     }
     

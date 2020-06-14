@@ -7,9 +7,18 @@ package br.com.gaac.resources;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gaac.domain.Course;
@@ -20,6 +29,7 @@ import br.com.gaac.domain.DTOs.CourseDTO;
 import br.com.gaac.services.CourseService;
 
 @RestController
+@RequestMapping("/course")
 public class CourseResource {
 	
 	@Autowired
@@ -37,39 +47,48 @@ public class CourseResource {
 	@Autowired
 	private CourseService courseService;
 	
-    public ResponseEntity<Course> save(CourseDTO course){
+	@PostMapping
+    public ResponseEntity<Course> save(@RequestBody @Valid CourseDTO course){
         return null; //Implementar
     }
     
-    public ResponseEntity<Course> update(Course course){
+	@PutMapping
+    public ResponseEntity<Course> update(@RequestBody @Valid Course course){
         return null; //Implementar
     }
     
-    public ResponseEntity<?> delete(Course course){
+	@DeleteMapping
+    public ResponseEntity<?> delete(@RequestBody Course course){
         return null; //Implementar
     }
     
-    public ResponseEntity<Period> addSubject(Long idPeriod, Long idSubject){
+	@PostMapping("/period/subject")
+    public ResponseEntity<Period> addSubject(@RequestParam Long idPeriod, @RequestParam Long idSubject){
         return null; //Implementar
     }
     
-    public ResponseEntity<?> rmvSubject(Long idPeriod, Long idSubject){
+	@DeleteMapping("/period/subject")
+    public ResponseEntity<?> rmvSubject(@RequestParam Long idPeriod, @RequestParam Long idSubject){
         return null; //Implementar
     }
     
-    public ResponseEntity<?> addTeacher(Long idCourse, Long idTeacher){
+	@PostMapping("/teacher")
+    public ResponseEntity<?> addTeacher(@RequestParam Long idCourse, @RequestParam Long idTeacher){
         return null; //Implementar
     }
     
-    public ResponseEntity<?> rmvTeacher(Long idCourse, Long idTeacher){
+	@DeleteMapping("/teacher")
+    public ResponseEntity<?> rmvTeacher(@RequestParam Long idCourse, @RequestParam Long idTeacher){
         return null; //Implementar
     }
     
-    public ResponseEntity<?> addCourseAdministrator(Long idCourse, Long idCourseAdm){
+	@PostMapping("/courseAdministator")
+    public ResponseEntity<?> addCourseAdministrator(@RequestParam Long idCourse, @RequestParam Long idCourseAdm){
         return null; //Implementar
     }
     
-    public ResponseEntity<?> rmvCourseAdministrator(Long idCourse, Long idCourseAdm){
+	@DeleteMapping("/courseAdministrator")
+    public ResponseEntity<?> rmvCourseAdministrator(@RequestParam Long idCourse, @RequestParam Long idCourseAdm){
         return null; //Implementar
     }
     
@@ -77,31 +96,51 @@ public class CourseResource {
         return null; //Implementar
     }
     
-    public ResponseEntity<Page<Course>> findCoursesByCourseAdm(Long idCourseAdm, Integer  page, Integer quantityPerPage){
+    @GetMapping("/courseAdm")
+    public ResponseEntity<Page<Course>> findCoursesByCourseAdm(
+    		@RequestParam Long idCourseAdm,
+    		@RequestParam(defaultValue = "0") Integer page,
+    		@RequestParam(defaultValue = "3") Integer quantityPerPage){
         return null; //Implementar
     }
     
-    public ResponseEntity<Page<Course>> findCoursesByCourseType(Long idCourseType, Integer  page, Integer quantityPerPage){
+    @GetMapping("/courseType")
+    public ResponseEntity<Page<Course>> findCoursesByCourseType(
+    		@RequestParam Long idCourseType,
+    		@RequestParam(defaultValue = "0") Integer page, 
+    		@RequestParam(defaultValue = "3") Integer quantityPerPage){
         return null; //Implementar
     }
     
     public Page<Course> findCoursesByTeacher(Long idTeacher, Integer page, Integer quantityPerPage){
         return null; //Implementar
     }
-    
-    public ResponseEntity<Page<Teacher>> findAllTeacher(Long idCourse, Integer page, Integer quantityPerPage){
+
+    @GetMapping("/teacher")
+    public ResponseEntity<Page<Teacher>> findAllTeacher(
+    		@RequestParam Long idCourse, 
+    		@RequestParam(defaultValue = "0") Integer page, 
+    		@RequestParam(defaultValue = "3") Integer quantityPerPage){
         return null; //Implementar
     }
     
-    public ResponseEntity<Page<CourseAdministrator>> findAllCourseAdministrator(Long idCourse, Integer page, Integer quantityPerPage){
+    @GetMapping("/courseAdministrator")
+    public ResponseEntity<Page<CourseAdministrator>> findAllCourseAdministrator(
+    		@RequestParam Long idCourse,
+    		@RequestParam(defaultValue = "0") Integer page,
+    		@RequestParam(defaultValue = "3") Integer quantityPerPage){
         return null; //Implementar
     }
     
-    public ResponseEntity<List<Period>> findAllPeriod(Long idCourse){
+    @GetMapping("/period")
+    public ResponseEntity<List<Period>> findAllPeriod(@RequestParam Long idCourse){
         return null; //Implementar
     }
     
-    public ResponseEntity<Page<Course>> findAllCourse(Integer page, Integer quantityPerPage){
+    @GetMapping
+    public ResponseEntity<Page<Course>> findAllCourse(
+    		@RequestParam(defaultValue = "0") Integer page, 
+    		@RequestParam(defaultValue = "3") Integer quantityPerPage){
         return null; //Implementar
     }
 
