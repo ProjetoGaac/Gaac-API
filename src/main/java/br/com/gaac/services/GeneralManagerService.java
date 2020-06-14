@@ -39,7 +39,12 @@ public class GeneralManagerService {
 
     /**@author Felipe Duarte*/
     public GeneralManager disable(GeneralManager generalManager){
-    	return null;
+    	
+    	generalManager.rmvGeneralManagerCategory(UserCategory.GENERAL_MANAGER_COURSE.getCode());
+    	
+    	generalManager = this.generalManagerRepository.save(generalManager);
+    	
+    	return generalManager;
     }
     
     public Page<GeneralManager> findAll(Integer page, Integer quantityPerPage){

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gaac.domain.GeneralManager;
+import br.com.gaac.resources.exceptions.ObjectBadRequestException;
 import br.com.gaac.services.GeneralManagerService;
 
 @RestController
@@ -58,7 +59,14 @@ public class GeneralManagerResource {
 	/**@author Felipe Duarte*/
 	@PutMapping("/disable")
     public ResponseEntity<GeneralManager> disable(@RequestBody @Valid GeneralManager generalManager){
-        return null;
+        
+		if(generalManager.getId() == null) {
+			throw new ObjectBadRequestException("Falta o id de generalManager");
+		}
+		
+		generalManager = this.generalManagerService.disable(generalManager);
+		
+		return ResponseEntity.status(HttpStatus.OK).body(generalManager);
     }
     
 	@GetMapping
