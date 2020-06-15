@@ -79,13 +79,26 @@ public class TeacherResource {
 		
 		teacher = this.teacherService.addSubject(teacher, teacher.getCourses(), subject);
 		
-		if(teacher != null) {
-			return ResponseEntity.status(HttpStatus.OK).body(teacher);
-		}
+		if(teacher == null) {
+			throw new ObjectBadRequestException("Disciplina já associada ao professor!");
+			
+		}else {
 		
-		throw new ObjectBadRequestException("Erro! Professor não associado a algum curso ou "
-				+ "disciplina não está entre os cursos do professor ou "
-				+ "disciplina já associada ao professor");
+			if(teacher.getCourses() == null) {
+				throw new ObjectBadRequestException("Professor não associado a algum curso!");
+				
+			}else {
+			
+				if(teacher.getSubjects() == null) {
+					throw new ObjectBadRequestException("Disciplina não está entre os cursos do professor!");
+				
+				}
+				
+			}
+			
+		}
+	
+		return ResponseEntity.status(HttpStatus.OK).body(teacher);
     }
     
 	@DeleteMapping("/subject")

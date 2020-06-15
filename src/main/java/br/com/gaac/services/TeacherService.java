@@ -62,7 +62,7 @@ public class TeacherService {
 		
 		boolean isPresent = false;
 		
-		if(courses != null) {
+		if(!courses.isEmpty()) {
 			
 			List<Subject> subjects = new ArrayList<>();
 			courses.forEach(course -> {
@@ -82,25 +82,33 @@ public class TeacherService {
 			
 			if(isPresent) {
 				
-				boolean isAdd = true;
+				boolean isAdd = false;
 				
 				for(int i=0; i < teacher.getSubjects().size(); i++) {
 					if(teacher.getSubjects().get(i).getId() == subject.getId()) {
-						isAdd = false;
+						isAdd = true;
 					}
 				}
 				
-				if(isAdd) {
+				if(!isAdd) {
 					teacher.addSubject(subject);
 					teacher = this.teacherRepository.save(teacher);
 					return teacher;
+				}else {
+					teacher = null;
+					return teacher;
 				}
 				
+			}else {
+				teacher.setSubjects(null);
+				return teacher;
 			}
 			
+		}else {
+			teacher.setCourses(null);
+			return teacher;
 		}
 		
-		return null;
 	}
 	
 	public Teacher rmvSubject(Teacher teacher, Subject subject) {
