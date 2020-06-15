@@ -5,7 +5,9 @@
 
 package br.com.gaac.services;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -54,17 +56,67 @@ public class TeacherService {
 	public Teacher disable(Teacher teacher) {
 		return null; //implementar
 	}
-
+	
+	/**@author Felipe Duarte*/
 	public Teacher addSubject(Teacher teacher, List<Course> courses, Subject subject) {
-		return null; //implementar
+		
+		boolean isPresent = false;
+		
+		if(courses != null) {
+			
+			List<Subject> subjects = new ArrayList<>();
+			courses.forEach(course -> {
+				course.getPeriods().forEach(period -> {
+					period.getSubjects().forEach(s -> {
+						subjects.add(s);
+					});
+				});
+			});
+			
+			for(int i=0; i < subjects.size(); i++) {
+				if(subjects.get(i).getId() == subject.getId()) {
+					isPresent = true;
+					break;
+				}
+			}
+			
+			if(isPresent) {
+				
+				boolean isAdd = true;
+				
+				for(int i=0; i < teacher.getSubjects().size(); i++) {
+					if(teacher.getSubjects().get(i).getId() == subject.getId()) {
+						isAdd = false;
+					}
+				}
+				
+				if(isAdd) {
+					teacher.addSubject(subject);
+					teacher = this.teacherRepository.save(teacher);
+					return teacher;
+				}
+				
+			}
+			
+		}
+		
+		return null;
 	}
 	
 	public Teacher rmvSubject(Teacher teacher, Subject subject) {
 		return null; //implementar
 	}
-
+	
+	/**@author Felipe Duarte*/
 	public Teacher findById(Long id) {
-		return null; //implementar
+		
+		Optional<Teacher> teacher = this.teacherRepository.findById(id);
+		
+		if(teacher.isPresent()) {
+			return teacher.get();
+		}
+		
+		return null;
 	}
 
 	public Page<Teacher> findTeacherByCourse(Long idCourse, Integer page, Integer quantityPerPage){

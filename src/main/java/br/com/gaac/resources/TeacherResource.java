@@ -63,9 +63,29 @@ public class TeacherResource {
         return null;
     }
     
+	/**@author Felipe Duarte*/
 	@PostMapping("/subject")
     public ResponseEntity<Teacher> addSubject(@RequestParam Long idTeacher, @RequestParam Long idSubject){
-        return null;
+        
+		Teacher teacher = this.teacherService.findById(idTeacher);
+		if(teacher == null) {
+			throw new ObjectBadRequestException("Id do Professor inválido!");
+		}
+		
+		Subject subject = this.subjectResource.findById(idSubject);
+		if(subject == null) {
+			throw new ObjectBadRequestException("Id da Disciplina inválido!");
+		}
+		
+		teacher = this.teacherService.addSubject(teacher, teacher.getCourses(), subject);
+		
+		if(teacher != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(teacher);
+		}
+		
+		throw new ObjectBadRequestException("Erro! Professor não associado a algum curso ou "
+				+ "disciplina não está entre os cursos do professor ou "
+				+ "disciplina já associada ao professor");
     }
     
 	@DeleteMapping("/subject")
