@@ -27,7 +27,7 @@ public class SubjectDTO {
     private Float workload;
 	
 	@NotNull(message = "${msg.null}")
-    private Float menu;
+    private String menu;
 	
 	@NotNull(message = "${msg.null}")
     private Integer amountTime;
@@ -71,11 +71,11 @@ public class SubjectDTO {
 		this.workload = workload;
 	}
 
-    public Float getMenu() {
+    public String getMenu() {
 		return this.menu;
 	}
 
-	public void setMenu(Float menu) {
+	public void setMenu(String menu) {
 		this.menu = menu;
     }
     

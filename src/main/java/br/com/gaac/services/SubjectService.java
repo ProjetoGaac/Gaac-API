@@ -5,6 +5,7 @@
 package br.com.gaac.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,8 +20,17 @@ public class SubjectService {
 	@Autowired
 	private SubjectRepository subjectRepository;
 
+	/**@author Felipe Duarte*/
     public Subject save(Subject subject){
-        return null; //implementar
+    	
+    	Subject s = this.subjectRepository.findByCode(subject.getCode());
+    	
+    	if(s == null) {
+    		subject = this.subjectRepository.save(subject);
+    		return subject;
+    	}
+    	
+    	return null;
     }
 
     public Subject update(Subject subject){
@@ -31,8 +41,16 @@ public class SubjectService {
         //implementar
     }
 
+    /**@author Felipe Duarte */
     public Subject findById(Long id){
-        return null; //implementar
+        
+    	Optional<Subject> subject = this.subjectRepository.findById(id);
+    	
+    	if(subject.isPresent()) {
+    		return subject.get();
+    	}
+    	
+    	return null;
     }
 
     public List<Subject> findSubjectsByPeriod(Long idPeriod){
