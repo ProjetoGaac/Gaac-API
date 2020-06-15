@@ -71,8 +71,16 @@ public class SubjectResource {
         return null; //implementar
     }
 
+	/**@author Felipe Duarte*/
     public Subject findById(Long id){
-        return null; //implementar
+        
+    	Subject subject = this.subjectService.findById(id);
+        
+    	if(subject != null) {
+    		return subject;
+    	}
+        
+    	return null;
     }
 
     public List<Subject> findSubjectsByPeriod(Long idPeriod){
