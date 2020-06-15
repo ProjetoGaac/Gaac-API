@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import br.com.gaac.domain.Course;
 import br.com.gaac.domain.Subject;
 import br.com.gaac.domain.Teacher;
+import br.com.gaac.domain.Enums.UserCategory;
 import br.com.gaac.repositories.TeacherRepository;
 
 @Service
@@ -22,8 +23,20 @@ public class TeacherService {
 	@Autowired
 	private TeacherRepository teacherRepository;
 	
+	/**@author Felipe Duarte*/
 	public Teacher save(Teacher teacher) {
-		return null; //implementar
+		
+		Teacher t = this.teacherRepository.findByNameAndEmail(teacher.getName(), 
+				teacher.getEmail());
+		
+		if(t == null) {
+			teacher.addTeacherCategory(UserCategory.TEACHER.getCode());
+			//Aqui tem que encriptar a senha
+			t = this.teacherRepository.save(teacher);
+			return t;
+		}
+		
+		return null;
 	}
 	
 	public Teacher update(Teacher teacher) {
