@@ -21,8 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gaac.domain.CourseType;
 import br.com.gaac.resources.exceptions.ObjectNotFoundException;
+import br.com.gaac.resources.exceptions.ObjectBadRequestException;
 import br.com.gaac.services.CourseTypeService;
-
+ 
 @RestController
 @RequestMapping("/courseType")
 public class CourseTypeResource {
@@ -30,23 +31,34 @@ public class CourseTypeResource {
 	@Autowired
 	private CourseTypeService courseTypeService;
 
+    /**@author Gabriel Batista */
 	@PostMapping
     public ResponseEntity<CourseType> save(@RequestBody @Valid CourseType courseType){
-        return null; //implementar
+        courseType = this.courseTypeService.save(courseType);
+        if(courseType != null) {
+			return ResponseEntity.status(HttpStatus.CREATED).body(courseType);
+		}
+		
+		throw new ObjectBadRequestException("Tipo de curso Já Cadastrado");
     }
 
 	@PutMapping
     public ResponseEntity<CourseType> update(@RequestBody @Valid CourseType courseType){
         return null; //implementar
-    }
+    } 
 
 	@DeleteMapping
     public ResponseEntity<?> delete(@RequestBody CourseType courseType){
         return null; //implementar
     }
 
+    /**@author Gabriel Batista */
     public CourseType findById(Long id){
-        return null; //implementar
+        CourseType courseType = this.courseTypeService.findById(id);
+        if(courseType !=null){
+            return courseType;
+        }
+        throw new ObjectNotFoundException("Nenhum 'tipo de curso' encontrado!");
     }
     
     /**@author Felipe Duarte*/

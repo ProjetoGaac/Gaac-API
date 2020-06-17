@@ -3,11 +3,13 @@
  * @version 1.0.0 */
 package br.com.gaac.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
+ 
 import br.com.gaac.domain.Course;
 import br.com.gaac.domain.CourseType;
 import br.com.gaac.repositories.CourseTypeRepository;
@@ -18,8 +20,16 @@ public class CourseTypeService {
 	@Autowired
 	private CourseTypeRepository courseTypeRepository;
 
+	/**@author Gabriel Batista */
     public CourseType save(CourseType courseType){
-    	return null; //implementar
+		CourseType ct = this.courseTypeRepository.findByName(courseType.getName());
+
+		if(ct == null) {
+			ct = this.courseTypeRepository.save(courseType);
+			return ct;
+		}
+
+		return null;
     }
     
     public CourseType update(CourseType courseType){
@@ -29,9 +39,15 @@ public class CourseTypeService {
     public void delete(Course courseType){
     	//implementar
     }
-    
+	
+	/**@author Gabriel Batista */
     public CourseType findById(Long id){
-    	return null; //implementar
+		Optional<CourseType> ct = this.courseTypeRepository.findById(id);
+		if(ct.isPresent()) {
+    		return ct.get();
+    	}
+    	
+    	return null;
     }
     
     /**@author Felipe Duarte*/
