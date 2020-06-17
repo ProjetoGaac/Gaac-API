@@ -6,12 +6,13 @@ package br.com.gaac.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.gaac.domain.GeneralManager;
 import br.com.gaac.domain.Enums.UserCategory;
 import br.com.gaac.repositories.GeneralManagerRepository; 
-
+ 
 @Service
 public class GeneralManagerService {
 
@@ -47,8 +48,17 @@ public class GeneralManagerService {
     	return generalManager;
     }
     
+    /**@author Gabriel Batista */
     public Page<GeneralManager> findAll(Integer page, Integer quantityPerPage){
-        return null; //implementar
+        PageRequest pageRequest = PageRequest.of(page, quantityPerPage);
+    	
+    	Page<GeneralManager> generalManagers = this.generalManagerRepository.findAll(pageRequest);
+    	
+    	if(!generalManagers.getContent().isEmpty()) {
+    		return generalManagers;
+    	}
+    	
+    	return null;
     }
     
 }

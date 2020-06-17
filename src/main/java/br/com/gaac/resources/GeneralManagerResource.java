@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gaac.domain.GeneralManager;
+import br.com.gaac.resources.exceptions.ObjectNotFoundException;
 import br.com.gaac.resources.exceptions.ObjectBadRequestException;
 import br.com.gaac.services.GeneralManagerService;
 
@@ -68,12 +69,19 @@ public class GeneralManagerResource {
 		
 		return ResponseEntity.status(HttpStatus.OK).body(generalManager);
     }
-    
+	
+	/**@author Gabriel Batista */
 	@GetMapping
     public ResponseEntity<Page<GeneralManager>> findAll(
     		@RequestParam(defaultValue = "0") Integer page, 
     		@RequestParam(defaultValue = "3") Integer quantityPerPage){
-        return null;
+				Page<GeneralManager> generalManagers = this.generalManagerService.findAll(page, quantityPerPage);
+    	
+				if(generalManagers != null) {
+					return ResponseEntity.status(HttpStatus.OK).body(generalManagers);
+				}
+				
+				throw new ObjectNotFoundException("Nenhum 'Administrador geral' encontrado!");
     }
 
 }
