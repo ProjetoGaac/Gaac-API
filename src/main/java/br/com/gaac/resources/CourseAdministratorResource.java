@@ -6,7 +6,7 @@
 package br.com.gaac.resources;
 
 import javax.validation.Valid;
-
+ 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gaac.domain.CourseAdministrator;
+import br.com.gaac.resources.exceptions.ObjectNotFoundException;
 import br.com.gaac.resources.exceptions.ObjectBadRequestException;
 import br.com.gaac.services.CourseAdministratorService;
 
@@ -37,9 +38,18 @@ public class CourseAdministratorResource {
 		return null; //Implementar
 	}
 	
+	/**@author Gabriel Batista */
 	@PutMapping
 	public ResponseEntity<CourseAdministrator> update(@RequestBody @Valid CourseAdministrator courseAdministrator){
-		return null; //Implementar
+		CourseAdministrator ca= this.courseAdministratorService.findById(courseAdministrator.getId());
+		if(ca !=null){
+
+			ca = this.courseAdministratorService.update(courseAdministrator);
+
+			return ResponseEntity.status(HttpStatus.OK).body(ca);
+			
+        }
+        throw new ObjectNotFoundException("Nenhum 'Administrador Encontrado' encontrado!");
 	}
 	
 	@DeleteMapping
@@ -64,9 +74,14 @@ public class CourseAdministratorResource {
 	public ResponseEntity<CourseAdministrator> disable(@RequestBody @Valid CourseAdministrator courseAdministrator){
 		return null; //Implementar
 	}	
-	
+
+	/**@author Gabriel Batista */
 	public CourseAdministrator findById(Long id) {
-		return null; //implementar
+		CourseAdministrator courseAdministrator = this.courseAdministratorService.findById(id);
+        if(courseAdministrator !=null){
+            return courseAdministrator;
+        }
+        throw new ObjectNotFoundException("Nenhum 'administrador de curso' encontrado!");
 	}
 
 	
@@ -74,12 +89,18 @@ public class CourseAdministratorResource {
 			Integer quantityPerPage){
 		return null; //implementar
 	}
-	
+	/**@author Gabriel Batista */
 	@GetMapping
 	public ResponseEntity<Page<CourseAdministrator>> findAll(
 			@RequestParam(defaultValue = "0") Integer page, 
 			@RequestParam(defaultValue = "3") Integer quantityPerPage){
-		return null; //implementar
+				Page<CourseAdministrator> courseAdministrators = this.courseAdministratorService.findAll(page, quantityPerPage);
+    	
+				if(courseAdministrators != null) {
+					return ResponseEntity.status(HttpStatus.OK).body(courseAdministrators);
+				}
+				
+				throw new ObjectNotFoundException("Nenhum 'Administrador de curso' encontrado!");
 	}
 	
 }

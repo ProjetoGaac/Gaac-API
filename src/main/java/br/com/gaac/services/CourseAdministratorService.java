@@ -3,14 +3,17 @@
  * @version 1.0.0 */
 package br.com.gaac.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.gaac.domain.CourseAdministrator;
 import br.com.gaac.domain.Enums.UserCategory;
 import br.com.gaac.repositories.CourseAdministratorRepository;
-
+ 
 @Service
 public class CourseAdministratorService {
 	
@@ -21,8 +24,9 @@ public class CourseAdministratorService {
 		return null; //implementar
 	}
 	
+	/**@author Gabriel Batista */
 	public CourseAdministrator update(CourseAdministrator courseAdministrator) {
-		return null; //implementar
+		return this.courseAdministratorRepository.save(courseAdministrator);
 	}
 	
 	public void delete(CourseAdministrator courseAdministrator) {
@@ -43,16 +47,30 @@ public class CourseAdministratorService {
 		return null; //implementar
 	}
 
+	/**@author Gabriel Batista */
 	public CourseAdministrator findById(Long id) {
-		return null; //implementar
+		Optional<CourseAdministrator> ct = this.courseAdministratorRepository.findById(id);
+		if(ct.isPresent()) {
+    		return ct.get();
+    	}
+    	
+    	return null;
 	}
 	
 	public Page<CourseAdministrator> findCourseAdministratorByCourse(Long idCourse, Integer page, Integer quantityPerPage){
 		return null; //implementar
 	}
 	
+	/**@author Gabriel Batista */
 	public Page<CourseAdministrator> findAll(Integer page, Integer quantityPerPage){
-		return null; //implementar
+		PageRequest pageRequest = PageRequest.of(page, quantityPerPage);
+    	
+    	Page<CourseAdministrator> courseAdministrators = this.courseAdministratorRepository.findAll(pageRequest);
+    	
+    	if(!courseAdministrators.getContent().isEmpty()) {
+    		return courseAdministrators;
+		}
+		return null;
 	}
 	
 }
