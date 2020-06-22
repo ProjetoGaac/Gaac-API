@@ -70,9 +70,16 @@ public class CourseAdministratorResource {
 		return ResponseEntity.status(HttpStatus.OK).body(courseAdministrator);
 	}
 	
+	/**@author Gabriel Batista */
 	@DeleteMapping("/disable")
 	public ResponseEntity<CourseAdministrator> disable(@RequestBody @Valid CourseAdministrator courseAdministrator){
-		return null; //Implementar
+		if(courseAdministrator.getId() == null) {
+			throw new ObjectBadRequestException("Falta o id de courseAdministrator");
+		}
+		
+		courseAdministrator = this.courseAdministratorService.disable(courseAdministrator);
+		
+		return ResponseEntity.status(HttpStatus.OK).body(courseAdministrator);
 	}	
 
 	/**@author Gabriel Batista */
