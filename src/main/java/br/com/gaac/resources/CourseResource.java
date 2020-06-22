@@ -11,6 +11,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,9 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.gaac.domain.Course;
 import br.com.gaac.domain.CourseAdministrator;
 import br.com.gaac.domain.Period;
+import br.com.gaac.domain.Subject;
 import br.com.gaac.domain.Teacher;
 import br.com.gaac.domain.DTOs.CourseDTO;
 import br.com.gaac.services.CourseService;
+import br.com.gaac.resources.exceptions.ObjectBadRequestException;
+
 
 @RestController
 @RequestMapping("/course")
@@ -62,9 +66,27 @@ public class CourseResource {
         return null; //Implementar
     }
     
+    /**@author Gabriel Batista */
 	@PostMapping("/period/subject")
     public ResponseEntity<Period> addSubject(@RequestParam Long idPeriod, @RequestParam Long idSubject){
-        return null; //Implementar
+
+        Period period = this.courseService.findPeriodById(idPeriod);
+        if (period == null){
+            throw new ObjectBadRequestException("Id do periodo inválido!");
+        }
+
+        Subject subject = this.subjecResource.findById(idSubject);
+        if (subject == null){
+            throw new ObjectBadRequestException("Id da materia inválido!");
+        }
+
+        period = this.courseService.addSubjectPeriod(period, subject);
+
+        if(period == null){
+            throw new ObjectBadRequestException("Nao foi possivel adicionar esta materia!");
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(period);
     }
     
 	@DeleteMapping("/period/subject")
