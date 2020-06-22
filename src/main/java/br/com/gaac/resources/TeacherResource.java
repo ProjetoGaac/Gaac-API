@@ -103,7 +103,18 @@ public class TeacherResource {
     
 	@DeleteMapping("/subject")
     public ResponseEntity<Teacher> rmvSubject(@RequestParam Long idTeacher, @RequestParam Long idSubject){
-        return null;
+		Teacher teacher = this.teacherService.findById(idTeacher);
+		if(teacher == null) {
+			throw new ObjectBadRequestException("Id do Professor inválido!");
+		}
+		
+		Subject subject = this.subjectResource.findById(idSubject);
+		if(subject == null) {
+			throw new ObjectBadRequestException("Id da Disciplina inválido!");
+		}
+
+		
+		return null;
     }
     
     @PutMapping("/enable")
