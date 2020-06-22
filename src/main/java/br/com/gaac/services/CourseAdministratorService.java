@@ -43,8 +43,13 @@ public class CourseAdministratorService {
 		return courseAdministrator;
 	}
 	
+	/**@author Gabriel Batista */
 	public CourseAdministrator disable(CourseAdministrator courseAdministrator) {
-		return null; //implementar
+		courseAdministrator.rmvCourseAdministratorCategory(UserCategory.COURSE_ADMINISTRATOR_GENERAL.getCode());
+		
+		courseAdministrator = this.courseAdministratorRepository.save(courseAdministrator);
+		
+		return courseAdministrator;
 	}
 
 	/**@author Gabriel Batista */
