@@ -33,7 +33,7 @@ public class CourseTypeService {
     }
     
     public CourseType update(CourseType courseType){
-    	return null; //implementar
+    	return this.courseTypeRepository.save(courseType);
     }
     
     public void delete(Course courseType){
