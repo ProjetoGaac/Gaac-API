@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.gaac.domain.Course;
 import br.com.gaac.domain.CourseAdministrator;
@@ -29,6 +30,7 @@ import br.com.gaac.domain.Subject;
 import br.com.gaac.domain.Teacher;
 import br.com.gaac.domain.DTOs.CourseDTO;
 import br.com.gaac.services.CourseService;
+import br.com.gaac.resources.exceptions.ObjectNotFoundException;
 import br.com.gaac.resources.exceptions.ObjectBadRequestException;
 
 
@@ -158,12 +160,20 @@ public class CourseResource {
     public ResponseEntity<List<Period>> findAllPeriod(@RequestParam Long idCourse){
         return null; //Implementar
     }
-    
+    /**@author Gabriel Batista */
+    //not working
     @GetMapping
     public ResponseEntity<Page<Course>> findAllCourse(
     		@RequestParam(defaultValue = "0") Integer page, 
     		@RequestParam(defaultValue = "3") Integer quantityPerPage){
-        return null; //Implementar
+            	Page<Course> courses = this.courseService.findAllCourse(page, quantityPerPage);
+                
+                if(courses!= null) {
+
+                    return ResponseEntity.status(HttpStatus.OK).body(courses);
+                }
+                
+                throw new ObjectNotFoundException("Nenhum 'tipo de curso' encontrado!");
     }
 
 }

@@ -9,6 +9,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.gaac.domain.Course;
@@ -120,9 +121,18 @@ public class CourseService {
     public List<Period> findAllPeriod(Long idCourse){
     	return null; //implementar
     }
-    
+    /**@author Gabriel Batista */
+    //not working
     public Page<Course> findAllCourse(Integer page, Integer quantityPerPage){
-    	return null; //implementar
+        PageRequest pageRequest = PageRequest.of(page, quantityPerPage);
+    	
+    	Page<Course> courses = this.courseRepository.findAll(pageRequest);
+    	
+    	if(!courses.getContent().isEmpty()) {
+    		return courses;
+    	}
+    	
+    	return null;
     }
 
 }
