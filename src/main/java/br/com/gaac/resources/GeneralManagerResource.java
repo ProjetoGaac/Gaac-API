@@ -33,8 +33,12 @@ public class GeneralManagerResource {
 	private GeneralManagerService generalManagerService;
 	
 	@PostMapping
-    public ResponseEntity<GeneralManager> save(@RequestBody @Valid GeneralManager generalManager){
-        return null;
+    public ResponseEntity<GeneralManager> save(@RequestBody @Valid GeneralManager generalManager) {
+        generalManager = this.generalManagerService.save(generalManager);
+        if(generalManager != null){
+        	return ResponseEntity.status(HttpStatus.CREATED).body(generalManager);
+		}
+        throw new ObjectBadRequestException("General Manager already exists!");
     }
     
 	@PutMapping
