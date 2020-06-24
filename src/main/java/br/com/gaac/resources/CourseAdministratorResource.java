@@ -6,7 +6,7 @@
 package br.com.gaac.resources;
 
 import javax.validation.Valid;
- 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gaac.domain.CourseAdministrator;
-import br.com.gaac.resources.exceptions.ObjectNotFoundException;
 import br.com.gaac.resources.exceptions.ObjectBadRequestException;
+import br.com.gaac.resources.exceptions.ObjectNotFoundException;
 import br.com.gaac.services.CourseAdministratorService;
 
 @RestController
