@@ -24,7 +24,7 @@ import br.com.gaac.domain.CourseType;
 import br.com.gaac.resources.exceptions.ObjectBadRequestException;
 import br.com.gaac.resources.exceptions.ObjectNotFoundException;
 import br.com.gaac.services.CourseTypeService;
- 
+
 @RestController
 @RequestMapping("/courseType")
 public class CourseTypeResource {
@@ -45,7 +45,11 @@ public class CourseTypeResource {
 
 	@PutMapping
     public ResponseEntity<CourseType> update(@RequestBody @Valid CourseType courseType){
-        return null; //implementar
+        courseType = this.courseTypeService.update(courseType);
+	    if(courseType != null){
+	        return ResponseEntity.status(HttpStatus.OK).body(courseType);
+        }
+	    throw new ObjectNotFoundException("Course type not found");
     } 
 
 	@DeleteMapping

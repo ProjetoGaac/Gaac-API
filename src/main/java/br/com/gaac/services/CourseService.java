@@ -4,9 +4,12 @@
 package br.com.gaac.services;
 
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.gaac.domain.Course;
@@ -54,8 +57,34 @@ public class CourseService {
     	//implementar
     }
     
+    /**@author Gabriel Batista */
     public Period addSubjectPeriod(Period period, Subject subject){
-    	return null; //implementar
+        boolean isPresent = false;
+		
+		if(period.getSubjects()!=null) {
+			
+			List<Subject> subjects = new ArrayList<>();
+			period.getSubjects().forEach(s -> {
+                subjects.add(s);
+
+			});
+			
+			for(int i=0; i < subjects.size(); i++) {
+				if(subjects.get(i).getId() == subject.getId()) {
+					isPresent = true;
+					break;
+				}
+            }
+            if(isPresent){
+                return period;
+            }else{
+
+                period.addSubject(subject);
+                period = this.periodRepository.save(period);
+                return period;
+            }
+        }
+    	return null; 
     }
     
     public Period rmvSubjectPeriod(Period period, Subject subject){
@@ -66,8 +95,15 @@ public class CourseService {
     	return null; //implementar
     }
     
+    /**@author Gabriel Batista */
     public Period findPeriodById(Long id){
-    	return null; //implementar
+        Optional <Period> period = this.periodRepository.findById(id);
+		
+		if(period.isPresent()) {
+			return period.get();
+		}
+		
+		return null;
     }
     
     public Page<Course> findCoursesByCourseAdm(Long idCourseAdm, Integer page,Integer quantityPerPage){
@@ -85,9 +121,18 @@ public class CourseService {
     public List<Period> findAllPeriod(Long idCourse){
     	return null; //implementar
     }
-    
+    /**@author Gabriel Batista */
+    //not working
     public Page<Course> findAllCourse(Integer page, Integer quantityPerPage){
-    	return null; //implementar
+        PageRequest pageRequest = PageRequest.of(page, quantityPerPage);
+    	
+    	Page<Course> courses = this.courseRepository.findAll(pageRequest);
+    	
+    	if(!courses.getContent().isEmpty()) {
+    		return courses;
+    	}
+    	
+    	return null;
     }
 
 }

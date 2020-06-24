@@ -79,7 +79,7 @@ public class TeacherService {
 					break;
 				}
 			}
-			
+			 
 			if(isPresent) {
 				
 				boolean isAdd = false;
@@ -110,9 +110,30 @@ public class TeacherService {
 		}
 		
 	}
-	
+	/**@author Gabriel Batista */
 	public Teacher rmvSubject(Teacher teacher, Subject subject) {
-		return null; //implementar
+
+		boolean isPresent = false;
+					
+		List<Subject> subjects = new ArrayList<>();
+		teacher.getSubjects().forEach(s -> {
+					subjects.add(s);
+		});
+		
+		for(int i=0; i < subjects.size(); i++) {
+			if(subjects.get(i).getId() == subject.getId()) {
+				isPresent = true;
+				break;
+			}
+		}
+
+		if(!isPresent){
+			return null; //implementar
+		}else{
+			teacher.rmvSubject(subject);
+			teacher = this.teacherRepository.save(teacher);
+			return(teacher);
+		}	
 	}
 	
 	/**@author Felipe Duarte*/

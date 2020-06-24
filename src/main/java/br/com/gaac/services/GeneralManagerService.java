@@ -20,7 +20,13 @@ public class GeneralManagerService {
 	private GeneralManagerRepository generalManagerRepository;
 	
     public GeneralManager save(GeneralManager generalManager){
-        return null;  //implementar
+        GeneralManager gm = this.generalManagerRepository.findByNameAndEmail(generalManager.getName(),generalManager.getEmail());
+
+        if (gm == null){
+            gm = this.generalManagerRepository.save(generalManager);
+            return gm;
+        }
+        return null;
     }
 
     public GeneralManager update(GeneralManager generalManager){
