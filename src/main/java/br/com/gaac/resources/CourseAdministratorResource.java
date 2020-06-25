@@ -49,7 +49,7 @@ public class CourseAdministratorResource {
 			return ResponseEntity.status(HttpStatus.OK).body(ca);
 			
         }
-        throw new ObjectNotFoundException("Nenhum 'Administrador Encontrado' encontrado!");
+        throw new ObjectNotFoundException("Nenhum 'Administrador' encontrado com esta ID!");
 	}
 	
 	@DeleteMapping
