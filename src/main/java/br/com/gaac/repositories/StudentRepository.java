@@ -19,8 +19,11 @@ public interface StudentRepository extends JpaRepository<Student,Long>{
 	public Page<Student> findByAuthorized(Course course, Boolean authorized, Pageable page);
 	
 	public Student findByMatriculation(String matriculation);
+
+	public Student findByEmail(String email);
 	
 	public Page<Student> findByCourse(Course course, Pageable page);
+	
 	
 	/* Problemas
 	@Query(value = "SELECT s.course FROM student s WHERE s.id = 1")

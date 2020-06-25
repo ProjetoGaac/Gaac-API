@@ -82,6 +82,18 @@ public class StudentService {
 		}
 		return null;	
 	}
+	/**@author Gabriel Batista */
+	public Student findByEmail(String email){
+		System.out.println("email do individuo agora esta balendo");
+		Student s = this.studentRepository.findByEmail(email);
+		
+		System.out.println(s.getEmail());
+
+		if(s != null) {
+			return s;
+		}
+		return null;	
+	}
 	
 	public StudentPeriod findStudentPeriodById(Long id){
 		return null; //implementar	
