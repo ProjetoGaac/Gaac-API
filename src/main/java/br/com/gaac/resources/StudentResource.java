@@ -47,14 +47,25 @@ public class StudentResource{
     public ResponseEntity<Student> save(@RequestBody @Valid Student student){
 
         if(student.getMatriculation() == null) {
-			throw new ObjectBadRequestException("Falta a matricula de student");
+			throw new ObjectBadRequestException("Falta a matricula do estudante");
+        }
+        if(student.getEmail() == null) {
+			throw new ObjectBadRequestException("Falta o email do estudante");
 		}
-        student = this.studentService.save(student);
-        if(student != null) {
-			return ResponseEntity.status(HttpStatus.CREATED).body(student);
-		}
+        Student s = this.studentService.findByMatriculation(student.getMatriculation());
+        if(s != null) {
+			throw new ObjectBadRequestException("Matricula Já Cadastrada");
+        }
+
+        s = this.studentService.findByEmail(student.getEmail());
+        if(s != null) {
+			throw new ObjectBadRequestException("Email Já Cadastrado");
+        }
+        
+        student = this.studentService.save(s);
+        return ResponseEntity.status(HttpStatus.CREATED).body(student);
+        
 		
-		throw new ObjectBadRequestException("Aluno(a) Já Cadastrado");
     }
     
 	@PostMapping("/studentPeriod")
