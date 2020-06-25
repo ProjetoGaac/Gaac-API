@@ -21,7 +21,8 @@ public class StudentService {
 	
 	@Autowired
 	private StudentPeriodRepository studentPeriodRepository;
-		
+	
+	/**@author Gabriel Batista */
 	public Student save(Student student){
 		return null; //implementar
 	}
@@ -37,9 +38,9 @@ public class StudentService {
 	public StudentPeriod updatePeriod(StudentPeriod  usp, StudentPeriod osp){
 		return null; //implementar	
 	}
-	
+	/**@author Gabriel Batista */
 	public void delete(Student student){
-		//implementar	
+		this.studentRepository.delete(student);
 	}
 	
 	public void deletePeriod(StudentPeriod studentPeriod){
@@ -65,7 +66,7 @@ public class StudentService {
 	public Student findById(Long idStudent){
 		return null; //implementar	
 	}
-	
+
 	public StudentPeriod findStudentPeriodById(Long id){
 		return null; //implementar	
 	}
