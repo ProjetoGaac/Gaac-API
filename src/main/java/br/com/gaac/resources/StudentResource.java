@@ -45,8 +45,17 @@ public class StudentResource{
 	/**@author Gabriel Batista */
 	@PostMapping
     public ResponseEntity<Student> save(@RequestBody @Valid Student student){
-        return null;
-      }
+
+        if(student.getMatriculation() == null) {
+			throw new ObjectBadRequestException("Falta a matricula de student");
+		}
+        student = this.studentService.save(student);
+        if(student != null) {
+			return ResponseEntity.status(HttpStatus.CREATED).body(student);
+		}
+		
+		throw new ObjectBadRequestException("Aluno(a) Já Cadastrado");
+    }
     
 	@PostMapping("/studentPeriod")
     public ResponseEntity<StudentPeriod> savePeriod(@RequestParam Long idStudent, 

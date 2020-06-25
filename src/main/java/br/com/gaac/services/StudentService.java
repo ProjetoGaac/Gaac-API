@@ -24,7 +24,13 @@ public class StudentService {
 	
 	/**@author Gabriel Batista */
 	public Student save(Student student){
-		return null; //implementar
+		Student s = this.studentRepository.findByMatriculation(student.getMatriculation());
+
+		if(s == null) {
+			s = this.studentRepository.save(student);
+			return s;
+		}
+		return null;
 	}
 	
 	public StudentPeriod savePeriod(StudentPeriod studentPeriod ){
