@@ -72,7 +72,17 @@ public class StudentService {
 	public Student findById(Long idStudent){
 		return null; //implementar	
 	}
+	/**@author Gabriel Batista */
+	public Student findByMatriculation(String matriculation){
+		Student s = this.studentRepository.findByMatriculation(matriculation);
+		
 
+		if(s != null) {
+			return s;
+		}
+		return null;	
+	}
+	
 	public StudentPeriod findStudentPeriodById(Long id){
 		return null; //implementar	
 	}
