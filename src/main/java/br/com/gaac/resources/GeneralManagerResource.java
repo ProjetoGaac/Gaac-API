@@ -32,6 +32,7 @@ public class GeneralManagerResource {
 	@Autowired
 	private GeneralManagerService generalManagerService;
 	
+	/**@author Gabriel Oliveira */
 	@PostMapping
     public ResponseEntity<GeneralManager> save(@RequestBody @Valid GeneralManager generalManager) {
         generalManager = this.generalManagerService.save(generalManager);

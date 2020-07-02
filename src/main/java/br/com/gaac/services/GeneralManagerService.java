@@ -19,6 +19,7 @@ public class GeneralManagerService {
 	@Autowired
 	private GeneralManagerRepository generalManagerRepository;
 	
+	 /**@author Gabriel Oliveira*/
     public GeneralManager save(GeneralManager generalManager){
         GeneralManager gm = this.generalManagerRepository.findByNameAndEmail(generalManager.getName(),generalManager.getEmail());
 
