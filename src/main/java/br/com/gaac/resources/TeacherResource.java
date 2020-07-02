@@ -113,8 +113,12 @@ public class TeacherResource {
 			throw new ObjectBadRequestException("Id da Disciplina inválido!");
 		}
 
+		teacher = this.teacherService.rmvSubject(teacher, subject);
+		if(teacher!=null){
+			return ResponseEntity.status(HttpStatus.OK).body(teacher);
+		}
 		
-		return null;
+		throw new ObjectBadRequestException("Esta materia nao pertence a este professor!");
     }
     
     @PutMapping("/enable")

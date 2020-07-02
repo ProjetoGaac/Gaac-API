@@ -128,11 +128,11 @@ public class TeacherService {
 		}
 
 		if(!isPresent){
-			return null; //implementar
+			return null; 
 		}else{
 			teacher.rmvSubject(subject);
 			teacher = this.teacherRepository.save(teacher);
-			return(teacher);
+			return teacher;
 		}	
 	}
 	

@@ -21,9 +21,16 @@ public class StudentService {
 	
 	@Autowired
 	private StudentPeriodRepository studentPeriodRepository;
-		
+	
+	/**@author Gabriel Batista */
 	public Student save(Student student){
-		return null; //implementar
+		Student s = this.studentRepository.findByMatriculation(student.getMatriculation());
+
+		if(s == null) {
+			s = this.studentRepository.save(student);
+			return s;
+		}
+		return null;
 	}
 	
 	public StudentPeriod savePeriod(StudentPeriod studentPeriod ){
@@ -37,9 +44,9 @@ public class StudentService {
 	public StudentPeriod updatePeriod(StudentPeriod  usp, StudentPeriod osp){
 		return null; //implementar	
 	}
-	
+	/**@author Gabriel Batista */
 	public void delete(Student student){
-		//implementar	
+		this.studentRepository.delete(student);
 	}
 	
 	public void deletePeriod(StudentPeriod studentPeriod){
@@ -64,6 +71,28 @@ public class StudentService {
 	
 	public Student findById(Long idStudent){
 		return null; //implementar	
+	}
+	/**@author Gabriel Batista */
+	public Student findByMatriculation(String matriculation){
+		Student s = this.studentRepository.findByMatriculation(matriculation);
+		
+
+		if(s != null) {
+			return s;
+		}
+		return null;	
+	}
+	/**@author Gabriel Batista */
+	public Student findByEmail(String email){
+		System.out.println("email do individuo agora esta balendo");
+		Student s = this.studentRepository.findByEmail(email);
+		
+		System.out.println(s.getEmail());
+
+		if(s != null) {
+			return s;
+		}
+		return null;	
 	}
 	
 	public StudentPeriod findStudentPeriodById(Long id){
