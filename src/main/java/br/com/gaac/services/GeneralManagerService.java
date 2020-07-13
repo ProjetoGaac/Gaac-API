@@ -19,6 +19,7 @@ public class GeneralManagerService {
 	@Autowired
 	private GeneralManagerRepository generalManagerRepository;
 	
+	 /**@author Gabriel Oliveira*/
     public GeneralManager save(GeneralManager generalManager){
         GeneralManager gm = this.generalManagerRepository.findByNameAndEmail(generalManager.getName(),generalManager.getEmail());
 
@@ -42,7 +43,11 @@ public class GeneralManagerService {
     }
 
     public GeneralManager enable(GeneralManager generalManager){
-        return null; //implementar
+        generalManager.addGeneralManagerCategory(UserCategory.GENERAL_MANAGER_COURSE.getCode());
+        //salvo no banco de dados chamando repository que esse adm geral agora tem direitos de adm de curso
+        generalManager = this.generalManagerRepository.save(generalManager);
+        // returno pro sistema esse adm geral com essa nova funcionalidade
+        return generalManager;
     }
 
     /**@author Felipe Duarte*/

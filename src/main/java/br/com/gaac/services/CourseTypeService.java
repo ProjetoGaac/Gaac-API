@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import br.com.gaac.domain.Course;
 import br.com.gaac.domain.CourseType;
 import br.com.gaac.repositories.CourseTypeRepository;
+import br.com.gaac.resources.exceptions.ObjectNotFoundException;
 
 @Service
 public class CourseTypeService {
@@ -32,15 +33,21 @@ public class CourseTypeService {
 		return null;
     }
     
+	/**@author Gabriel Oliveira */
     public CourseType update(CourseType courseType){
-    	return this.courseTypeRepository.save(courseType);
+    	//aqui eu busquei o id utilizando o argumento recebido pela função
+    	Optional<CourseType> ct = this.courseTypeRepository.findById(courseType.getId());
+    	if(ct.isPresent()) {
+    		return ct.get();
+    	}
+    	return null; 
     }
 	
 	/**@author Jorge Gabriel */
     public void delete(CourseType courseType){
     	this.courseTypeRepository.delete(courseType);
     }
-	
+	 
 	/**@author Gabriel Batista */
     public CourseType findById(Long id){
 		Optional<CourseType> ct = this.courseTypeRepository.findById(id);

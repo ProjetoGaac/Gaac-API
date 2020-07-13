@@ -32,6 +32,7 @@ public class GeneralManagerResource {
 	@Autowired
 	private GeneralManagerService generalManagerService;
 	
+	/**@author Gabriel Oliveira */
 	@PostMapping
     public ResponseEntity<GeneralManager> save(@RequestBody @Valid GeneralManager generalManager) {
         generalManager = this.generalManagerService.save(generalManager);
@@ -66,9 +67,16 @@ public class GeneralManagerResource {
 		
     }
     
+	/**@author Gabriel Oliveira*/
 	@PutMapping("/enable")
     public ResponseEntity<GeneralManager> enable(@RequestBody @Valid GeneralManager generalManager){
-        return null;
+        // primeiro eu coloco uma condicional para verificar se o id é existe
+		if(generalManager.getId() == null) {
+			throw new ObjectBadRequestException("Id not found!");
+		}
+		// caso nao seja nulo eu armazeno na variavel general Manager a chamada de uma função da classe Service e passo como parâmetro a variavel passada generalManager
+		generalManager = this.generalManagerService.enable(generalManager);
+		return ResponseEntity.status(HttpStatus.OK).body(generalManager);
     }
     
 	/**@author Felipe Duarte*/

@@ -42,7 +42,7 @@ public class CourseTypeResource {
 		
 		throw new ObjectBadRequestException("Tipo de curso Já Cadastrado");
     }
-
+	  /**@author Gabriel Oliveira */
 	@PutMapping
     public ResponseEntity<CourseType> update(@RequestBody @Valid CourseType courseType){
         courseType = this.courseTypeService.update(courseType);
