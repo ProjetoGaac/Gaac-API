@@ -29,8 +29,9 @@ public class GeneralManagerService {
         return null;
     }
 
+    /**@author Jorge Gabriel */
     public GeneralManager update(GeneralManager generalManager){
-        return null; //implementar
+        return this.generalManagerRepository.save(generalManager);
     }
 
     /**@author Felipe Duarte*/

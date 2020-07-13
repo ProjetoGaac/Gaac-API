@@ -40,11 +40,21 @@ public class GeneralManagerResource {
 		}
         throw new ObjectBadRequestException("General Manager already exists!");
     }
-    
+
+	/**@author Jorge Gabriel */
 	@PutMapping
     public ResponseEntity<GeneralManager> update(@RequestBody @Valid GeneralManager generalManager){
-        return null;
-    }
+        
+		if(generalManager !=null){
+
+			generalManager = this.generalManagerService.update(generalManager);
+
+			return ResponseEntity.status(HttpStatus.OK).body(generalManager);
+			
+        }
+        throw new ObjectNotFoundException("Nenhum Administrador encontrado!");
+	}
+    
     
 	/**@author Felipe Duarte*/
 	@DeleteMapping
