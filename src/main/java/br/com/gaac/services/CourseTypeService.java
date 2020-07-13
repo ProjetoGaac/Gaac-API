@@ -35,9 +35,10 @@ public class CourseTypeService {
     public CourseType update(CourseType courseType){
     	return this.courseTypeRepository.save(courseType);
     }
-    
-    public void delete(Course courseType){
-    	//implementar
+	
+	/**@author Jorge Gabriel */
+    public void delete(CourseType courseType){
+    	this.courseTypeRepository.delete(courseType);
     }
 	
 	/**@author Gabriel Batista */

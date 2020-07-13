@@ -51,10 +51,11 @@ public class CourseTypeResource {
         }
 	    throw new ObjectNotFoundException("Course type not found");
     } 
-
+    /**@author Jorge Gabriel */
 	@DeleteMapping
     public ResponseEntity<?> delete(@RequestBody CourseType courseType){
-        return null; //implementar
+        this.courseTypeService.delete(courseType);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     /**@author Gabriel Batista */
