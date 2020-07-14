@@ -9,6 +9,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.gaac.domain.Subject;
@@ -61,12 +62,30 @@ public class SubjectService {
         return null; //implementar
     }
 
+    /**@author Jorge Gabriel */
     public List<Subject> findSubjectsByStudentPeriod(Long idStudentPeriod){
-        return null; //implementar
+        
+        Optional<List<Subject>> subject = this.subjectRepository.findByStudentPeriods(idStudentPeriod);
+    	
+    	if(subject.isPresent()) {
+    		return subject.get();
+    	}
+    	
+    	return null;
     }
 
+    /**@author Jorge Gabriel */
     public Page<Subject> findAll(Integer page, Integer quantityPerPage){
-        return null; //implementar
+        
+        PageRequest pageRequest = PageRequest.of(page, quantityPerPage);
+    	
+    	Page<Subject> subjects = this.subjectRepository.findAll(pageRequest);
+    	
+    	if(!subjects.getContent().isEmpty()) {
+    		return subjects;
+    	}
+    	
+    	return null;
     }
     
 }

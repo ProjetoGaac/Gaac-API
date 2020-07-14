@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.gaac.domain.Subject;
 import br.com.gaac.domain.DTOs.SubjectDTO;
 import br.com.gaac.resources.exceptions.ObjectBadRequestException;
+import br.com.gaac.resources.exceptions.ObjectNotFoundException;
 import br.com.gaac.services.SubjectService;
 
 @RestController
@@ -91,15 +92,30 @@ public class SubjectResource {
         return null; //implementar
     }
 
-    public List<Subject> findSubjectsByStudentPeriod(Long idStudentPeriod){
-        return null; //implementar
+	/**@author Jorge Gabriel */
+	public List<Subject> findSubjectsByStudentPeriod(Long idStudentPeriod){
+        List<Subject> subject = this.subjectService.findSubjectsByStudentPeriod(idStudentPeriod);
+        
+    	if(subject != null) {
+    		return subject;
+    	}
+        
+    	return null;
     }
 
+	/**@author Jorge Gabriel */
     @GetMapping
     public ResponseEntity<Page<Subject>> findAll(
     		@RequestParam(defaultValue = "0") Integer page, 
     		@RequestParam(defaultValue = "3") Integer quantityPerPage){
-        return null; //implementar
+			
+				Page<Subject> subjects = this.subjectService.findAll(page, quantityPerPage);
+    	
+				if(subjects != null) {
+					return ResponseEntity.status(HttpStatus.OK).body(subjects);
+				}
+				
+				throw new ObjectNotFoundException("Nenhuma Disciplina encontrada!");
     }
     
 }
