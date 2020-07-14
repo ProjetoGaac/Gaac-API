@@ -11,6 +11,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.gaac.domain.Course;
@@ -53,8 +54,14 @@ public class TeacherService {
 		return null; //implementar
 	}
 	
+	/**@author Jorge Gabriel */
 	public Teacher disable(Teacher teacher) {
-		return null; //implementar
+		
+		teacher.rmvTeacherCategory(UserCategory.TEACHER.getCode());
+    	
+    	teacher = this.teacherRepository.save(teacher);
+    	
+    	return teacher;
 	}
 	
 	/**@author Felipe Duarte*/
@@ -148,12 +155,32 @@ public class TeacherService {
 		return null;
 	}
 
+	/**@author Jorge Gabriel */
 	public Page<Teacher> findTeacherByCourse(Long idCourse, Integer page, Integer quantityPerPage){
-		return null; //implementar
+		
+			PageRequest pageRequest = PageRequest.of(page, quantityPerPage);
+			
+			Page<Teacher> teachers = this.teacherRepository.findByCourses(idCourse, pageRequest);
+			
+			if(!teachers.getContent().isEmpty()) {
+				return teachers;
+			}
+			
+			return null;
 	}
 
+	/**@author Jorge Gabriel */
 	public Page<Teacher> findAll(Integer page, Integer quantityPerPage){
-		return null; //implementar
+		
+		PageRequest pageRequest = PageRequest.of(page, quantityPerPage);
+    	
+    	Page<Teacher> teachers = this.teacherRepository.findAll(pageRequest);
+    	
+    	if(!teachers.getContent().isEmpty()) {
+    		return teachers;
+    	}
+    	
+    	return null;
 	}
 	
 }

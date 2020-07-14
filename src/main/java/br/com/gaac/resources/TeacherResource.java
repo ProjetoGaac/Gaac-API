@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.gaac.domain.Subject;
 import br.com.gaac.domain.Teacher;
 import br.com.gaac.resources.exceptions.ObjectBadRequestException;
+import br.com.gaac.resources.exceptions.ObjectNotFoundException;
 import br.com.gaac.services.TeacherService;
 
 @RestController
@@ -125,25 +126,51 @@ public class TeacherResource {
     public ResponseEntity<Teacher> enable(@RequestBody @Valid Teacher teacher){
         return null;
     }
-    
+	
+	/**@author Jorge Gabriel */
     @PutMapping("/disable")
     public ResponseEntity<Teacher> disable(@RequestBody @Valid Teacher teacher){
-        return null;
+		
+		if(teacher.getId() == null) {
+			throw new ObjectBadRequestException("Falta o id do Professor");
+		}
+		
+		teacher = this.teacherService.disable(teacher);
+		
+		return ResponseEntity.status(HttpStatus.OK).body(teacher);
     }
+	
+    
     
     public Teacher findById(Long id ){
         return null;
     }
-    
+	
+	/**@author Jorge Gabriel */
     @GetMapping("subject")
     public ResponseEntity<Page<Subject>> findEnrolledSubjects(@RequestParam Long idTeacher, 
     		@RequestParam(defaultValue = "0") Integer page,
     		@RequestParam(defaultValue = "3") Integer quantityPerPage){
-        return null;
+				
+			Page<Subject> subjects = this.subjectResource.findSubjectsByTeacher(idTeacher, page, quantityPerPage);	
+    	
+				if(subjects != null) {
+					return ResponseEntity.status(HttpStatus.OK).body(subjects);
+				}
+				
+				throw new ObjectNotFoundException("Nenhum Professor encontrado!");
     }
-    
-    public ResponseEntity<Page<Subject>> findTeacherByCourse(Long idCourse, Integer page, Integer quantityPerPage){
-        return null;
+	
+	/**@author Jorge Gabriel */
+    public ResponseEntity<Page<Teacher>> findTeacherByCourse(Long idCourse, Integer page, Integer quantityPerPage) {
+		
+		Page<Teacher> subjects = this.teacherService.findTeacherByCourse(idCourse, page, quantityPerPage);
+    	
+				if(subjects != null) {
+					return ResponseEntity.status(HttpStatus.OK).body(subjects);
+				}
+				
+				throw new ObjectNotFoundException("Nenhum Professor encontrado!");
     }
     
     @GetMapping("/course")
@@ -152,12 +179,20 @@ public class TeacherResource {
     		@RequestParam(defaultValue = "3") Integer quantityPerPage){
         return null;
     }
-    
+	
+	/**@author Jorge Gabriel */
     @GetMapping
     public ResponseEntity<Page<Teacher>> findAll(
     		@RequestParam(defaultValue = "0") Integer page,
     		@RequestParam(defaultValue = "3") Integer quantityPerPage){
-        return null;
+		
+				Page<Teacher> teachers = this.teacherService.findAll(page, quantityPerPage);
+    	
+				if(teachers != null) {
+					return ResponseEntity.status(HttpStatus.OK).body(teachers);
+				}
+				
+				throw new ObjectNotFoundException("Nenhum Professor encontrado!");
     }
     
 }
