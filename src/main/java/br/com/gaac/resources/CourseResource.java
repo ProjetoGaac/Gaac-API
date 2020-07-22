@@ -58,14 +58,26 @@ public class CourseResource {
         return null; //Implementar
     }
     
+    /**@author Jorge Gabriel */
 	@PutMapping
     public ResponseEntity<Course> update(@RequestBody @Valid Course course){
-        return null; //Implementar
+        
+        if(course !=null){
+
+			course = this.courseService.update(course);
+
+			return ResponseEntity.status(HttpStatus.OK).body(course);
+			
+        }
+        throw new ObjectNotFoundException("Nenhum Curso encontrado!");
     }
     
+    /**@author Jorge Gabriel */
 	@DeleteMapping
     public ResponseEntity<?> delete(@RequestBody Course course){
-        return null; //Implementar
+        
+        this.courseService.delete(course);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
     
     /**@author Gabriel Batista */
@@ -156,9 +168,16 @@ public class CourseResource {
         return null; //Implementar
     }
     
+    /**@author Jorge Gabriel */
     @GetMapping("/period")
-    public ResponseEntity<List<Period>> findAllPeriod(@RequestParam Long idCourse){
-        return null; //Implementar
+    public ResponseEntity<List<Period>> findAllPeriod(@RequestParam Course idCourse) {
+        List<Period> periods = this.courseService.findAllPeriod(idCourse);	
+    	
+				if(periods != null) {
+					return ResponseEntity.status(HttpStatus.OK).body(periods);
+				}
+				
+				throw new ObjectNotFoundException("Nenhum Curso encontrado!");
     }
     /**@author Gabriel Batista */
     //not working

@@ -10,6 +10,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
 import br.com.gaac.domain.Course;
@@ -22,104 +23,114 @@ import br.com.gaac.repositories.PeriodRepository;
 
 @Service
 public class CourseService {
-	
-	@Autowired
-	private CourseRepository courseRepository;
-	
-	@Autowired
-	private PeriodRepository periodRepository;
 
-    public Course save(Course course){
-    	return null; //implementar
+    @Autowired
+    private CourseRepository courseRepository;
+
+    @Autowired
+    private PeriodRepository periodRepository;
+
+    public Course save(Course course) {
+        return null; // implementar
     }
-    
-    public Course update(Course course){
-    	return null; //implementar
+
+    /** @author Jorge Gabriel */
+    public Course update(Course course) {
+        return this.courseRepository.save(course);
     }
-    
-    public void delete(Course course){
-    	//implementar
+
+    /** @author Jorge Gabriel */
+    public void delete(Course course) {
+        this.courseRepository.delete(course);
     }
-    
-    public void addTeacher(Course course, Teacher teacher){
-    	//implementar
+
+    public void addTeacher(Course course, Teacher teacher) {
+        // implementar
     }
-    
-    public void rmvTeacher(Course course, Teacher teacher){
-    	//implementar
+
+    public void rmvTeacher(Course course, Teacher teacher) {
+        // implementar
     }
-    
-    public void rmvCourseAdministrator(Course course, CourseAdministrator courseAdm){
-    	//implemetar
+
+    public void rmvCourseAdministrator(Course course, CourseAdministrator courseAdm) {
+        // implemetar
     }
-    
-    public void addCourseAdministrator(Course course, CourseAdministrator courseAdm){
-    	//implementar
+
+    public void addCourseAdministrator(Course course, CourseAdministrator courseAdm) {
+        // implementar
     }
-    
-    /**@author Gabriel Batista */
-    public Period addSubjectPeriod(Period period, Subject subject){
+
+    /** @author Gabriel Batista */
+    public Period addSubjectPeriod(Period period, Subject subject) {
         boolean isPresent = false;
-		
-		if(period.getSubjects()!=null) {
-			
-			List<Subject> subjects = new ArrayList<>();
-			period.getSubjects().forEach(s -> {
+
+        if (period.getSubjects() != null) {
+
+            List<Subject> subjects = new ArrayList<>();
+            period.getSubjects().forEach(s -> {
                 subjects.add(s);
 
-			});
-			
-			for(int i=0; i < subjects.size(); i++) {
-				if(subjects.get(i).getId() == subject.getId()) {
-					isPresent = true;
-					break;
-				}
+            });
+
+            for (int i = 0; i < subjects.size(); i++) {
+                if (subjects.get(i).getId() == subject.getId()) {
+                    isPresent = true;
+                    break;
+                }
             }
-            if(isPresent){
+            if (isPresent) {
                 return period;
-            }else{
+            } else {
 
                 period.addSubject(subject);
                 period = this.periodRepository.save(period);
                 return period;
             }
         }
-    	return null; 
+        return null;
     }
-    
-    public Period rmvSubjectPeriod(Period period, Subject subject){
-    	return null; //implementar
+
+    public Period rmvSubjectPeriod(Period period, Subject subject) {
+        return null; // implementar
     }
-    
-    public Course findCourseById(Long id){
-    	return null; //implementar
+
+    public Course findCourseById(Long id) {
+        return null; // implementar
     }
-    
-    /**@author Gabriel Batista */
-    public Period findPeriodById(Long id){
-        Optional <Period> period = this.periodRepository.findById(id);
-		
-		if(period.isPresent()) {
-			return period.get();
-		}
-		
-		return null;
+
+    /** @author Gabriel Batista */
+    public Period findPeriodById(Long id) {
+        Optional<Period> period = this.periodRepository.findById(id);
+
+        if (period.isPresent()) {
+            return period.get();
+        }
+
+        return null;
     }
-    
-    public Page<Course> findCoursesByCourseAdm(Long idCourseAdm, Integer page,Integer quantityPerPage){
-    	return null; //implementar
+
+    public Page<Course> findCoursesByCourseAdm(Long idCourseAdm, Integer page, Integer quantityPerPage) {
+        return null; // implementar
     }
-    
-    public Page<Course> findCoursesByTeacher(Long idTeacher, Integer page, Integer quantityPerPage){
-    	return null; //implementar
+
+    public Page<Course> findCoursesByTeacher(Long idTeacher, Integer page, Integer quantityPerPage) {
+        return null; // implementar
     }
-    
-    public Page<Course> findCoursesByCourseType(Long idTeacher, Integer page, Integer quantityPerPage){
-    	return null; //implementar
+
+    public Page<Course> findCoursesByCourseType(Long idTeacher, Integer page, Integer quantityPerPage) {
+        return null; // implementar
     }
-    
-    public List<Period> findAllPeriod(Long idCourse){
-    	return null; //implementar
+
+    /**@author Jorge Gabriel */
+    public List<Period> findAllPeriod(Course idCourse) {
+
+        List<Period> periods = this.periodRepository.findByCourse(idCourse);
+
+        if (periods != null) {
+				return periods;
+			}
+			
+			return null;
     }
     /**@author Gabriel Batista */
     //not working
