@@ -9,11 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
- 
-import br.com.gaac.domain.Course;
+
 import br.com.gaac.domain.CourseType;
 import br.com.gaac.repositories.CourseTypeRepository;
-import br.com.gaac.resources.exceptions.ObjectNotFoundException;
 
 @Service
 public class CourseTypeService {
@@ -38,7 +36,7 @@ public class CourseTypeService {
     	//aqui eu busquei o id utilizando o argumento recebido pela função
     	Optional<CourseType> ct = this.courseTypeRepository.findById(courseType.getId());
     	if(ct.isPresent()) {
-    		return ct.get();
+    		return this.courseTypeRepository.save(courseType); //Aqui atualiza o registro
     	}
     	return null; 
     }
