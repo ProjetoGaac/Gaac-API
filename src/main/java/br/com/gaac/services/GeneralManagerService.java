@@ -54,12 +54,18 @@ public class GeneralManagerService {
         
     }
 
-    public GeneralManager enable(GeneralManager generalManager){
-        generalManager.addGeneralManagerCategory(UserCategory.GENERAL_MANAGER_COURSE.getCode());
-        //salvo no banco de dados chamando repository que esse adm geral agora tem direitos de adm de curso
-        generalManager = this.generalManagerRepository.save(generalManager);
-        // returno pro sistema esse adm geral com essa nova funcionalidade
-        return generalManager;
+    /**@author Gabriel Oliveira*/
+    public GeneralManager enable(Long id){
+    	
+    	Optional<GeneralManager> gm = this.generalManagerRepository.findById(id);
+        
+    	if(gm.isPresent()) {
+    		gm.get().addGeneralManagerCategory(UserCategory.GENERAL_MANAGER_COURSE.getCode());
+    		
+            return this.generalManagerRepository.save(gm.get());
+    	}
+    	
+        return null;
     }
 
     /**@author Felipe Duarte*/

@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,8 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gaac.domain.GeneralManager;
-import br.com.gaac.resources.exceptions.ObjectNotFoundException;
 import br.com.gaac.resources.exceptions.ObjectBadRequestException;
+import br.com.gaac.resources.exceptions.ObjectNotFoundException;
 import br.com.gaac.services.GeneralManagerService;
 
 @RestController
@@ -68,15 +69,16 @@ public class GeneralManagerResource {
     }
     
 	/**@author Gabriel Oliveira*/
-	@PutMapping("/enable")
-    public ResponseEntity<GeneralManager> enable(@RequestBody @Valid GeneralManager generalManager){
-        // primeiro eu coloco uma condicional para verificar se o id é existe
-		if(generalManager.getId() == null) {
-			throw new ObjectBadRequestException("Id not found!");
+	@PutMapping("/enable/{id}")
+    public ResponseEntity<GeneralManager> enable(@PathVariable("id") Long id){
+        
+		GeneralManager generalManager = this.generalManagerService.enable(id);
+		
+		if(generalManager != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(generalManager);
 		}
-		// caso nao seja nulo eu armazeno na variavel general Manager a chamada de uma função da classe Service e passo como parâmetro a variavel passada generalManager
-		generalManager = this.generalManagerService.enable(generalManager);
-		return ResponseEntity.status(HttpStatus.OK).body(generalManager);
+		
+		throw new ObjectNotFoundException("Id não encontrado!");
     }
     
 	/**@author Felipe Duarte*/
