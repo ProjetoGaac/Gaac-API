@@ -4,6 +4,8 @@
 
 package br.com.gaac.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -33,7 +35,16 @@ public class GeneralManagerService {
 
     /**@author Jorge Gabriel */
     public GeneralManager update(GeneralManager generalManager){
-        return this.generalManagerRepository.save(generalManager);
+    	
+    	Optional<GeneralManager> gm = this.generalManagerRepository.findById(generalManager.getId());
+    	
+    	if(gm.isPresent()) {
+    		
+    		return this.generalManagerRepository.save(generalManager);
+    	
+    	}
+    	
+        return null;
     }
 
     /**@author Felipe Duarte*/

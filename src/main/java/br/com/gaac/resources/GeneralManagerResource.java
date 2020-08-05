@@ -46,14 +46,14 @@ public class GeneralManagerResource {
 	@PutMapping
     public ResponseEntity<GeneralManager> update(@RequestBody @Valid GeneralManager generalManager){
         
+		generalManager = this.generalManagerService.update(generalManager);
+		
 		if(generalManager !=null){
-
-			generalManager = this.generalManagerService.update(generalManager);
 
 			return ResponseEntity.status(HttpStatus.OK).body(generalManager);
 			
         }
-        throw new ObjectNotFoundException("Nenhum Administrador encontrado!");
+        throw new ObjectNotFoundException("Nenhum Administrador Geral Encontrado!");
 	}
     
     
