@@ -30,7 +30,7 @@ public class CourseAdministratorService {
 		Optional<CourseAdministrator> ca = this.courseAdministratorRepository.findById(courseAdministrator.getId());
 		
 		if(ca.isPresent()) {
-			return this.courseAdministratorRepository.save(courseAdministrator);
+			return this.courseAdministratorRepository.save(ca.get());
 		}
 		
 		return null;
@@ -56,12 +56,19 @@ public class CourseAdministratorService {
 	}
 	
 	/**@author Gabriel Batista */
-	public CourseAdministrator disable(CourseAdministrator courseAdministrator) {
-		courseAdministrator.rmvCourseAdministratorCategory(UserCategory.COURSE_ADMINISTRATOR_GENERAL.getCode());
+	public CourseAdministrator disable(Long id) {
 		
-		courseAdministrator = this.courseAdministratorRepository.save(courseAdministrator);
+		Optional<CourseAdministrator> ca = this.courseAdministratorRepository.findById(id);
 		
-		return courseAdministrator;
+		if(ca.isPresent()) {
+		
+			ca.get().rmvCourseAdministratorCategory(UserCategory.COURSE_ADMINISTRATOR_GENERAL.getCode());
+		
+			return this.courseAdministratorRepository.save(ca.get());
+		
+		}
+		
+		return null;
 	}
 
 	/**@author Gabriel Batista */

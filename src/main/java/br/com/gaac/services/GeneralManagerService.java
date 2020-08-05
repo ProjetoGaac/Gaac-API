@@ -40,7 +40,7 @@ public class GeneralManagerService {
     	
     	if(gm.isPresent()) {
     		
-    		return this.generalManagerRepository.save(generalManager);
+    		return this.generalManagerRepository.save(gm.get());
     	
     	}
     	

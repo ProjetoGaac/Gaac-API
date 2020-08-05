@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gaac.domain.CourseAdministrator;
-import br.com.gaac.resources.exceptions.ObjectBadRequestException;
 import br.com.gaac.resources.exceptions.ObjectNotFoundException;
 import br.com.gaac.services.CourseAdministratorService;
 
@@ -74,15 +73,16 @@ public class CourseAdministratorResource {
 	}
 	
 	/**@author Gabriel Batista */
-	@DeleteMapping("/disable")
-	public ResponseEntity<CourseAdministrator> disable(@RequestBody @Valid CourseAdministrator courseAdministrator){
-		if(courseAdministrator.getId() == null) {
-			throw new ObjectBadRequestException("Falta o id de courseAdministrator");
+	@PutMapping("/disable/{id}")
+	public ResponseEntity<CourseAdministrator> disable(@PathVariable("id") Long id){
+		
+		CourseAdministrator ca = this.courseAdministratorService.disable(id);
+		
+		if(ca != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(ca);
 		}
 		
-		courseAdministrator = this.courseAdministratorService.disable(courseAdministrator);
-		
-		return ResponseEntity.status(HttpStatus.OK).body(courseAdministrator);
+		throw new ObjectNotFoundException("Administrador de Curso não encontrado para o id informado!");
 	}	
 
 	/**@author Gabriel Batista */
