@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -59,16 +60,17 @@ public class CourseAdministratorResource {
 	}
 
 	/**@author Felipe Duarte */
-	@PutMapping("/enable")
-	public ResponseEntity<CourseAdministrator> enable(@RequestBody @Valid CourseAdministrator courseAdministrator){
+	@PutMapping("/enable/{id}")
+	public ResponseEntity<CourseAdministrator> enable(@PathVariable("id") Long id){
 		
-		if(courseAdministrator.getId() == null) {
-			throw new ObjectBadRequestException("Falta o id de courseAdministrator");
+		CourseAdministrator ca = this.courseAdministratorService.enable(id);
+		
+		if(ca != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(ca);
 		}
 		
-		courseAdministrator = this.courseAdministratorService.enable(courseAdministrator);
+		throw new ObjectNotFoundException("Administrador de Curso não encontrado para o id informado!");
 		
-		return ResponseEntity.status(HttpStatus.OK).body(courseAdministrator);
 	}
 	
 	/**@author Gabriel Batista */
@@ -97,6 +99,7 @@ public class CourseAdministratorResource {
 			Integer quantityPerPage){
 		return null; //implementar
 	}
+	
 	/**@author Gabriel Batista */
 	@GetMapping
 	public ResponseEntity<Page<CourseAdministrator>> findAll(

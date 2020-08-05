@@ -41,13 +41,18 @@ public class CourseAdministratorService {
 	}
 	
 	/**@author Felipe Duarte*/
-	public CourseAdministrator enable(CourseAdministrator courseAdministrator) {
+	public CourseAdministrator enable(Long id) {
 		
-		courseAdministrator.addCourseAdministratorCategory(UserCategory.COURSE_ADMINISTRATOR_GENERAL.getCode());
+		Optional<CourseAdministrator> ca = this.courseAdministratorRepository.findById(id);
 		
-		courseAdministrator = this.courseAdministratorRepository.save(courseAdministrator);
+		if(ca.isPresent()) {
 		
-		return courseAdministrator;
+			ca.get().addCourseAdministratorCategory(UserCategory.COURSE_ADMINISTRATOR_GENERAL.getCode());
+		
+			return this.courseAdministratorRepository.save(ca.get());
+		}
+		
+		return null;
 	}
 	
 	/**@author Gabriel Batista */
