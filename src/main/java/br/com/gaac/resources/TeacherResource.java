@@ -130,14 +130,14 @@ public class TeacherResource {
     }
 	
 	/**@author Jorge Gabriel */
-    @PutMapping("/disable")
-    public ResponseEntity<Teacher> disable(@RequestBody @Valid Teacher teacher){
+    @PutMapping("/disable/{id}")
+    public ResponseEntity<Teacher> disable(@PathVariable("id") Long id){
+    	
+    	Teacher teacher = this.teacherService.disable(id);
 		
-		if(teacher.getId() == null) {
-			throw new ObjectBadRequestException("Falta o id do Professor");
+		if(teacher == null) {
+			throw new ObjectNotFoundException("Professor não encontrado para o Id informado!");
 		}
-		
-		teacher = this.teacherService.disable(teacher);
 		
 		return ResponseEntity.status(HttpStatus.OK).body(teacher);
     }
