@@ -65,10 +65,10 @@ public class SubjectService {
     /**@author Jorge Gabriel */
     public List<Subject> findSubjectsByStudentPeriod(Long idStudentPeriod){
         
-        Optional<List<Subject>> subject = this.subjectRepository.findByStudentPeriods(idStudentPeriod);
+        List<Subject> subject = this.subjectRepository.findByStudentPeriods(idStudentPeriod);
     	
-    	if(subject.isPresent()) {
-    		return subject.get();
+    	if(!subject.isEmpty()) {
+    		return subject;
     	}
     	
     	return null;
