@@ -50,7 +50,7 @@ public class TeacherService {
 		//implementar
 	}
 	
-	public Teacher enable(Teacher teacher) {
+	public Teacher enable(Long id) {
 		return null; //implementar
 	}
 	
@@ -117,6 +117,7 @@ public class TeacherService {
 		}
 		
 	}
+	
 	/**@author Gabriel Batista */
 	public Teacher rmvSubject(Teacher teacher, Subject subject) {
 

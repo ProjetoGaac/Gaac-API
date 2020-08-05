@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -102,6 +103,7 @@ public class TeacherResource {
 		return ResponseEntity.status(HttpStatus.OK).body(teacher);
     }
     
+	/**@author Gabriel Almeida*/
 	@DeleteMapping("/subject")
     public ResponseEntity<Teacher> rmvSubject(@RequestParam Long idTeacher, @RequestParam Long idSubject){
 		Teacher teacher = this.teacherService.findById(idTeacher);
@@ -122,8 +124,8 @@ public class TeacherResource {
 		throw new ObjectBadRequestException("Esta materia nao pertence a este professor!");
     }
     
-    @PutMapping("/enable")
-    public ResponseEntity<Teacher> enable(@RequestBody @Valid Teacher teacher){
+    @PutMapping("/enable/{id}")
+    public ResponseEntity<Teacher> enable(@PathVariable("id") Long id){
         return null;
     }
 	
