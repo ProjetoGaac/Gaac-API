@@ -82,16 +82,16 @@ public class GeneralManagerResource {
     }
     
 	/**@author Felipe Duarte*/
-	@PutMapping("/disable")
-    public ResponseEntity<GeneralManager> disable(@RequestBody @Valid GeneralManager generalManager){
+	@PutMapping("/disable/{id}")
+    public ResponseEntity<GeneralManager> disable(@PathVariable("id") Long id){
+		
+		GeneralManager generalManager = this.generalManagerService.disable(id);
         
-		if(generalManager.getId() == null) {
-			throw new ObjectBadRequestException("Falta o id de generalManager");
+		if(generalManager != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(generalManager);	
 		}
 		
-		generalManager = this.generalManagerService.disable(generalManager);
-		
-		return ResponseEntity.status(HttpStatus.OK).body(generalManager);
+		throw new ObjectNotFoundException("Id não encontrado!");
     }
 	
 	/**@author Gabriel Batista */

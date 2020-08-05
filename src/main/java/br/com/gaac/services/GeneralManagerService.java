@@ -69,13 +69,19 @@ public class GeneralManagerService {
     }
 
     /**@author Felipe Duarte*/
-    public GeneralManager disable(GeneralManager generalManager){
+    public GeneralManager disable(Long id){
     	
-    	generalManager.rmvGeneralManagerCategory(UserCategory.GENERAL_MANAGER_COURSE.getCode());
+    	Optional<GeneralManager> gm = this.generalManagerRepository.findById(id);
     	
-    	generalManager = this.generalManagerRepository.save(generalManager);
+    	if(gm.isPresent()) {
+    		gm.get().rmvGeneralManagerCategory(UserCategory.GENERAL_MANAGER_COURSE.getCode());
+    		
+    		this.generalManagerRepository.save(gm.get());
+    		
+    		return gm.get();
+    	}
     	
-    	return generalManager;
+    	return null;
     }
     
     /**@author Gabriel Batista */
