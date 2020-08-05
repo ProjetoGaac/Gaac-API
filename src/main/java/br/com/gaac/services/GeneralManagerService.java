@@ -24,6 +24,7 @@ public class GeneralManagerService {
         GeneralManager gm = this.generalManagerRepository.findByNameAndEmail(generalManager.getName(),generalManager.getEmail());
 
         if (gm == null){
+        	generalManager.addGeneralManagerCategory(UserCategory.GENERAL_MANAGER.getCode());
             gm = this.generalManagerRepository.save(generalManager);
             return gm;
         }

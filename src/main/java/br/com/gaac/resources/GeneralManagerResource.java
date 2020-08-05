@@ -39,7 +39,7 @@ public class GeneralManagerResource {
         if(generalManager != null){
         	return ResponseEntity.status(HttpStatus.CREATED).body(generalManager);
 		}
-        throw new ObjectBadRequestException("General Manager already exists!");
+        throw new ObjectBadRequestException("Administrador Geral Já Cadastrado!");
     }
 
 	/**@author Jorge Gabriel */

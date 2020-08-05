@@ -15,6 +15,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "general_manager")
@@ -22,6 +24,7 @@ public class GeneralManager extends Employee implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
+	@JsonIgnore
 	@ElementCollection
 	@CollectionTable(name = "general_manager_category")
     private Set<Integer> generalManagerCategory = new HashSet<>();
