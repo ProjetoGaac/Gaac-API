@@ -31,6 +31,7 @@ public class CourseAdministrator extends Employee implements Serializable{
 	@ManyToMany(mappedBy = "courseAdministrators", fetch = FetchType.LAZY)
 	private List<Course> courses = new ArrayList<>();
 	
+	@JsonIgnore
 	@ElementCollection
 	@CollectionTable(name = "course_administrator_category")
     private Set<Integer> courseAdministratorCategory = new HashSet<>();

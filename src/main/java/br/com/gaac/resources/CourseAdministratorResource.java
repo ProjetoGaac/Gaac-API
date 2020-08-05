@@ -41,15 +41,16 @@ public class CourseAdministratorResource {
 	/**@author Gabriel Batista */
 	@PutMapping
 	public ResponseEntity<CourseAdministrator> update(@RequestBody @Valid CourseAdministrator courseAdministrator){
-		CourseAdministrator ca= this.courseAdministratorService.findById(courseAdministrator.getId());
+		
+		CourseAdministrator ca = this.courseAdministratorService.update(courseAdministrator);
+		
 		if(ca !=null){
-
-			ca = this.courseAdministratorService.update(courseAdministrator);
 
 			return ResponseEntity.status(HttpStatus.OK).body(ca);
 			
         }
-        throw new ObjectNotFoundException("Nenhum 'Administrador' encontrado com esta ID!");
+		
+        throw new ObjectNotFoundException("Nenhum 'Administrador de Curso' encontrado com esta ID!");
 	}
 	
 	@DeleteMapping

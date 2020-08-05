@@ -26,7 +26,14 @@ public class CourseAdministratorService {
 	
 	/**@author Gabriel Batista */
 	public CourseAdministrator update(CourseAdministrator courseAdministrator) {
-		return this.courseAdministratorRepository.save(courseAdministrator);
+		
+		Optional<CourseAdministrator> ca = this.courseAdministratorRepository.findById(courseAdministrator.getId());
+		
+		if(ca.isPresent()) {
+			return this.courseAdministratorRepository.save(courseAdministrator);
+		}
+		
+		return null;
 	}
 	
 	public void delete(CourseAdministrator courseAdministrator) {
