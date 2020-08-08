@@ -91,7 +91,7 @@ public class CourseAdministratorResource {
         if(courseAdministrator !=null){
             return courseAdministrator;
         }
-        throw new ObjectNotFoundException("Nenhum 'administrador de curso' encontrado!");
+        return null;
 	}
 
 	

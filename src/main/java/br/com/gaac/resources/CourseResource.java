@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.gaac.domain.Course;
 import br.com.gaac.domain.CourseAdministrator;
@@ -29,9 +28,9 @@ import br.com.gaac.domain.Period;
 import br.com.gaac.domain.Subject;
 import br.com.gaac.domain.Teacher;
 import br.com.gaac.domain.DTOs.CourseDTO;
-import br.com.gaac.services.CourseService;
-import br.com.gaac.resources.exceptions.ObjectNotFoundException;
 import br.com.gaac.resources.exceptions.ObjectBadRequestException;
+import br.com.gaac.resources.exceptions.ObjectNotFoundException;
+import br.com.gaac.services.CourseService;
 
 
 @RestController
@@ -118,9 +117,24 @@ public class CourseResource {
         return null; //Implementar
     }
     
+	/**@author Felipe Duarte*/
 	@PostMapping("/courseAdministator")
-    public ResponseEntity<?> addCourseAdministrator(@RequestParam Long idCourse, @RequestParam Long idCourseAdm){
-        return null; //Implementar
+    public ResponseEntity<Course> addCourseAdministrator(@RequestParam Long idCourse, @RequestParam Long idCourseAdm){
+        
+		Course course = this.courseService.findCourseById(idCourse);
+		
+		if(course == null) throw new ObjectNotFoundException("Nenhum Curso encontrado para o Id Informado!");
+		
+		CourseAdministrator courseAdministrator = this.courseAdministratorResource.findById(idCourseAdm);
+		
+		if(courseAdministrator == null ) throw new ObjectNotFoundException("Nenhum Administrador de Curso encontrado para o Id informado!");
+		
+		Course c = this.courseService.addCourseAdministrator(course, courseAdministrator);
+		
+		if(c == null) throw new ObjectBadRequestException("Administrador de Curso Já Cadastrado!");
+		
+		return ResponseEntity.status(HttpStatus.OK).body(c);
+		
     }
     
 	@DeleteMapping("/courseAdministrator")
@@ -128,8 +142,16 @@ public class CourseResource {
         return null; //Implementar
     }
     
+	/**@author Felipe Duarte*/
     public Course findCourseById(Long id){
-        return null; //Implementar
+        
+    	Course course = this.courseService.findCourseById(id);
+    	
+    	if(course != null) {
+    		return course;
+    	}
+    	
+    	return null;
     }
     
     @GetMapping("/courseAdm")
@@ -179,6 +201,7 @@ public class CourseResource {
 				
 				throw new ObjectNotFoundException("Nenhum Curso encontrado!");
     }
+    
     /**@author Gabriel Batista */
     //not working
     @GetMapping

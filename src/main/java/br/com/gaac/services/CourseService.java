@@ -56,8 +56,26 @@ public class CourseService {
         // implemetar
     }
 
-    public void addCourseAdministrator(Course course, CourseAdministrator courseAdm) {
-        // implementar
+    /**@author Felipe Duarte*/
+    public Course addCourseAdministrator(Course course, CourseAdministrator courseAdm) {
+        
+    	boolean isPreset = false;
+    	
+    	for(int i=0; i < course.getCourseAdministrators().size(); i++) {
+    		if(course.getCourseAdministrators().get(i).getId() == courseAdm.getId()) {
+    			isPreset = true;
+    		}
+    	}
+    	
+    	if(!isPreset) {
+    		course.addCourseAdministrator(courseAdm);
+    		
+    		this.courseRepository.save(course);
+    		
+    		return course;
+    	}
+    	
+    	return null;
     }
 
     /** @author Gabriel Batista */
@@ -95,7 +113,14 @@ public class CourseService {
     }
 
     public Course findCourseById(Long id) {
-        return null; // implementar
+        
+    	Optional<Course> course = this.courseRepository.findById(id);
+    	
+    	if(course.isPresent()) {
+    		return course.get();
+    	}
+    	
+    	return null;
     }
 
     /** @author Gabriel Batista */
