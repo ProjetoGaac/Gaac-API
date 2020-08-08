@@ -142,8 +142,6 @@ public class TeacherResource {
 		return ResponseEntity.status(HttpStatus.OK).body(teacher);
     }
 	
-    
-    
     public Teacher findById(Long id ){
         return null;
     }
@@ -153,14 +151,20 @@ public class TeacherResource {
     public ResponseEntity<Page<Subject>> findEnrolledSubjects(@RequestParam Long idTeacher, 
     		@RequestParam(defaultValue = "0") Integer page,
     		@RequestParam(defaultValue = "3") Integer quantityPerPage){
-				
-			Page<Subject> subjects = this.subjectResource.findSubjectsByTeacher(idTeacher, page, quantityPerPage);	
     	
-				if(subjects != null) {
-					return ResponseEntity.status(HttpStatus.OK).body(subjects);
-				}
+    	Teacher teacher = this.teacherService.findById(idTeacher);
+    	
+    	if(teacher !=  null) {
+    						
+			Page<Subject> subjects = this.subjectResource.findSubjectsByTeacher(teacher, page, quantityPerPage);	
+    	
+			if(subjects != null) {
+				return ResponseEntity.status(HttpStatus.OK).body(subjects);
+			}
 				
-				throw new ObjectNotFoundException("Nenhum Professor encontrado!");
+    	}
+				
+    	throw new ObjectNotFoundException("Nenhum Professor encontrado para o id informado!");
     }
 	
 	/**@author Jorge Gabriel */

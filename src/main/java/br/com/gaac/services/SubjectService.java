@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.gaac.domain.Subject;
+import br.com.gaac.domain.Teacher;
 import br.com.gaac.repositories.SubjectRepository;
 
 @Service
@@ -58,7 +59,7 @@ public class SubjectService {
         return null; //implementar
     }
 
-    public Page<Subject> findSubjectsByTeacher(Long idTeacher, Integer page, Integer quantityPerPage){
+    public Page<Subject> findSubjectsByTeacher(Teacher teacher, Integer page, Integer quantityPerPage){
         return null; //implementar
     }
 
