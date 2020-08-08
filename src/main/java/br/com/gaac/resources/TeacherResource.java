@@ -142,7 +142,15 @@ public class TeacherResource {
 		return ResponseEntity.status(HttpStatus.OK).body(teacher);
     }
 	
+    /**@author Felipe Duarte*/
     public Teacher findById(Long id ){
+    	
+    	Teacher teacher = this.teacherService.findById(id);
+    	
+    	if(teacher != null) {
+    		return teacher;
+    	}
+    	
         return null;
     }
 	
