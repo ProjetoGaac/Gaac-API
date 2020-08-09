@@ -37,9 +37,9 @@ public class SubjectService {
     public Subject update(Subject subject){
         return null; //implementar
     }
-
+    /**@author Gabriel Oliveira */
     public void delete(Subject subject){
-        //implementar
+       this.subjectRepository.delete(subject);
     }
 
     /**@author Felipe Duarte */
@@ -53,9 +53,14 @@ public class SubjectService {
     	
     	return null;
     }
-
+    /**@author Gabriel Oliveira */
     public List<Subject> findSubjectsByPeriod(Long idPeriod){
-        return null; //implementar
+        List<Subject> listSub = this.subjectRepository.findByStudentPeriods(idPeriod);
+        
+        if(listSub != null) {
+        	return listSub;
+        }
+        return null;
     }
 
     public Page<Subject> findSubjectsByTeacher(Long idTeacher, Integer page, Integer quantityPerPage){

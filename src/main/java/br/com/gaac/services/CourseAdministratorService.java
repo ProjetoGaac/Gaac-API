@@ -28,9 +28,9 @@ public class CourseAdministratorService {
 	public CourseAdministrator update(CourseAdministrator courseAdministrator) {
 		return this.courseAdministratorRepository.save(courseAdministrator);
 	}
-	
+	/**@author Gabriel Oliveira */
 	public void delete(CourseAdministrator courseAdministrator) {
-		//implementar
+		this.courseAdministratorRepository.delete(courseAdministrator);
 	}
 	
 	/**@author Felipe Duarte*/

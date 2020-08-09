@@ -52,9 +52,13 @@ public class CourseAdministratorResource {
         throw new ObjectNotFoundException("Nenhum 'Administrador' encontrado com esta ID!");
 	}
 	
+	
+	/**@author Gabriel Oliveira */
 	@DeleteMapping
 	public ResponseEntity<?> delete(@RequestBody CourseAdministrator courseAdministrator){
-		return null; //Implementar
+		//delete simples utilizando a Service para chamar a função delete e na segunda linha de código um retornando um status ok 
+		this.courseAdministratorService.delete(courseAdministrator);
+		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 
 	/**@author Felipe Duarte */
