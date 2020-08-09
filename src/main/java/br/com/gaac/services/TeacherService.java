@@ -50,18 +50,23 @@ public class TeacherService {
 		//implementar
 	}
 	
-	public Teacher enable(Teacher teacher) {
+	public Teacher enable(Long id) {
 		return null; //implementar
 	}
 	
 	/**@author Jorge Gabriel */
-	public Teacher disable(Teacher teacher) {
+	public Teacher disable(Long id) {
 		
-		teacher.rmvTeacherCategory(UserCategory.TEACHER.getCode());
+		Optional<Teacher> teacher = this.teacherRepository.findById(id);
+		
+		if(teacher.isPresent()) {
+		
+			teacher.get().rmvTeacherCategory(UserCategory.TEACHER_ADMINISTRATOR.getCode());
     	
-    	teacher = this.teacherRepository.save(teacher);
-    	
-    	return teacher;
+			return this.teacherRepository.save(teacher.get());
+		}
+		
+    	return null;
 	}
 	
 	/**@author Felipe Duarte*/
@@ -117,6 +122,7 @@ public class TeacherService {
 		}
 		
 	}
+	
 	/**@author Gabriel Batista */
 	public Teacher rmvSubject(Teacher teacher, Subject subject) {
 

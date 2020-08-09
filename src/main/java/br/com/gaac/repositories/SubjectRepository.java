@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import br.com.gaac.domain.Subject;
+import br.com.gaac.domain.Teacher;
 
 @Repository
 public interface SubjectRepository extends JpaRepository<Subject,Long> {
@@ -21,6 +22,6 @@ public interface SubjectRepository extends JpaRepository<Subject,Long> {
     
     public List<Subject> findByStudentPeriods(Long idStudentPeriod);
     
-    public Page<Subject> findByTeachers(Long idTeacher, Pageable page);
+    public Page<Subject> findByTeachers(Teacher teacher, Pageable page);
 
 }

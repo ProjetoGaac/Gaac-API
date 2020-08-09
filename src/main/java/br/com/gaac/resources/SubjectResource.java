@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gaac.domain.Subject;
+import br.com.gaac.domain.Teacher;
 import br.com.gaac.domain.DTOs.SubjectDTO;
 import br.com.gaac.resources.exceptions.ObjectBadRequestException;
 import br.com.gaac.resources.exceptions.ObjectNotFoundException;
@@ -99,7 +100,7 @@ public class SubjectResource {
         return null;
     }
 
-    public Page<Subject> findSubjectsByTeacher(Long idTeacher, Integer page, Integer quantityPerPage){
+    public Page<Subject> findSubjectsByTeacher(Teacher teacher, Integer page, Integer quantityPerPage){
         return null; //implementar
     }
 

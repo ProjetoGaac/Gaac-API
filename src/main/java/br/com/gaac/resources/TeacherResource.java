@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -102,6 +103,7 @@ public class TeacherResource {
 		return ResponseEntity.status(HttpStatus.OK).body(teacher);
     }
     
+	/**@author Gabriel Almeida*/
 	@DeleteMapping("/subject")
     public ResponseEntity<Teacher> rmvSubject(@RequestParam Long idTeacher, @RequestParam Long idSubject){
 		Teacher teacher = this.teacherService.findById(idTeacher);
@@ -122,27 +124,33 @@ public class TeacherResource {
 		throw new ObjectBadRequestException("Esta materia nao pertence a este professor!");
     }
     
-    @PutMapping("/enable")
-    public ResponseEntity<Teacher> enable(@RequestBody @Valid Teacher teacher){
+    @PutMapping("/enable/{id}")
+    public ResponseEntity<Teacher> enable(@PathVariable("id") Long id){
         return null;
     }
 	
 	/**@author Jorge Gabriel */
-    @PutMapping("/disable")
-    public ResponseEntity<Teacher> disable(@RequestBody @Valid Teacher teacher){
+    @PutMapping("/disable/{id}")
+    public ResponseEntity<Teacher> disable(@PathVariable("id") Long id){
+    	
+    	Teacher teacher = this.teacherService.disable(id);
 		
-		if(teacher.getId() == null) {
-			throw new ObjectBadRequestException("Falta o id do Professor");
+		if(teacher == null) {
+			throw new ObjectNotFoundException("Professor não encontrado para o Id informado!");
 		}
-		
-		teacher = this.teacherService.disable(teacher);
 		
 		return ResponseEntity.status(HttpStatus.OK).body(teacher);
     }
 	
-    
-    
+    /**@author Felipe Duarte*/
     public Teacher findById(Long id ){
+    	
+    	Teacher teacher = this.teacherService.findById(id);
+    	
+    	if(teacher != null) {
+    		return teacher;
+    	}
+    	
         return null;
     }
 	
@@ -151,14 +159,20 @@ public class TeacherResource {
     public ResponseEntity<Page<Subject>> findEnrolledSubjects(@RequestParam Long idTeacher, 
     		@RequestParam(defaultValue = "0") Integer page,
     		@RequestParam(defaultValue = "3") Integer quantityPerPage){
-				
-			Page<Subject> subjects = this.subjectResource.findSubjectsByTeacher(idTeacher, page, quantityPerPage);	
     	
-				if(subjects != null) {
-					return ResponseEntity.status(HttpStatus.OK).body(subjects);
-				}
+    	Teacher teacher = this.teacherService.findById(idTeacher);
+    	
+    	if(teacher !=  null) {
+    						
+			Page<Subject> subjects = this.subjectResource.findSubjectsByTeacher(teacher, page, quantityPerPage);	
+    	
+			if(subjects != null) {
+				return ResponseEntity.status(HttpStatus.OK).body(subjects);
+			}
 				
-				throw new ObjectNotFoundException("Nenhum Professor encontrado!");
+    	}
+				
+    	throw new ObjectNotFoundException("Nenhum Professor encontrado para o id informado!");
     }
 	
 	/**@author Jorge Gabriel */

@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.gaac.domain.Subject;
+import br.com.gaac.domain.Teacher;
 import br.com.gaac.repositories.SubjectRepository;
 
 @Service
@@ -63,17 +64,17 @@ public class SubjectService {
         return null;
     }
 
-    public Page<Subject> findSubjectsByTeacher(Long idTeacher, Integer page, Integer quantityPerPage){
+    public Page<Subject> findSubjectsByTeacher(Teacher teacher, Integer page, Integer quantityPerPage){
         return null; //implementar
     }
 
     /**@author Jorge Gabriel */
     public List<Subject> findSubjectsByStudentPeriod(Long idStudentPeriod){
         
-        Optional<List<Subject>> subject = this.subjectRepository.findByStudentPeriods(idStudentPeriod);
+        List<Subject> subject = this.subjectRepository.findByStudentPeriods(idStudentPeriod);
     	
-    	if(subject.isPresent()) {
-    		return subject.get();
+    	if(!subject.isEmpty()) {
+    		return subject;
     	}
     	
     	return null;

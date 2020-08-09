@@ -12,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,6 +41,7 @@ public class CourseTypeResource {
 		
 		throw new ObjectBadRequestException("Tipo de curso Já Cadastrado");
     }
+	
 	  /**@author Gabriel Oliveira */
 	@PutMapping
     public ResponseEntity<CourseType> update(@RequestBody @Valid CourseType courseType){
@@ -49,8 +49,9 @@ public class CourseTypeResource {
 	    if(courseType != null){
 	        return ResponseEntity.status(HttpStatus.OK).body(courseType);
         }
-	    throw new ObjectNotFoundException("Course type not found");
+	    throw new ObjectNotFoundException("Tipo de Curso não encontrado!");
     } 
+	
     /**@author Jorge Gabriel */
 	@DeleteMapping
     public ResponseEntity<?> delete(@RequestBody CourseType courseType){

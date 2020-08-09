@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gaac.domain.CourseAdministrator;
-import br.com.gaac.resources.exceptions.ObjectBadRequestException;
 import br.com.gaac.resources.exceptions.ObjectNotFoundException;
 import br.com.gaac.services.CourseAdministratorService;
 
@@ -41,15 +41,16 @@ public class CourseAdministratorResource {
 	/**@author Gabriel Batista */
 	@PutMapping
 	public ResponseEntity<CourseAdministrator> update(@RequestBody @Valid CourseAdministrator courseAdministrator){
-		CourseAdministrator ca= this.courseAdministratorService.findById(courseAdministrator.getId());
+		
+		CourseAdministrator ca = this.courseAdministratorService.update(courseAdministrator);
+		
 		if(ca !=null){
-
-			ca = this.courseAdministratorService.update(courseAdministrator);
 
 			return ResponseEntity.status(HttpStatus.OK).body(ca);
 			
         }
-        throw new ObjectNotFoundException("Nenhum 'Administrador' encontrado com esta ID!");
+		
+        throw new ObjectNotFoundException("Nenhum 'Administrador de Curso' encontrado com esta ID!");
 	}
 	
 	
@@ -62,28 +63,30 @@ public class CourseAdministratorResource {
 	}
 
 	/**@author Felipe Duarte */
-	@PutMapping("/enable")
-	public ResponseEntity<CourseAdministrator> enable(@RequestBody @Valid CourseAdministrator courseAdministrator){
+	@PutMapping("/enable/{id}")
+	public ResponseEntity<CourseAdministrator> enable(@PathVariable("id") Long id){
 		
-		if(courseAdministrator.getId() == null) {
-			throw new ObjectBadRequestException("Falta o id de courseAdministrator");
+		CourseAdministrator ca = this.courseAdministratorService.enable(id);
+		
+		if(ca != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(ca);
 		}
 		
-		courseAdministrator = this.courseAdministratorService.enable(courseAdministrator);
+		throw new ObjectNotFoundException("Administrador de Curso não encontrado para o id informado!");
 		
-		return ResponseEntity.status(HttpStatus.OK).body(courseAdministrator);
 	}
 	
 	/**@author Gabriel Batista */
-	@DeleteMapping("/disable")
-	public ResponseEntity<CourseAdministrator> disable(@RequestBody @Valid CourseAdministrator courseAdministrator){
-		if(courseAdministrator.getId() == null) {
-			throw new ObjectBadRequestException("Falta o id de courseAdministrator");
+	@PutMapping("/disable/{id}")
+	public ResponseEntity<CourseAdministrator> disable(@PathVariable("id") Long id){
+		
+		CourseAdministrator ca = this.courseAdministratorService.disable(id);
+		
+		if(ca != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(ca);
 		}
 		
-		courseAdministrator = this.courseAdministratorService.disable(courseAdministrator);
-		
-		return ResponseEntity.status(HttpStatus.OK).body(courseAdministrator);
+		throw new ObjectNotFoundException("Administrador de Curso não encontrado para o id informado!");
 	}	
 
 	/**@author Gabriel Batista */
@@ -92,7 +95,7 @@ public class CourseAdministratorResource {
         if(courseAdministrator !=null){
             return courseAdministrator;
         }
-        throw new ObjectNotFoundException("Nenhum 'administrador de curso' encontrado!");
+        return null;
 	}
 
 	
@@ -100,6 +103,7 @@ public class CourseAdministratorResource {
 			Integer quantityPerPage){
 		return null; //implementar
 	}
+	
 	/**@author Gabriel Batista */
 	@GetMapping
 	public ResponseEntity<Page<CourseAdministrator>> findAll(

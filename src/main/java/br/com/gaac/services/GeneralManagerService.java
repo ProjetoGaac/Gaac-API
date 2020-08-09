@@ -4,6 +4,8 @@
 
 package br.com.gaac.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +26,7 @@ public class GeneralManagerService {
         GeneralManager gm = this.generalManagerRepository.findByNameAndEmail(generalManager.getName(),generalManager.getEmail());
 
         if (gm == null){
+        	generalManager.addGeneralManagerCategory(UserCategory.GENERAL_MANAGER.getCode());
             gm = this.generalManagerRepository.save(generalManager);
             return gm;
         }
@@ -32,7 +35,16 @@ public class GeneralManagerService {
 
     /**@author Jorge Gabriel */
     public GeneralManager update(GeneralManager generalManager){
-        return this.generalManagerRepository.save(generalManager);
+    	
+    	Optional<GeneralManager> gm = this.generalManagerRepository.findById(generalManager.getId());
+    	
+    	if(gm.isPresent()) {
+    		
+    		return this.generalManagerRepository.save(gm.get());
+    	
+    	}
+    	
+        return null;
     }
 
     /**@author Felipe Duarte*/
@@ -42,22 +54,34 @@ public class GeneralManagerService {
         
     }
 
-    public GeneralManager enable(GeneralManager generalManager){
-        generalManager.addGeneralManagerCategory(UserCategory.GENERAL_MANAGER_COURSE.getCode());
-        //salvo no banco de dados chamando repository que esse adm geral agora tem direitos de adm de curso
-        generalManager = this.generalManagerRepository.save(generalManager);
-        // returno pro sistema esse adm geral com essa nova funcionalidade
-        return generalManager;
+    /**@author Gabriel Oliveira*/
+    public GeneralManager enable(Long id){
+    	
+    	Optional<GeneralManager> gm = this.generalManagerRepository.findById(id);
+        
+    	if(gm.isPresent()) {
+    		gm.get().addGeneralManagerCategory(UserCategory.GENERAL_MANAGER_COURSE.getCode());
+    		
+            return this.generalManagerRepository.save(gm.get());
+    	}
+    	
+        return null;
     }
 
     /**@author Felipe Duarte*/
-    public GeneralManager disable(GeneralManager generalManager){
+    public GeneralManager disable(Long id){
     	
-    	generalManager.rmvGeneralManagerCategory(UserCategory.GENERAL_MANAGER_COURSE.getCode());
+    	Optional<GeneralManager> gm = this.generalManagerRepository.findById(id);
     	
-    	generalManager = this.generalManagerRepository.save(generalManager);
+    	if(gm.isPresent()) {
+    		gm.get().rmvGeneralManagerCategory(UserCategory.GENERAL_MANAGER_COURSE.getCode());
+    		
+    		this.generalManagerRepository.save(gm.get());
+    		
+    		return gm.get();
+    	}
     	
-    	return generalManager;
+    	return null;
     }
     
     /**@author Gabriel Batista */
