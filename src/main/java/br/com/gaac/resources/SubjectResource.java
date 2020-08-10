@@ -71,11 +71,14 @@ public class SubjectResource {
 	/**@author Gabriel Oliveira */
 	@DeleteMapping
     public ResponseEntity<?> delete(@RequestBody Subject subject){
+		//busco o subject pelo seu id no banco de dados armazeno numa variavel chamada sub e verifico se ela esta nula se sim mando um status Okay pro sistema senão mando uma Exception para o mesmo!
         Subject sub = this.subjectService.findById(subject.getId());
-        if(sub == null) {
-        	throw new ObjectBadRequestException("Disciplina não encontrada!");
+        if(sub != null) {
+        	return ResponseEntity.status(HttpStatus.OK).build();	
+        	
         }
-        return ResponseEntity.status(HttpStatus.OK).build();
+        throw new ObjectBadRequestException("Disciplina não encontrada!");
+        
     }
 
 	/**@author Felipe Duarte*/
@@ -96,6 +99,7 @@ public class SubjectResource {
         
         if(listSub != null) {
         	return listSub;
+        	
         }
         return null;
     }

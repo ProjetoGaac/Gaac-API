@@ -38,6 +38,7 @@ public class CourseAdministratorService {
 	/**@author Gabriel Oliveira */
 	public void delete(CourseAdministrator courseAdministrator) {
 		this.courseAdministratorRepository.delete(courseAdministrator);
+		
 	}
 	
 	/**@author Felipe Duarte*/

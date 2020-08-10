@@ -60,6 +60,7 @@ public class CourseAdministratorResource {
 		//delete simples utilizando a Service para chamar a função delete e na segunda linha de código um retornando um status ok 
 		this.courseAdministratorService.delete(courseAdministrator);
 		return ResponseEntity.status(HttpStatus.OK).build();
+		
 	}
 
 	/**@author Felipe Duarte */
