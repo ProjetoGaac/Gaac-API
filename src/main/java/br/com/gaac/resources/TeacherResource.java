@@ -50,6 +50,7 @@ public class TeacherResource {
 		
 		if(teacher != null) {
 			return ResponseEntity.status(HttpStatus.CREATED).body(teacher);
+			
 		}
 		
 		throw new ObjectBadRequestException("Professor Já Cadastrado");
@@ -61,8 +62,15 @@ public class TeacherResource {
     }
     
 	@DeleteMapping
-    public ResponseEntity<Teacher> delete(@RequestBody Teacher teacher){
-        return null;
+    public ResponseEntity<?> delete(@RequestBody Teacher teacher){ 
+			Teacher t = this.teacherService.findById(teacher.getId());
+			
+			if (t == null) {
+				throw new ObjectBadRequestException("Professor não encontrado!");
+			}
+			this.teacherService.delete(teacher);
+			return ResponseEntity.status(HttpStatus.OK).build();
+			
     }
     
 	/**@author Felipe Duarte*/
@@ -124,9 +132,15 @@ public class TeacherResource {
 		throw new ObjectBadRequestException("Esta materia nao pertence a este professor!");
     }
     
+	/**@author Gabriel Oliveira*/
     @PutMapping("/enable/{id}")
     public ResponseEntity<Teacher> enable(@PathVariable("id") Long id){
-        return null;
+        Teacher enab = this.teacherService.enable(id);
+        
+        if (enab != null) {
+        	return ResponseEntity.status(HttpStatus.OK).build();
+        }
+        throw new ObjectNotFoundException("Id do professor que você solicitou dar permissão não foi encontrado!");
     }
 	
 	/**@author Jorge Gabriel */
