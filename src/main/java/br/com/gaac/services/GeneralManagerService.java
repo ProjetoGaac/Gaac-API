@@ -36,15 +36,15 @@ public class GeneralManagerService {
     /**@author Jorge Gabriel */
     public GeneralManager update(GeneralManager generalManager){
     	
-    	Optional<GeneralManager> gm = this.generalManagerRepository.findById(generalManager.getId());
+    	GeneralManager gm = this.findById(generalManager.getId());
     	
-    	if(gm.isPresent()) {
-    		
-    		return this.generalManagerRepository.save(gm.get());
-    	
+    	if(gm == null) {
+    		return null;
     	}
     	
-        return null;
+        gm = this.generalManagerRepository.save(generalManager);
+        
+        return gm;
     }
 
     /**@author Felipe Duarte*/
@@ -95,6 +95,17 @@ public class GeneralManagerService {
     	}
     	
     	return null;
+    }
+    
+    public GeneralManager findById(Long id) {
+    	
+    	Optional<GeneralManager> gm = this.generalManagerRepository.findById(id);
+    	
+    	if(!gm.isPresent()) {
+    		return null;
+    	}
+    	
+    	return gm.get();
     }
     
 }

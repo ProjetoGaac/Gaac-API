@@ -58,7 +58,7 @@ public class CourseAdministratorResource {
 		return null; //Implementar
 	}
 
-	/**@author Felipe Duarte */
+	/**@author Flip Duarte */
 	@PutMapping("/enable/{id}")
 	public ResponseEntity<CourseAdministrator> enable(@PathVariable("id") Long id){
 		

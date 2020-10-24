@@ -182,12 +182,16 @@ public class CourseResource {
         return null; //Implementar
     }
     
+    /**@author Felipe Duarte*/
     @GetMapping("/courseAdministrator")
     public ResponseEntity<Page<CourseAdministrator>> findAllCourseAdministrator(
     		@RequestParam Long idCourse,
     		@RequestParam(defaultValue = "0") Integer page,
     		@RequestParam(defaultValue = "3") Integer quantityPerPage){
-        return null; //Implementar
+        
+    	return null;
+    	
+    	
     }
     
     /**@author Jorge Gabriel */
