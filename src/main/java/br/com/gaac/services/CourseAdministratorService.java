@@ -37,9 +37,10 @@ public class CourseAdministratorService {
 		
 		return ca;
 	}
-	
+	/**@author Gabriel Oliveira */
 	public void delete(CourseAdministrator courseAdministrator) {
-		//implementar
+		this.courseAdministratorRepository.delete(courseAdministrator);
+		
 	}
 	
 	/**@author Felipe Duarte*/

@@ -68,9 +68,11 @@ public class SubjectResource {
         return null; //implementar
     }
 
+	/**@author Gabriel Oliveira */
 	@DeleteMapping
     public ResponseEntity<?> delete(@RequestBody Subject subject){
-        return null; //implementar
+		this.subjectService.delete(subject);
+		return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 	/**@author Felipe Duarte*/
@@ -84,9 +86,16 @@ public class SubjectResource {
         
     	return null;
     }
-
+    /**@author Gabriel Oliveira */
     public List<Subject> findSubjectsByPeriod(Long idPeriod){
-        return null; //implementar
+        //armazenando em uma variavel listSub o id do periodo da disciplina e verifica se esse id capturado é nulo ou não  
+    	List<Subject> listSub = this.subjectService.findSubjectsByPeriod(idPeriod);
+        
+        if(listSub != null) {
+        	return listSub;
+        	
+        }
+        return null;
     }
 
     public Page<Subject> findSubjectsByTeacher(Teacher teacher, Integer page, Integer quantityPerPage){
