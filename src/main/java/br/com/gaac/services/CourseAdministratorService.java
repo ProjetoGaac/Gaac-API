@@ -20,8 +20,17 @@ public class CourseAdministratorService {
 	@Autowired
 	private CourseAdministratorRepository courseAdministratorRepository;
 	
+	/**@author Jorge Gabriel */
 	public CourseAdministrator save(CourseAdministrator courseAdministrator) {
-		return null; //implementar
+		CourseAdministrator ca = this.courseAdministratorRepository.findByNameAndEmail(courseAdministrator.getName(),courseAdministrator.getEmail());
+		ca = this.courseAdministratorRepository.save(courseAdministrator);
+		
+		if(ca != null) {
+			return null;
+		}
+		
+		return ca;
+		
 	}
 	
 	/**@author Gabriel Batista */
@@ -82,9 +91,14 @@ public class CourseAdministratorService {
     	return null;
 	}
 	
+	/**@author Jorge Gabriel */
 	public Page<CourseAdministrator> findCourseAdministratorByCourse(Long idCourse, Integer page, Integer quantityPerPage){
-		return null; //implementar
-	}
+		Optional<Page<CourseAdministrator>> ca = this.courseAdministratorRepository.findByCourses(idCourse, page);
+		if(ca.isPresent()){
+			return ca.get();
+		}
+		return null;
+	};
 	
 	/**@author Gabriel Batista */
 	public Page<CourseAdministrator> findAll(Integer page, Integer quantityPerPage){

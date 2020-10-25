@@ -4,6 +4,8 @@
 
 package br.com.gaac.repositories;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,5 +19,7 @@ public interface CourseAdministratorRepository extends JpaRepository<CourseAdmin
     public Page<CourseAdministrator> findByCourses(Long idCourse,Pageable page);
 
     public CourseAdministrator findByNameAndEmail(String name, String email);
+
+	public Optional<Page<CourseAdministrator>> findByCourses(Long idCourse, Integer page);
     
 }

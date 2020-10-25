@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gaac.domain.CourseAdministrator;
+import br.com.gaac.resources.exceptions.ObjectBadRequestException;
 import br.com.gaac.resources.exceptions.ObjectNotFoundException;
 import br.com.gaac.services.CourseAdministratorService;
 
@@ -32,10 +33,18 @@ public class CourseAdministratorResource {
 	@Autowired
 	private CourseAdministratorService courseAdministratorService;
 	
-	
+	/**@author Jorge Gabriel */
 	@PostMapping
 	public ResponseEntity<CourseAdministrator> save(@RequestBody @Valid CourseAdministrator courseAdministrator){
-		return null; //Implementar
+		courseAdministrator = this.courseAdministratorService.save(courseAdministrator);
+		
+		if(courseAdministrator == null){
+			
+			throw new ObjectBadRequestException("Administrador de Curso já cadastrado!");
+		}
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(courseAdministrator);
+		
 	}
 	
 	/**@author Gabriel Batista */
@@ -99,10 +108,15 @@ public class CourseAdministratorResource {
         return null;
 	}
 
-	
+	/**@author Jorge Gabriel */
 	public Page<CourseAdministrator> findCourseAdmsByCourse(Long idCourse, Integer page, 
 			Integer quantityPerPage){
-		return null; //implementar
+		Page<CourseAdministrator> courseAdministrator = this.courseAdministratorService.findCourseAdministratorByCourse(idCourse, page, quantityPerPage);
+		
+		if(courseAdministrator != null){
+			return courseAdministrator;
+		}
+		return null;
 	}
 	
 	/**@author Gabriel Batista */
