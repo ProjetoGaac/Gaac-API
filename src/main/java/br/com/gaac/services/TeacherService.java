@@ -46,8 +46,9 @@ public class TeacherService {
 		return null; //implementar
 	}
 	
+	/**@author Gabriel Oliveira*/
 	public void delete(Teacher teacher) {
-		//implementar
+		this.teacherRepository.delete(teacher);
 	}
 	
 	public Teacher enable(Long id) {

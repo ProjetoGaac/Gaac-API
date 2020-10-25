@@ -24,7 +24,7 @@ public class GeneralManager extends Employee implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	@JsonIgnore
+	
 	@ElementCollection
 	@CollectionTable(name = "general_manager_category")
     private Set<Integer> generalManagerCategory = new HashSet<>();

@@ -42,8 +42,14 @@ public class CourseTypeService {
     }
 	
 	/**@author Jorge Gabriel */
-    public void delete(CourseType courseType){
+    public boolean delete(Long id){
+    	
+    	CourseType courseType = this.findById(id);
+    	
+    	if(courseType == null) return false;
+    	
     	this.courseTypeRepository.delete(courseType);
+    	return true;
     }
 	 
 	/**@author Gabriel Batista */
