@@ -59,8 +59,9 @@ public class GeneralManagerResource {
     
     
 	/**@author Felipe Duarte*/
-	@DeleteMapping
-    public ResponseEntity<?> delete(@RequestBody GeneralManager generalManager){
+	@DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") Long id){
+		GeneralManager generalManager  =this.generalManagerService.findById(id);
         
 		this.generalManagerService.delete(generalManager);
 		
