@@ -23,11 +23,12 @@ public class CourseAdministratorService {
 	/**@author Jorge Gabriel */
 	public CourseAdministrator save(CourseAdministrator courseAdministrator) {
 		CourseAdministrator ca = this.courseAdministratorRepository.findByNameAndEmail(courseAdministrator.getName(),courseAdministrator.getEmail());
-		ca = this.courseAdministratorRepository.save(courseAdministrator);
 		
 		if(ca != null) {
 			return null;
 		}
+
+		ca = this.courseAdministratorRepository.save(courseAdministrator);
 		
 		return ca;
 		
