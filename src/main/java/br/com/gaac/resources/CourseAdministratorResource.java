@@ -108,7 +108,8 @@ public class CourseAdministratorResource {
         return null;
 	}
 
-	/**@author Jorge Gabriel */
+	/*
+	/**@author Jorge Gabriel 
 	public Page<CourseAdministrator> findCourseAdmsByCourse(Long idCourse, Integer page, 
 			Integer quantityPerPage){
 		Page<CourseAdministrator> courseAdministrator = this.courseAdministratorService.findCourseAdministratorByCourse(idCourse, page, quantityPerPage);
@@ -117,7 +118,7 @@ public class CourseAdministratorResource {
 			return courseAdministrator;
 		}
 		return null;
-	}
+	}*/
 	
 	/**@author Gabriel Batista */
 	@GetMapping
