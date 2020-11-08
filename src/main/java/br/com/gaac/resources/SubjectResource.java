@@ -39,28 +39,13 @@ public class SubjectResource {
 	@PostMapping
     public ResponseEntity<Subject> save(@RequestBody @Valid SubjectDTO subject){
 		
-		Subject s = new Subject();
-		s.setCode(subject.getCode());
-		s.setName(subject.getName());
-		s.setMenu(subject.getMenu());
-		s.setWorkload(subject.getWorkload());
-		s.setAmountTime(subject.getAmountTime());
+		Subject s = this.subjectService.save(subject);
 		
-		if(subject.getDependencies() != null || subject.getDependencies().isEmpty()) {
-			subject.getDependencies().forEach(dependencie -> {
-				Subject sd = this.subjectService.findById(dependencie.getId());
-				if(sd == null) throw new ObjectBadRequestException("O id da dependência é inválido! " + dependencie.getId());
-				s.addDependencie(sd);
-			});
+		if(s == null) {
+			throw new ObjectBadRequestException("Disciplina Já Cadastrada!");
 		}
 		
-		Subject ss = this.subjectService.save(s);
-		
-		if(ss != null) {
-			return ResponseEntity.status(HttpStatus.CREATED).body(ss);
-		}
-		
-		throw new ObjectBadRequestException("Disciplina Já Cadastrada!");
+		return ResponseEntity.status(HttpStatus.CREATED).body(s);
     }
 
 	@PutMapping

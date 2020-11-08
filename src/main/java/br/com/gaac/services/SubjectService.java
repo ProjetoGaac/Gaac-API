@@ -14,25 +14,49 @@ import org.springframework.stereotype.Service;
 
 import br.com.gaac.domain.Subject;
 import br.com.gaac.domain.Teacher;
+import br.com.gaac.domain.DTOs.SubjectDTO;
 import br.com.gaac.repositories.SubjectRepository;
+import br.com.gaac.resources.exceptions.ObjectBadRequestException;
 
 @Service
 public class SubjectService {
 	
 	@Autowired
 	private SubjectRepository subjectRepository;
+	
+	private Subject convertToSubject(SubjectDTO subject) {
+		
+		Subject s = new Subject();
+		
+		s.setCode(subject.getCode());
+		s.setName(subject.getName());
+		s.setMenu(subject.getMenu());
+		s.setWorkload(subject.getWorkload());
+		s.setAmountTime(subject.getAmountTime());
+		
+		if(subject.getDependencies() != null || subject.getDependencies().isEmpty()) {
+			subject.getDependencies().forEach(dependencie -> {
+				Subject sd = this.findById(dependencie.getId());
+				if(sd == null) throw new ObjectBadRequestException("O id da dependência é inválido! " + dependencie.getId());
+				s.addDependencie(sd);
+			});
+		}
+		
+		return s;
+	}
 
 	/**@author Felipe Duarte*/
-    public Subject save(Subject subject){
+    public Subject save(SubjectDTO subject){
     	
-    	Subject s = this.subjectRepository.findByCode(subject.getCode());
+    	Subject s = this.convertToSubject(subject);
     	
-    	if(s == null) {
-    		subject = this.subjectRepository.save(subject);
-    		return subject;
-    	}
+    	System.out.println(s);
     	
-    	return null;
+    	Subject ss = this.subjectRepository.findByCode(s.getCode());
+    	
+    	if(ss != null) return null;
+    	
+    	return this.subjectRepository.save(s);
     }
 
     public Subject update(Subject subject){
