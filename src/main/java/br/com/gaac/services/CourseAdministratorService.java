@@ -47,9 +47,15 @@ public class CourseAdministratorService {
 		return ca;
 	}
 	/**@author Gabriel Oliveira */
-	public void delete(CourseAdministrator courseAdministrator) {
-		this.courseAdministratorRepository.delete(courseAdministrator);
+	public boolean delete(Long id) {
+		Optional<CourseAdministrator> ca = this.courseAdministratorRepository.findById(id);
 		
+		if(!ca.isPresent()) {//se  não ele existe!
+			return false;
+		}
+		
+		this.courseAdministratorRepository.delete(ca.get());
+		return true;
 	}
 	
 	/**@author Felipe Duarte*/
@@ -93,14 +99,14 @@ public class CourseAdministratorService {
     	return null;
 	}
 	
-	/**@author Jorge Gabriel */
+	/**@author Jorge Gabriel
 	public Page<CourseAdministrator> findCourseAdministratorByCourse(Long idCourse, Integer page, Integer quantityPerPage){
 		Optional<Page<CourseAdministrator>> ca = this.courseAdministratorRepository.findByCourses(idCourse, page);
 		if(ca.isPresent()){
 			return ca.get();
 		}
 		return null;
-	};
+	}; */
 	
 	/**@author Gabriel Batista */
 	public Page<CourseAdministrator> findAll(Integer page, Integer quantityPerPage){

@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -69,9 +70,13 @@ public class SubjectResource {
     }
 
 	/**@author Gabriel Oliveira */
-	@DeleteMapping
-    public ResponseEntity<?> delete(@RequestBody Subject subject){
-		this.subjectService.delete(subject);
+	@DeleteMapping({"id"})
+    public ResponseEntity<?> delete(@PathVariable Long id){
+		boolean resp = this.subjectService.delete(id);
+		
+		if(resp == false) {
+			throw new ObjectNotFoundException("Nenhuma disciplina encontrada no sistema!");
+		}
 		return ResponseEntity.status(HttpStatus.OK).build();
     }
 
@@ -80,11 +85,9 @@ public class SubjectResource {
         
     	Subject subject = this.subjectService.findById(id);
         
-    	if(subject != null) {
-    		return subject;
-    	}
-        
-    	return null;
+    	if(subject == null) return null;
+    	
+    	return subject;
     }
     /**@author Gabriel Oliveira */
     public List<Subject> findSubjectsByPeriod(Long idPeriod){

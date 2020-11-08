@@ -65,14 +65,18 @@ public class CourseAdministratorResource {
 	
 	/**@author Gabriel Oliveira */
 	@DeleteMapping
-	public ResponseEntity<?> delete(@RequestBody CourseAdministrator courseAdministrator){
-		//delete simples utilizando a Service para chamar a função delete e na segunda linha de código um retornando um status ok 
-		this.courseAdministratorService.delete(courseAdministrator);
+	public ResponseEntity<?> delete(@PathVariable("id")Long id){
+		
+		boolean ca =  this.courseAdministratorService.delete(id);
+		
+		if(ca == false) {
+			throw new ObjectNotFoundException("Administrador de Curso não encontrado para o id informado!");
+		}
 		return ResponseEntity.status(HttpStatus.OK).build();
 		
 	}
 
-	/**@author Flip Duarte */
+	/**@author Felipe Duarte */
 	@PutMapping("/enable/{id}")
 	public ResponseEntity<CourseAdministrator> enable(@PathVariable("id") Long id){
 		
@@ -108,7 +112,7 @@ public class CourseAdministratorResource {
         return null;
 	}
 
-	/**@author Jorge Gabriel */
+	/**@author Jorge Gabriel 
 	public Page<CourseAdministrator> findCourseAdmsByCourse(Long idCourse, Integer page, 
 			Integer quantityPerPage){
 		Page<CourseAdministrator> courseAdministrator = this.courseAdministratorService.findCourseAdministratorByCourse(idCourse, page, quantityPerPage);
@@ -117,7 +121,7 @@ public class CourseAdministratorResource {
 			return courseAdministrator;
 		}
 		return null;
-	}
+	}*/
 	
 	/**@author Gabriel Batista */
 	@GetMapping

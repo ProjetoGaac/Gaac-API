@@ -39,8 +39,14 @@ public class SubjectService {
         return null; //implementar
     }
     /**@author Gabriel Oliveira */
-    public void delete(Subject subject){
-       this.subjectRepository.delete(subject);
+    public boolean delete(Long id){
+      Subject subject = this.findById(id);
+      
+      if(subject == null) return false;
+      		
+      this.subjectRepository.delete(subject);
+      return true;
+      
     }
 
     /**@author Felipe Duarte */
@@ -48,11 +54,9 @@ public class SubjectService {
         
     	Optional<Subject> subject = this.subjectRepository.findById(id);
     	
-    	if(subject.isPresent()) {
-    		return subject.get();
-    	}
-    	
-    	return null;
+    	if(!subject.isPresent()) return null;
+   
+    	return subject.get();
     }
     /**@author Gabriel Oliveira */
     public List<Subject> findSubjectsByPeriod(Long idPeriod){

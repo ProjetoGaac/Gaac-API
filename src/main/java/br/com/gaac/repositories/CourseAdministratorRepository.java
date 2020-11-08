@@ -15,11 +15,11 @@ import br.com.gaac.domain.CourseAdministrator;
 
 @Repository
 public interface CourseAdministratorRepository extends JpaRepository<CourseAdministrator,Long> {
-
-    public Page<CourseAdministrator> findByCourses(Long idCourse,Pageable page);
-
+	//puxar uma query join para fazer a conexão das duas tabelas;
+    //public Page<CourseAdministrator> findByCourses(Long idCourse,Pageable page);
+    
     public CourseAdministrator findByNameAndEmail(String name, String email);
 
-	public Optional<Page<CourseAdministrator>> findByCourses(Long idCourse, Integer page);
+	//public Optional<Page<CourseAdministrator>> findByCourses(Long idCourse, Integer page);
     
 }
