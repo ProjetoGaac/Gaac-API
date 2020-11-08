@@ -97,9 +97,15 @@ public class SubjectResource {
         }
         return null;
     }
+	/**@author Jorge Gabriel */
+    public Page<Subject> findSubjectsByTeacher(Teacher teacher, Integer page, Integer quantityPerPage) {
+		Page<Subject> subjects = this.subjectService.findSubjectsByTeacher(teacher, page, quantityPerPage);
 
-    public Page<Subject> findSubjectsByTeacher(Teacher teacher, Integer page, Integer quantityPerPage){
-        return null; //implementar
+		if(subjects == null) {
+			throw new ObjectNotFoundException("Nenhum Professor encontrado!");
+		}
+		return (Page<Subject>) ResponseEntity.status(HttpStatus.OK).body(subjects);
+		
     }
 
 	/**@author Jorge Gabriel */

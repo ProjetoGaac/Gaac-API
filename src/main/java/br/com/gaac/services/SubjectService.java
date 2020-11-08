@@ -64,8 +64,18 @@ public class SubjectService {
         return null;
     }
 
+    /**@author Jorge Gabriel */
     public Page<Subject> findSubjectsByTeacher(Teacher teacher, Integer page, Integer quantityPerPage){
-        return null; //implementar
+        
+        PageRequest pageRequest = PageRequest.of(page, quantityPerPage);
+			
+			Page<Subject> subjects = this.subjectRepository.findByTeachers(teacher, pageRequest);
+			
+			if(subjects.getContent().isEmpty()) {
+				return null;
+			}
+			
+			return subjects;
     }
 
     /**@author Jorge Gabriel */
