@@ -48,9 +48,13 @@ public class GeneralManagerService {
     }
 
     /**@author Felipe Duarte*/
-    public void delete(GeneralManager generalManager){
-    	
+    public boolean delete(Long id){
+        GeneralManager generalManager  =this.findById(id);
+
+        if(generalManager == null) return false;
+            
         this.generalManagerRepository.delete(generalManager);
+        return true;
         
     }
 

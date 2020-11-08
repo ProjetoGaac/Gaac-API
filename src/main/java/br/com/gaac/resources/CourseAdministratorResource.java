@@ -112,6 +112,10 @@ public class CourseAdministratorResource {
         return null;
 	}
 
+<<<<<<< HEAD
+=======
+	/*
+>>>>>>> c30a56a01a7da5e545f7f78857b195fdd3232e50
 	/**@author Jorge Gabriel 
 	public Page<CourseAdministrator> findCourseAdmsByCourse(Long idCourse, Integer page, 
 			Integer quantityPerPage){

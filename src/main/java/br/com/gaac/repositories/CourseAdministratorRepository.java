@@ -20,6 +20,11 @@ public interface CourseAdministratorRepository extends JpaRepository<CourseAdmin
     
     public CourseAdministrator findByNameAndEmail(String name, String email);
 
+<<<<<<< HEAD
 	//public Optional<Page<CourseAdministrator>> findByCourses(Long idCourse, Integer page);
+=======
+    /*
+	public Optional<Page<CourseAdministrator>> findByCourses(Long idCourse, Integer page);*/
+>>>>>>> c30a56a01a7da5e545f7f78857b195fdd3232e50
     
 }

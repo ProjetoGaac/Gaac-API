@@ -23,11 +23,12 @@ public class CourseAdministratorService {
 	/**@author Jorge Gabriel */
 	public CourseAdministrator save(CourseAdministrator courseAdministrator) {
 		CourseAdministrator ca = this.courseAdministratorRepository.findByNameAndEmail(courseAdministrator.getName(),courseAdministrator.getEmail());
-		ca = this.courseAdministratorRepository.save(courseAdministrator);
 		
 		if(ca != null) {
 			return null;
 		}
+
+		ca = this.courseAdministratorRepository.save(courseAdministrator);
 		
 		return ca;
 		
@@ -99,14 +100,23 @@ public class CourseAdministratorService {
     	return null;
 	}
 	
+<<<<<<< HEAD
 	/**@author Jorge Gabriel
+=======
+	/*
+	/**@author Jorge Gabriel 
+>>>>>>> c30a56a01a7da5e545f7f78857b195fdd3232e50
 	public Page<CourseAdministrator> findCourseAdministratorByCourse(Long idCourse, Integer page, Integer quantityPerPage){
 		Optional<Page<CourseAdministrator>> ca = this.courseAdministratorRepository.findByCourses(idCourse, page);
 		if(ca.isPresent()){
 			return ca.get();
 		}
 		return null;
+<<<<<<< HEAD
 	}; */
+=======
+	};*/
+>>>>>>> c30a56a01a7da5e545f7f78857b195fdd3232e50
 	
 	/**@author Gabriel Batista */
 	public Page<CourseAdministrator> findAll(Integer page, Integer quantityPerPage){

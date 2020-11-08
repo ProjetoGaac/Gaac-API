@@ -61,10 +61,13 @@ public class GeneralManagerResource {
 	/**@author Felipe Duarte*/
 	@DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") Long id){
-		GeneralManager generalManager  =this.generalManagerService.findById(id);
         
-		this.generalManagerService.delete(generalManager);
-		
+		boolean gm = this.generalManagerService.delete(id);
+
+		if (gm == false)
+        throw new ObjectNotFoundException("Nenhum Administrador Geral Encontrado!");
+
+
 		return ResponseEntity.status(HttpStatus.OK).build();
 		
     }
