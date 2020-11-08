@@ -51,16 +51,19 @@ public class SubjectResource {
 
 	@PutMapping
 	public ResponseEntity<Subject> update(@RequestBody @Valid SubjectDTO subject) {
-		Subject ca = this.subjectService.update(subject);
+		Subject s = this.subjectService.update(subject);
 
-		if (ca == null) {
+		if (s == null) {
 			throw new ObjectNotFoundException("Nenhuma 'materia' encontrado com esta ID!");
 
 		}
+		return ResponseEntity.status(HttpStatus.OK).body(s);
 
-<<<<<<< HEAD
+
+	}
+
 	/**@author Gabriel Oliveira */
-	@DeleteMapping({"id"})
+	@DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
 		boolean resp = this.subjectService.delete(id);
 		
@@ -84,26 +87,34 @@ public class SubjectResource {
         //armazenando em uma variavel listSub o id do periodo da disciplina e verifica se esse id capturado é nulo ou não  
     	List<Subject> listSub = this.subjectService.findSubjectsByPeriod(idPeriod);
         
-        if(listSub != null) {
-        	return listSub;
-        	
+        if(listSub == null) {
+        	 return null;	
         }
-        return null;
+        
+        return listSub;
+       
     }
 
-    public Page<Subject> findSubjectsByTeacher(Teacher teacher, Integer page, Integer quantityPerPage){
-        return null; //implementar
+    /** @author Jorge Gabriel */
+    public Page<Subject> findSubjectsByTeacher(Teacher teacher, Integer page, Integer quantityPerPage) {
+        Page<Subject> subjects = this.subjectService.findSubjectsByTeacher(teacher, page, quantityPerPage);
+
+        if (subjects == null) {
+            throw new ObjectNotFoundException("Nenhum Professor encontrado!");
+        }
+
+        return subjects;
     }
 
 	/**@author Jorge Gabriel */
 	public List<Subject> findSubjectsByStudentPeriod(Long idStudentPeriod){
         List<Subject> subject = this.subjectService.findSubjectsByStudentPeriod(idStudentPeriod);
         
-    	if(subject != null) {
-    		return subject;
-    	}
+    	if(subject == null) return null;	
+    	
+    	return subject;
         
-    	return null;
+    	
     }
 
 	/**@author Jorge Gabriel */
@@ -114,84 +125,20 @@ public class SubjectResource {
 			
 				Page<Subject> subjects = this.subjectService.findAll(page, quantityPerPage);
     	
-				if(subjects != null) {
-					return ResponseEntity.status(HttpStatus.OK).body(subjects);
+				if(subjects == null) {
+					throw new ObjectNotFoundException("Nenhuma Disciplina encontrada!");
 				}
-				
-				throw new ObjectNotFoundException("Nenhuma Disciplina encontrada!");
-    }
+				return ResponseEntity.status(HttpStatus.OK).body(subjects);
     
-=======
-		return ResponseEntity.status(HttpStatus.OK).body(ca);
 	}
 
-	/** @author Gabriel Oliveira */
-	@DeleteMapping
-	public ResponseEntity<?> delete(@RequestBody Subject subject) {
-		this.subjectService.delete(subject);
-		return ResponseEntity.status(HttpStatus.OK).build();
-	}
+	
 
-	/** @author Felipe Duarte */
-	public Subject findById(Long id) {
+	
 
-		Subject subject = this.subjectService.findById(id);
+	
 
-		if (subject != null) {
-			return subject;
-		}
+	
+	
 
-		return null;
-	}
-
-	/** @author Gabriel Oliveira */
-	public List<Subject> findSubjectsByPeriod(Long idPeriod) {
-		// armazenando em uma variavel listSub o id do periodo da disciplina e verifica
-		// se esse id capturado é nulo ou não
-		List<Subject> listSub = this.subjectService.findSubjectsByPeriod(idPeriod);
-
-		if (listSub != null) {
-			return listSub;
-
-		}
-		return null;
-	}
-
-	/** @author Jorge Gabriel */
-	public Page<Subject> findSubjectsByTeacher(Teacher teacher, Integer page, Integer quantityPerPage) {
-		Page<Subject> subjects = this.subjectService.findSubjectsByTeacher(teacher, page, quantityPerPage);
-
-		if (subjects == null) {
-			throw new ObjectNotFoundException("Nenhum Professor encontrado!");
-		}
-		return (Page<Subject>) ResponseEntity.status(HttpStatus.OK).body(subjects);
-
-	}
-
-	/** @author Jorge Gabriel */
-	public List<Subject> findSubjectsByStudentPeriod(Long idStudentPeriod) {
-		List<Subject> subject = this.subjectService.findSubjectsByStudentPeriod(idStudentPeriod);
-
-		if (subject != null) {
-			return subject;
-		}
-
-		return null;
-	}
-
-	/** @author Jorge Gabriel */
-	@GetMapping
-	public ResponseEntity<Page<Subject>> findAll(@RequestParam(defaultValue = "0") Integer page,
-			@RequestParam(defaultValue = "3") Integer quantityPerPage) {
-
-		Page<Subject> subjects = this.subjectService.findAll(page, quantityPerPage);
-
-		if (subjects != null) {
-			return ResponseEntity.status(HttpStatus.OK).body(subjects);
-		}
-
-		throw new ObjectNotFoundException("Nenhuma Disciplina encontrada!");
-	}
-
->>>>>>> c30a56a01a7da5e545f7f78857b195fdd3232e50
 }
