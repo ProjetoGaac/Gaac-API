@@ -132,11 +132,12 @@ public class TeacherResource {
 		}
 
 		teacher = this.teacherService.rmvSubject(teacher, subject);
-		if (teacher != null) {
-			return ResponseEntity.status(HttpStatus.OK).body(teacher);
+		if (teacher == null) {
+			throw new ObjectBadRequestException("Esta materia nao pertence a este professor!");
+			
 		}
 
-		throw new ObjectBadRequestException("Esta materia nao pertence a este professor!");
+		return ResponseEntity.status(HttpStatus.OK).body(teacher);
 	}
 
 	/** @author Gabriel Oliveira */
