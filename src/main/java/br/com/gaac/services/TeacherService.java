@@ -23,70 +23,75 @@ import br.com.gaac.repositories.TeacherRepository;
 
 @Service
 public class TeacherService {
-	
+
 	@Autowired
 	private TeacherRepository teacherRepository;
-	
-	/**@author Felipe Duarte*/
+
+	/** @author Felipe Duarte */
 	public Teacher save(Teacher teacher) {
-		
-		Teacher t = this.teacherRepository.findByNameAndEmail(teacher.getName(), 
-				teacher.getEmail());
-		
-		if(t == null) {
+
+		Teacher t = this.teacherRepository.findByNameAndEmail(teacher.getName(), teacher.getEmail());
+
+		if (t == null) {
 			teacher.addTeacherCategory(UserCategory.TEACHER.getCode());
-			//Aqui tem que encriptar a senha
+			// Aqui tem que encriptar a senha
 			t = this.teacherRepository.save(teacher);
 			return t;
 		}
-		
+
 		return null;
 	}
-	
-	/**@author Jorge Gabriel*/
+
+	/** @author Jorge Gabriel */
 	public Teacher update(Teacher teacher) {
 		Teacher t = this.findById(teacher.getId());
-		
-		if(t == null) {
+
+		if (t == null) {
 			return null;
 		}
-		
+
 		t = this.teacherRepository.save(teacher);
-		
+
 		return t;
 	}
-	
-	/**@author Gabriel Oliveira*/
-	public void delete(Teacher teacher) {
+
+	/** @author Gabriel Batista */
+	public boolean delete(Long id) {
+		Teacher teacher = this.findById(id);
+
+		if (teacher == null)
+			return false;
+
 		this.teacherRepository.delete(teacher);
+		return true;
 	}
-	
+
 	public Teacher enable(Long id) {
-		return null; //implementar
+		return null; // implementar
 	}
-	
-	/**@author Jorge Gabriel */
+
+	/** @author Jorge Gabriel */
 	public Teacher disable(Long id) {
-		
+
 		Optional<Teacher> teacher = this.teacherRepository.findById(id);
-		
-		if(teacher.isPresent()) {
-		
+
+		if (teacher.isPresent()) {
+
 			teacher.get().rmvTeacherCategory(UserCategory.TEACHER_ADMINISTRATOR.getCode());
-    	
+
 			return this.teacherRepository.save(teacher.get());
 		}
-		
-    	return null;
+
+		return null;
 	}
-	
-	/**@author Felipe Duarte*/
+
+	/** @author Felipe Duarte */
 	public Teacher addSubject(Teacher teacher, List<Course> courses, Subject subject) {
-		
+
 		boolean isPresent = false;
-		
-		if(!courses.isEmpty()) {
-			
+
+		if (!courses.isEmpty()) {
+
 			List<Subject> subjects = new ArrayList<>();
 			courses.forEach(course -> {
 				course.getPeriods().forEach(period -> {
@@ -95,109 +100,109 @@ public class TeacherService {
 					});
 				});
 			});
-			
-			for(int i=0; i < subjects.size(); i++) {
-				if(subjects.get(i).getId() == subject.getId()) {
+
+			for (int i = 0; i < subjects.size(); i++) {
+				if (subjects.get(i).getId() == subject.getId()) {
 					isPresent = true;
 					break;
 				}
 			}
-			 
-			if(isPresent) {
-				
+
+			if (isPresent) {
+
 				boolean isAdd = false;
-				
-				for(int i=0; i < teacher.getSubjects().size(); i++) {
-					if(teacher.getSubjects().get(i).getId() == subject.getId()) {
+
+				for (int i = 0; i < teacher.getSubjects().size(); i++) {
+					if (teacher.getSubjects().get(i).getId() == subject.getId()) {
 						isAdd = true;
 					}
 				}
-				
-				if(!isAdd) {
+
+				if (!isAdd) {
 					teacher.addSubject(subject);
 					teacher = this.teacherRepository.save(teacher);
 					return teacher;
-				}else {
+				} else {
 					teacher = null;
 					return teacher;
 				}
-				
-			}else {
+
+			} else {
 				teacher.setSubjects(null);
 				return teacher;
 			}
-			
-		}else {
+
+		} else {
 			teacher.setCourses(null);
 			return teacher;
 		}
-		
+
 	}
-	
-	/**@author Gabriel Batista */
+
+	/** @author Gabriel Batista */
 	public Teacher rmvSubject(Teacher teacher, Subject subject) {
 
 		boolean isPresent = false;
-					
+
 		List<Subject> subjects = new ArrayList<>();
 		teacher.getSubjects().forEach(s -> {
-					subjects.add(s);
+			subjects.add(s);
 		});
-		
-		for(int i=0; i < subjects.size(); i++) {
-			if(subjects.get(i).getId() == subject.getId()) {
+
+		for (int i = 0; i < subjects.size(); i++) {
+			if (subjects.get(i).getId() == subject.getId()) {
 				isPresent = true;
 				break;
 			}
 		}
 
-		if(!isPresent){
-			return null; 
-		}else{
+		if (!isPresent) {
+			return null;
+		} else {
 			teacher.rmvSubject(subject);
 			teacher = this.teacherRepository.save(teacher);
 			return teacher;
-		}	
+		}
 	}
-	
-	/**@author Felipe Duarte*/
+
+	/** @author Felipe Duarte */
 	public Teacher findById(Long id) {
-		
+
 		Optional<Teacher> teacher = this.teacherRepository.findById(id);
-		
-		if(teacher.isPresent()) {
+
+		if (teacher.isPresent()) {
 			return teacher.get();
 		}
-		
+
 		return null;
 	}
 
-	/**@author Jorge Gabriel */
-	public Page<Teacher> findTeacherByCourse(Long idCourse, Integer page, Integer quantityPerPage){
-		
-			PageRequest pageRequest = PageRequest.of(page, quantityPerPage);
-			
-			Page<Teacher> teachers = this.teacherRepository.findByCourses(idCourse, pageRequest);
-			
-			if(!teachers.getContent().isEmpty()) {
-				return teachers;
-			}
-			
-			return null;
+	/** @author Jorge Gabriel */
+	public Page<Teacher> findTeacherByCourse(Long idCourse, Integer page, Integer quantityPerPage) {
+
+		PageRequest pageRequest = PageRequest.of(page, quantityPerPage);
+
+		Page<Teacher> teachers = this.teacherRepository.findByCourses(idCourse, pageRequest);
+
+		if (!teachers.getContent().isEmpty()) {
+			return teachers;
+		}
+
+		return null;
 	}
 
-	/**@author Jorge Gabriel */
-	public Page<Teacher> findAll(Integer page, Integer quantityPerPage){
-		
+	/** @author Jorge Gabriel */
+	public Page<Teacher> findAll(Integer page, Integer quantityPerPage) {
+
 		PageRequest pageRequest = PageRequest.of(page, quantityPerPage);
-    	
-    	Page<Teacher> teachers = this.teacherRepository.findAll(pageRequest);
-    	
-    	if(!teachers.getContent().isEmpty()) {
-    		return teachers;
-    	}
-    	
-    	return null;
+
+		Page<Teacher> teachers = this.teacherRepository.findAll(pageRequest);
+
+		if (!teachers.getContent().isEmpty()) {
+			return teachers;
+		}
+
+		return null;
 	}
-	
+
 }

@@ -29,207 +29,203 @@ import br.com.gaac.services.TeacherService;
 @RestController
 @RequestMapping("/teacher")
 public class TeacherResource {
-	
+
 	@Autowired
 	private CourseResource courseResource;
-	
+
 	@Autowired
 	private FileResource fileResource;
-	
+
 	@Autowired
 	private SubjectResource subjectResource;
-	
+
 	@Autowired
 	private TeacherService teacherService;
-   
-	/**@author Felipe Duarte */
+
+	/** @author Felipe Duarte */
 	@PostMapping
-    public ResponseEntity<Teacher> save(@RequestBody @Valid Teacher teacher){
-        
+	public ResponseEntity<Teacher> save(@RequestBody @Valid Teacher teacher) {
+
 		teacher = this.teacherService.save(teacher);
-		
-		if(teacher != null) {
+
+		if (teacher != null) {
 			return ResponseEntity.status(HttpStatus.CREATED).body(teacher);
-			
+
 		}
-		
+
 		throw new ObjectBadRequestException("Professor Já Cadastrado");
-    }
-	
-	/**@Author Jorge Gabriel */
+	}
+
+	/** @Author Jorge Gabriel */
 	@PutMapping
-    public ResponseEntity<Teacher> update(@RequestBody @Valid Teacher teacher){
-        Teacher t = this.teacherService.update(teacher);
-		
-		if(t == null){
+	public ResponseEntity<Teacher> update(@RequestBody @Valid Teacher teacher) {
+		Teacher t = this.teacherService.update(teacher);
+
+		if (t == null) {
 
 			throw new ObjectNotFoundException("Nenhum professor encontrado!");
-			
-        }
+
+		}
 		return ResponseEntity.status(HttpStatus.OK).body(t);
-        
-    }
-    
-	@DeleteMapping
-    public ResponseEntity<?> delete(@RequestBody Teacher teacher){ 
-			Teacher t = this.teacherService.findById(teacher.getId());
-			
-			if (t == null) {
-				throw new ObjectBadRequestException("Professor não encontrado!");
-			}
-			this.teacherService.delete(teacher);
-			return ResponseEntity.status(HttpStatus.OK).build();
-			
-    }
-    
-	/**@author Felipe Duarte*/
+
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
+		boolean t = this.teacherService.delete(id);
+
+		if (t == false)
+			throw new ObjectNotFoundException("Nenhum Administrador Geral Encontrado!");
+
+		return ResponseEntity.status(HttpStatus.OK).build();
+
+	}
+
+	/** @author Felipe Duarte */
 	@PostMapping("/subject")
-    public ResponseEntity<Teacher> addSubject(@RequestParam Long idTeacher, @RequestParam Long idSubject){
-        
+	public ResponseEntity<Teacher> addSubject(@RequestParam Long idTeacher, @RequestParam Long idSubject) {
+
 		Teacher teacher = this.teacherService.findById(idTeacher);
-		if(teacher == null) {
+		if (teacher == null) {
 			throw new ObjectBadRequestException("Id do Professor inválido!");
 		}
-		
+
 		Subject subject = this.subjectResource.findById(idSubject);
-		if(subject == null) {
+		if (subject == null) {
 			throw new ObjectBadRequestException("Id da Disciplina inválido!");
 		}
-		
+
 		teacher = this.teacherService.addSubject(teacher, teacher.getCourses(), subject);
-		
-		if(teacher == null) {
+
+		if (teacher == null) {
 			throw new ObjectBadRequestException("Disciplina já associada ao professor!");
-			
-		}else {
-		
-			if(teacher.getCourses() == null) {
+
+		} else {
+
+			if (teacher.getCourses() == null) {
 				throw new ObjectBadRequestException("Professor não associado a algum curso!");
-				
-			}else {
-			
-				if(teacher.getSubjects() == null) {
+
+			} else {
+
+				if (teacher.getSubjects() == null) {
 					throw new ObjectBadRequestException("Disciplina não está entre os cursos do professor!");
-				
+
 				}
-				
+
 			}
-			
+
 		}
-	
+
 		return ResponseEntity.status(HttpStatus.OK).body(teacher);
-    }
-    
-	/**@author Gabriel Almeida*/
+	}
+
+	/** @author Gabriel Almeida */
 	@DeleteMapping("/subject")
-    public ResponseEntity<Teacher> rmvSubject(@RequestParam Long idTeacher, @RequestParam Long idSubject){
+	public ResponseEntity<Teacher> rmvSubject(@RequestParam Long idTeacher, @RequestParam Long idSubject) {
 		Teacher teacher = this.teacherService.findById(idTeacher);
-		if(teacher == null) {
+		if (teacher == null) {
 			throw new ObjectBadRequestException("Id do Professor inválido!");
 		}
-		
+
 		Subject subject = this.subjectResource.findById(idSubject);
-		if(subject == null) {
+		if (subject == null) {
 			throw new ObjectBadRequestException("Id da Disciplina inválido!");
 		}
 
 		teacher = this.teacherService.rmvSubject(teacher, subject);
-		if(teacher!=null){
+		if (teacher != null) {
 			return ResponseEntity.status(HttpStatus.OK).body(teacher);
 		}
-		
+
 		throw new ObjectBadRequestException("Esta materia nao pertence a este professor!");
-    }
-    
-	/**@author Gabriel Oliveira*/
-    @PutMapping("/enable/{id}")
-    public ResponseEntity<Teacher> enable(@PathVariable("id") Long id){
-        Teacher enab = this.teacherService.enable(id);
-        
-        if (enab != null) {
-        	return ResponseEntity.status(HttpStatus.OK).build();
-        }
-        throw new ObjectNotFoundException("Id do professor que você solicitou dar permissão não foi encontrado!");
-    }
-	
-	/**@author Jorge Gabriel */
-    @PutMapping("/disable/{id}")
-    public ResponseEntity<Teacher> disable(@PathVariable("id") Long id){
-    	
-    	Teacher teacher = this.teacherService.disable(id);
-		
-		if(teacher == null) {
+	}
+
+	/** @author Gabriel Oliveira */
+	@PutMapping("/enable/{id}")
+	public ResponseEntity<Teacher> enable(@PathVariable("id") Long id) {
+		Teacher enab = this.teacherService.enable(id);
+
+		if (enab != null) {
+			return ResponseEntity.status(HttpStatus.OK).build();
+		}
+		throw new ObjectNotFoundException("Id do professor que você solicitou dar permissão não foi encontrado!");
+	}
+
+	/** @author Jorge Gabriel */
+	@PutMapping("/disable/{id}")
+	public ResponseEntity<Teacher> disable(@PathVariable("id") Long id) {
+
+		Teacher teacher = this.teacherService.disable(id);
+
+		if (teacher == null) {
 			throw new ObjectNotFoundException("Professor não encontrado para o Id informado!");
 		}
-		
+
 		return ResponseEntity.status(HttpStatus.OK).body(teacher);
-    }
-	
-    /**@author Felipe Duarte*/
-    public Teacher findById(Long id ){
-    	
-    	Teacher teacher = this.teacherService.findById(id);
-    	
-    	if(teacher != null) {
-    		return teacher;
-    	}
-    	
-        return null;
-    }
-	
-	/**@author Jorge Gabriel */
-    @GetMapping("subject")
-    public ResponseEntity<Page<Subject>> findEnrolledSubjects(@RequestParam Long idTeacher, 
-    		@RequestParam(defaultValue = "0") Integer page,
-    		@RequestParam(defaultValue = "3") Integer quantityPerPage){
-    	
-    	Teacher teacher = this.teacherService.findById(idTeacher);
-    	
-    	if(teacher !=  null) {
-    						
-			Page<Subject> subjects = this.subjectResource.findSubjectsByTeacher(teacher, page, quantityPerPage);	
-    	
-			if(subjects != null) {
+	}
+
+	/** @author Felipe Duarte */
+	public Teacher findById(Long id) {
+
+		Teacher teacher = this.teacherService.findById(id);
+
+		if (teacher != null) {
+			return teacher;
+		}
+
+		return null;
+	}
+
+	/** @author Jorge Gabriel */
+	@GetMapping("subject")
+	public ResponseEntity<Page<Subject>> findEnrolledSubjects(@RequestParam Long idTeacher,
+			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "3") Integer quantityPerPage) {
+
+		Teacher teacher = this.teacherService.findById(idTeacher);
+
+		if (teacher != null) {
+
+			Page<Subject> subjects = this.subjectResource.findSubjectsByTeacher(teacher, page, quantityPerPage);
+
+			if (subjects != null) {
 				return ResponseEntity.status(HttpStatus.OK).body(subjects);
 			}
-				
-    	}
-				
-    	throw new ObjectNotFoundException("Nenhum Professor encontrado para o id informado!");
-    }
-	
-	/**@author Jorge Gabriel */
-    public ResponseEntity<Page<Teacher>> findTeacherByCourse(Long idCourse, Integer page, Integer quantityPerPage) {
-		
+
+		}
+
+		throw new ObjectNotFoundException("Nenhum Professor encontrado para o id informado!");
+	}
+
+	/** @author Jorge Gabriel */
+	public ResponseEntity<Page<Teacher>> findTeacherByCourse(Long idCourse, Integer page, Integer quantityPerPage) {
+
 		Page<Teacher> subjects = this.teacherService.findTeacherByCourse(idCourse, page, quantityPerPage);
-    	
-				if(subjects != null) {
-					return ResponseEntity.status(HttpStatus.OK).body(subjects);
-				}
-				
-				throw new ObjectNotFoundException("Nenhum Professor encontrado!");
-    }
-    
-    @GetMapping("/course")
-    public Page<Teacher> findSubjectsOfCoursesByTeacher(@RequestParam Long idTeacher,
-    		@RequestParam(defaultValue = "0") Integer page,
-    		@RequestParam(defaultValue = "3") Integer quantityPerPage){
-        return null;
-    }
-	
-	/**@author Jorge Gabriel */
-    @GetMapping
-    public ResponseEntity<Page<Teacher>> findAll(
-    		@RequestParam(defaultValue = "0") Integer page,
-    		@RequestParam(defaultValue = "3") Integer quantityPerPage){
-		
-				Page<Teacher> teachers = this.teacherService.findAll(page, quantityPerPage);
-    	
-				if(teachers != null) {
-					return ResponseEntity.status(HttpStatus.OK).body(teachers);
-				}
-				
-				throw new ObjectNotFoundException("Nenhum Professor encontrado!");
-    }
-    
+
+		if (subjects != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(subjects);
+		}
+
+		throw new ObjectNotFoundException("Nenhum Professor encontrado!");
+	}
+
+	@GetMapping("/course")
+	public Page<Teacher> findSubjectsOfCoursesByTeacher(@RequestParam Long idTeacher,
+			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "3") Integer quantityPerPage) {
+		return null;
+	}
+
+	/** @author Jorge Gabriel */
+	@GetMapping
+	public ResponseEntity<Page<Teacher>> findAll(@RequestParam(defaultValue = "0") Integer page,
+			@RequestParam(defaultValue = "3") Integer quantityPerPage) {
+
+		Page<Teacher> teachers = this.teacherService.findAll(page, quantityPerPage);
+
+		if (teachers != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(teachers);
+		}
+
+		throw new ObjectNotFoundException("Nenhum Professor encontrado!");
+	}
+
 }
