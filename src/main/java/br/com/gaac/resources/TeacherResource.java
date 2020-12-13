@@ -74,7 +74,7 @@ public class TeacherResource {
 		boolean t = this.teacherService.delete(id);
 
 		if (t == false)
-			throw new ObjectNotFoundException("Nenhum Administrador Geral Encontrado!");
+			throw new ObjectNotFoundException("Nenhum Professor Encontrado!");
 
 		return ResponseEntity.status(HttpStatus.OK).build();
 
