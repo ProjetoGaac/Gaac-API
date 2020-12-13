@@ -55,10 +55,19 @@ public class TeacherResource {
 		
 		throw new ObjectBadRequestException("Professor Já Cadastrado");
     }
-    
+	
+	/**@Author Jorge Gabriel */
 	@PutMapping
     public ResponseEntity<Teacher> update(@RequestBody @Valid Teacher teacher){
-        return null;
+        Teacher t = this.teacherService.update(teacher);
+		
+		if(t == null){
+
+			throw new ObjectNotFoundException("Nenhum professor encontrado!");
+			
+        }
+		return ResponseEntity.status(HttpStatus.OK).body(t);
+        
     }
     
 	@DeleteMapping

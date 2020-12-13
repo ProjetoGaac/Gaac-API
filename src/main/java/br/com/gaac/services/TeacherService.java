@@ -15,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.gaac.domain.Course;
+import br.com.gaac.domain.CourseAdministrator;
 import br.com.gaac.domain.Subject;
 import br.com.gaac.domain.Teacher;
 import br.com.gaac.domain.Enums.UserCategory;
@@ -42,8 +43,17 @@ public class TeacherService {
 		return null;
 	}
 	
+	/**@author Jorge Gabriel*/
 	public Teacher update(Teacher teacher) {
-		return null; //implementar
+		Teacher t = this.findById(teacher.getId());
+		
+		if(t == null) {
+			return null;
+		}
+		
+		t = this.teacherRepository.save(teacher);
+		
+		return t;
 	}
 	
 	/**@author Gabriel Oliveira*/
