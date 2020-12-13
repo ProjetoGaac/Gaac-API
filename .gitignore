@@ -30,3 +30,5 @@ build/
 ### VS Code ###
 .vscode/
 opem.bat
+src/main/resources/application.properties
+.gitignore

@@ -28,6 +28,7 @@ public class SubjectService {
 		
 		Subject s = new Subject();
 		
+		s.setId(subject.getId());
 		s.setCode(subject.getCode());
 		s.setName(subject.getName());
 		s.setMenu(subject.getMenu());
@@ -59,12 +60,25 @@ public class SubjectService {
     	return this.subjectRepository.save(s);
     }
 
-    public Subject update(Subject subject){
-        return null; //implementar
-    }
+    public Subject update(SubjectDTO subject){
+		Subject s =this.convertToSubject(subject);
+
+        if(this.findById(s.getId()) == null) return null;
+            
+        s = this.subjectRepository.save(s);
+        return s;
+	}
+	
+	
     /**@author Gabriel Oliveira */
-    public void delete(Subject subject){
-       this.subjectRepository.delete(subject);
+    public boolean delete(Long id){
+      Subject subject = this.findById(id);
+      
+      if(subject == null) return false;
+      		
+      this.subjectRepository.delete(subject);
+      return true;
+      
     }
 
     /**@author Felipe Duarte */
@@ -72,11 +86,9 @@ public class SubjectService {
         
     	Optional<Subject> subject = this.subjectRepository.findById(id);
     	
-    	if(subject.isPresent()) {
-    		return subject.get();
-    	}
-    	
-    	return null;
+    	if(!subject.isPresent()) return null;
+   
+    	return subject.get();
     }
     /**@author Gabriel Oliveira */
     public List<Subject> findSubjectsByPeriod(Long idPeriod){
