@@ -48,12 +48,11 @@ public class TeacherResource {
 
 		teacher = this.teacherService.save(teacher);
 
-		if (teacher != null) {
-			return ResponseEntity.status(HttpStatus.CREATED).body(teacher);
-
+		if (teacher == null) {
+			throw new ObjectBadRequestException("Professor Já Cadastrado");
 		}
 
-		throw new ObjectBadRequestException("Professor Já Cadastrado");
+		return ResponseEntity.status(HttpStatus.CREATED).body(teacher);
 	}
 
 	/** @Author Jorge Gabriel */

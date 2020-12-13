@@ -32,14 +32,14 @@ public class TeacherService {
 
 		Teacher t = this.teacherRepository.findByNameAndEmail(teacher.getName(), teacher.getEmail());
 
-		if (t == null) {
-			teacher.addTeacherCategory(UserCategory.TEACHER.getCode());
-			// Aqui tem que encriptar a senha
-			t = this.teacherRepository.save(teacher);
-			return t;
-		}
+		if (t != null) return null;
+		
+		teacher.addTeacherCategory(UserCategory.TEACHER.getCode());
+		// Aqui tem que encriptar a senha
+		t = this.teacherRepository.save(teacher);
+		return t;
 
-		return null;
+		
 	}
 
 	/** @author Jorge Gabriel */

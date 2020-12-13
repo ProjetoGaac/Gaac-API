@@ -32,3 +32,6 @@ build/
 opem.bat
 src/main/resources/application.properties
 .gitignore
+
+# Application.properties
+src/main/resources/application.properties
